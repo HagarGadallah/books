@@ -1,0 +1,25 @@
+{
+  "name": "Books",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "Hagar",
+  "license": "ISC",
+  "dependencies": {
+    "config": "^3.0.0",
+    "express": "^4.16.4",
+    "helmet": "^3.15.0",
+    "joi": "^14.3.0",
+    "joi-objectid": "^2.0.0",
+    "mongoose": "^5.4.0",
+    "morgan": "^1.9.1"
+  },
+  "devDependencies": {
+    "jest": "^23.6.0"
+  }
+}
