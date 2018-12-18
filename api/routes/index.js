@@ -21,9 +21,11 @@ router.delete("/api/delete/book/:id", bookController.delete);
 //Authors Routes
 router.get("/api/author/all", authorController.getAll);
 router.get("/api/author/:id", authorController.get);
+router.delete("/api/delete/author/:id", authorController.delete);
 
 //Categories Routes
 router.get("/api/category/all", categoryController.getAll);
 router.get("/api/category/:id", categoryController.get);
+router.delete("/api/delete/category/:id", categoryController.delete);
 
 module.exports = router;

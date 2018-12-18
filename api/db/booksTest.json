@@ -21,6 +21,17 @@
       "pagesNumber": 756,
       "image": "https://lorempixel.com/220/300/abstract?id=7529d06d-acb9-4a52-9b75-28491f4404ec",
       "category": "8c08730b-c774-427b-9d96-4b31d9292c62"
+    },
+    {
+      "id": "f9fa45f8-5976-4159-9978-b9696bad0a5f",
+      "title": "Occaecati voluptas ut ducimus sed omnis",
+      "author": "0aae26c4-6b09-459a-9504-8e1c026351d8",
+      "description": "Facere veniam repudiandae adipisci ea itaque deserunt fugiat. Autem deleniti magni alias. A illo voluptatum non dolores ut reprehenderit nulla a. Animi quisquam incidunt veritatis et inventore nostrum temporibus accusantium inventore. Minus odio officia vel debitis eius rem placeat molestiae id. Cum est quas molestiae. Quos ea itaque in occaecati. Dignissimos dolor expedita commodi voluptatem est voluptatum. Et dolor eaque aut. Sunt aut deserunt. Illum culpa voluptas id cum quas voluptatem dolor tenetur repellat. Perferendis ab aut sint voluptatem facilis nostrum unde sed libero. Eligendi earum suscipit nemo. Modi voluptatibus nihil facere quis laudantium expedita in iure ad. Non doloribus ea ut necessitatibus debitis officia dolores.",
+      "isbn": "12REOZSTO0LXKD2503MTDH7A8PV2KFL3N",
+      "publishYear": 1982,
+      "pagesNumber": 728,
+      "image": "https://lorempixel.com/220/300/abstract?id=f9fa45f8-5976-4159-9978-b9696bad0a5f",
+      "category": "9967c77a-1da5-4d69-b6a9-014ca20abd61"
     }
   ],
   "authors": [
@@ -35,10 +46,20 @@
       "name": "Miss Simeon O'Keefe",
       "jobTitle": "Direct Factors Producer",
       "bio": "Voluptatum exercitationem commodi deleniti. Soluta deleniti qui sed ipsum earum culpa non. Itaque commodi debitis et. Tenetur vel assumenda et qui."
+    },
+    {
+      "id": "3df1250e-413f-42e7-aeee-aa1fb0df1392",
+      "name": "Percival Romaguera",
+      "jobTitle": "Chief Configuration Liaison",
+      "bio": "Enim quisquam explicabo ea mollitia molestiae totam recusandae. Quae vitae sed voluptatibus iusto sint corrupti atque blanditiis. Sit aut accusamus ullam blanditiis aut eveniet est necessitatibus. Commodi vel eum consequuntur commodi temporibus distinctio."
     }
   ],
   "categories": [
     { "id": "4964327c-028a-469d-b432-d3b857a10f0d", "name": "Alena Graham" },
-    { "id": "8c08730b-c774-427b-9d96-4b31d9292c62", "name": "Gerda Hilll" }
+    { "id": "8c08730b-c774-427b-9d96-4b31d9292c62", "name": "Gerda Hilll" },
+    {
+      "id": "0d0158a0-c51f-4b00-af70-9bf449de2aee",
+      "name": "Isabell Eichmann"
+    }
   ]
 }
