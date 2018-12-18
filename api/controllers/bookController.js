@@ -21,19 +21,19 @@ module.exports.getAll = async function(req, res) {
   }
 };
 
-// module.exports.get = async function(req, res) {
-//   try {
-//     let book = await readBookById(req.params.id);
-//     res.status(200).json({
-//       data: book,
-//       message: "Books found successfully"
-//     });
-//   } catch (e) {
-//     console.log(e);
-//     res.status(500).json({
-//       data: null,
-//       message: "Internal server error",
-//       error: e
-//     });
-//   }
-// };
+module.exports.get = async function(req, res) {
+  try {
+    let book = await readBookById(req.params.id);
+    res.status(200).json({
+      data: book,
+      message: "Book found successfully"
+    });
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({
+      data: null,
+      message: "Internal server error",
+      error: e
+    });
+  }
+};
