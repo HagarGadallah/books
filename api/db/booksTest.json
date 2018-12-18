@@ -38,13 +38,7 @@
     }
   ],
   "categories": [
-    {
-      "id": "4964327c-028a-469d-b432-d3b857a10f0d",
-      "name": "Alena Graham"
-    },
-    {
-      "id": "8c08730b-c774-427b-9d96-4b31d9292c62",
-      "name": "Gerda Hilll"
-    }
+    { "id": "4964327c-028a-469d-b432-d3b857a10f0d", "name": "Alena Graham" },
+    { "id": "8c08730b-c774-427b-9d96-4b31d9292c62", "name": "Gerda Hilll" }
   ]
 }

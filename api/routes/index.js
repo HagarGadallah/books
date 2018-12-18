@@ -16,7 +16,7 @@ router.get("/api/book/all", bookController.getAll);
 router.get("/api/book/:id", bookController.get);
 // router.post("/api/book/create", bookController.create);
 // router.put("/api/user/book/:id", bookController.update);
-// router.delete("/api/user/book/:id", bookController.delete);
+router.delete("/api/delete/book/:id", bookController.delete);
 
 //Authors Routes
 router.get("/api/author/all", authorController.getAll);
