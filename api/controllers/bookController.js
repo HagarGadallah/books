@@ -23,7 +23,7 @@ module.exports.getAll = async function(req, res) {
 
 module.exports.get = async function(req, res) {
   try {
-    let book = await deleteBookById(req.params.id);
+    let book = await readBookById(req.params.id);
     res.status(200).json({
       data: book,
       message: "Book found successfully"

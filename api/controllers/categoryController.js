@@ -1,5 +1,10 @@
 //const mongoose = require("mongoose");
-const { readAll, readCategoryById, deleteCategoryById } = require("../db/db");
+const {
+  readAll,
+  readCategoryById,
+  deleteCategoryById,
+  updateCategoryById
+} = require("../db/db");
 // const Category = require("../models/category");
 
 module.exports.getAll = async function(req, res) {
@@ -43,7 +48,7 @@ module.exports.delete = async function(req, res) {
       category ==
       "Cannot delete a category, without deleting books under it first"
     ) {
-      res.status(200).json({
+      res.status(400).json({
         data: category,
         message: "Category not removed"
       });
@@ -52,6 +57,33 @@ module.exports.delete = async function(req, res) {
     res.status(200).json({
       data: category,
       message: "Category removed successfully"
+    });
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({
+      data: null,
+      message: "Internal server error",
+      error: e
+    });
+  }
+};
+
+module.exports.update = async function(req, res) {
+  try {
+    var categoryId = req.params.id;
+    let updatedCategory = await updateCategoryById(categoryId, req.body);
+    if (
+      updatedCategory == "Invalid data, please send valid data and try again"
+    ) {
+      res.status(400).json({
+        data: updatedCategory,
+        message: "Category was not updated"
+      });
+      return;
+    }
+    res.status(200).json({
+      data: updatedCategory,
+      message: "Category updated successfully"
     });
   } catch (e) {
     console.log(e);

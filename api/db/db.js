@@ -2,6 +2,8 @@ const fs = require("fs");
 var path = require("path");
 const util = require("util");
 const _ = require("lodash");
+var Joi = require("Joi");
+//const { validateCategory } = require("../models/category");
 //const Book = require("../models/book");
 
 const readFile = util.promisify(fs.readFile);
@@ -141,6 +143,75 @@ const deleteCategoryById = async id => {
 };
 //delete section end
 
+//update section
+const updateCategoryById = async (id, category) => {
+  try {
+    const data = await readFile(path.join(__dirname, "booksTest.json"));
+    const dataParsed = JSON.parse(data);
+    //get the item
+    var item = _.find(dataParsed.categories, function(i) {
+      return i.id == id;
+    });
+
+    //Invalid data check
+    if (category.name == undefined || category.name.trim() == "") {
+      return "Invalid data, please send valid data and try again";
+    }
+    //Updated Successfully
+    else if (category.name.trim() != "") {
+      item.name = category.name;
+    }
+
+    //Stringify it again to save it in file
+    var afterUpdateFile = JSON.stringify(dataParsed);
+    await writeFile(path.join(__dirname, "booksTest.json"), afterUpdateFile);
+
+    return item;
+  } catch (e) {
+    throw e;
+  }
+};
+
+const updateAuthorById = async (id, author) => {
+  try {
+    const data = await readFile(path.join(__dirname, "booksTest.json"));
+    const dataParsed = JSON.parse(data);
+    //get the item
+    var item = _.find(dataParsed.authors, function(i) {
+      return i.id == id;
+    });
+
+    //check if name is not in the body and if it's in, it is not empty and same for the job title
+    //and based on such either update or return bad request
+    if (
+      (author.name == undefined || author.name.trim() != "") &&
+      (author.jobTitle == undefined || author.jobTitle.trim() != "")
+    ) {
+      //actual update
+      item.name = author.name || item.name;
+      item.jobTitle = author.jobTitle || item.jobTitle;
+      item.bio = author.bio || item.bio;
+    }
+    //Invalid data check
+    else if (
+      author.name == undefined ||
+      author.name.trim() == "" ||
+      author.jobTitle.trim() == "" ||
+      author.jobTitle == undefined
+    ) {
+      return "Invalid data, please send valid data and try again";
+    }
+
+    //Stringify it again to save it in file
+    var afterUpdateFile = JSON.stringify(dataParsed);
+    await writeFile(path.join(__dirname, "booksTest.json"), afterUpdateFile);
+
+    return item;
+  } catch (e) {
+    throw e;
+  }
+};
+
 module.exports = {
   readAll,
   readBookById,
@@ -148,5 +219,7 @@ module.exports = {
   readCategoryById,
   deleteBookById,
   deleteAuthorById,
-  deleteCategoryById
+  deleteCategoryById,
+  updateCategoryById,
+  updateAuthorById
 };

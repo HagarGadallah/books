@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+var validate = require("uuid-validate");
+var Joi = require("Joi");
 
 var Category = mongoose.model(
   "Category",
@@ -10,4 +12,13 @@ var Category = mongoose.model(
   })
 );
 
-exports.exports = { Category };
+function validateCategory(category) {
+  const schema = {
+    id: validate(id),
+    name: Joi.string().required()
+  };
+
+  return Joi.validate(category, schema);
+}
+
+exports.exports = { Category, validateCategory };
