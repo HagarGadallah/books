@@ -1,9 +1,9 @@
 {
   "books": [
     {
-      "id": "ceb1138c-a247-43b5-8470-edcff6783bab",
+      "id": "ee878957-83f3-48c4-b899-45dd6c83e926",
       "title": "Iure voluptates et facere reprehenderit nobis autem",
-      "author": "ee878957-83f3-48c4-b899-45dd6c83e926",
+      "author": "3df1250e-413f-42e7-aeee-aa1fb0df1392",
       "description": "Dolor autem labore dolore impedit accusantium earum. Qui ut optio et. Et dicta exercitationem quos est excepturi laboriosam quo repellat recusandae. Et enim dolor itaque iusto quis. Consequatur eum assumenda nisi dolor dignissimos quae aut iusto. Ex rerum facere officiis molestias ratione voluptatum officiis adipisci. Hic ad tenetur dolorum nam. Quidem velit nihil qui voluptatem assumenda eaque non aut. Esse facere provident id. Deleniti quod qui in et eum voluptas aut perspiciatis. Alias quia unde est enim adipisci sunt. Sapiente nobis asperiores ut unde iure deserunt et harum est. Laudantium molestias rerum et atque et rerum necessitatibus. Voluptates modi nesciunt ducimus quibusdam. Accusantium omnis magnam quia laudantium quas dignissimos autem.",
       "isbn": "1PZF17IST7CO81RIJV0YH4PSVGGOUSG2OO",
       "publishYear": 1999,
@@ -57,9 +57,6 @@
   "categories": [
     { "id": "4964327c-028a-469d-b432-d3b857a10f0d", "name": "Alena Graham" },
     { "id": "8c08730b-c774-427b-9d96-4b31d9292c62", "name": "Gerda Hilll" },
-    {
-      "id": "0d0158a0-c51f-4b00-af70-9bf449de2aee",
-      "name": "Isabell Eichmann"
-    }
+    { "id": "0d0158a0-c51f-4b00-af70-9bf449de2aee", "name": "Isabell Eichmann" }
   ]
 }

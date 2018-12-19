@@ -1,5 +1,10 @@
 //const mongoose = require("mongoose");
-const { readAll, readBookById, deleteBookById } = require("../db/db");
+const {
+  readAll,
+  readBookById,
+  deleteBookById,
+  updateBookById
+} = require("../db/db");
 // const Book = require("../models/book");
 // const Author = require("../models/author");
 // const Category = require("../models/category");
@@ -44,6 +49,31 @@ module.exports.delete = async function(req, res) {
     res.status(200).json({
       data: book,
       message: "Book removed successfully"
+    });
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({
+      data: null,
+      message: "Internal server error",
+      error: e
+    });
+  }
+};
+
+module.exports.update = async function(req, res) {
+  try {
+    var bookId = req.params.id;
+    let updatedBook = await updateBookById(bookId, req.body);
+    if (updatedBook == "Invalid data, please send valid data and try again") {
+      res.status(400).json({
+        data: updatedBook,
+        message: "Book was not updated"
+      });
+      return;
+    }
+    res.status(200).json({
+      data: updatedBook,
+      message: "Book updated successfully"
     });
   } catch (e) {
     console.log(e);

@@ -60,7 +60,7 @@ const readCategoryById = async id => {
 };
 
 // read by id section end
-//delete section
+//DELETE Section
 const deleteBookById = async id => {
   try {
     const data = await readFile(path.join(__dirname, "booksTest.json"));
@@ -141,9 +141,9 @@ const deleteCategoryById = async id => {
     throw e;
   }
 };
-//delete section end
+//DELETE Section End
 
-//update section
+//UPDATE Section
 const updateCategoryById = async (id, category) => {
   try {
     const data = await readFile(path.join(__dirname, "booksTest.json"));
@@ -158,7 +158,7 @@ const updateCategoryById = async (id, category) => {
       return "Invalid data, please send valid data and try again";
     }
     //Updated Successfully
-    else if (category.name.trim() != "") {
+    else {
       item.name = category.name;
     }
 
@@ -193,12 +193,7 @@ const updateAuthorById = async (id, author) => {
       item.bio = author.bio || item.bio;
     }
     //Invalid data check
-    else if (
-      author.name == undefined ||
-      author.name.trim() == "" ||
-      author.jobTitle.trim() == "" ||
-      author.jobTitle == undefined
-    ) {
+    else {
       return "Invalid data, please send valid data and try again";
     }
 
@@ -212,6 +207,59 @@ const updateAuthorById = async (id, author) => {
   }
 };
 
+const updateBookById = async (id, book) => {
+  try {
+    const data = await readFile(path.join(__dirname, "booksTest.json"));
+    const dataParsed = JSON.parse(data);
+    //get the item
+    var item = _.find(dataParsed.books, function(i) {
+      return i.id == id;
+    });
+
+    //to check if category/author provided is in my database and if not, book does not get updated
+    var categoryCheck = _.find(dataParsed.categories, function(i) {
+      return i.id == book.category;
+    });
+
+    var authorCheck = _.find(dataParsed.authors, function(i) {
+      return i.id == book.author;
+    });
+
+    //check if paramters is not in the body and if it's in, it is not empty and valid
+    //and based on such either update or return bad request
+    if (
+      (book.title == undefined || book.title.trim() != "") &&
+      (book.isbn == undefined || book.isbn.trim().length > 34) &&
+      (book.category == undefined || categoryCheck != undefined) &&
+      (book.author == undefined || authorCheck != undefined)
+    ) {
+      //actual update
+      item.title = book.title || item.title;
+      item.author = book.author || item.author;
+      item.description = book.description || item.description;
+      item.isbn = book.isbn || item.isbn;
+      item.publishYear = book.publishYear || item.publishYear;
+      item.pagesNumber = book.pagesNumber || item.pagesNumber;
+      item.image = book.image || item.image;
+      item.category = book.category || item.category;
+    }
+    //Invalid data check
+    else {
+      return "Invalid data, please send valid data and try again";
+    }
+
+    //Stringify it again to save it in file
+    var afterUpdateFile = JSON.stringify(dataParsed);
+    await writeFile(path.join(__dirname, "booksTest.json"), afterUpdateFile);
+
+    return item;
+  } catch (e) {
+    throw e;
+  }
+};
+
+//UPDATE Section end
+
 module.exports = {
   readAll,
   readBookById,
@@ -221,5 +269,6 @@ module.exports = {
   deleteAuthorById,
   deleteCategoryById,
   updateCategoryById,
-  updateAuthorById
+  updateAuthorById,
+  updateBookById
 };
