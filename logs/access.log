@@ -1,0 +1,3 @@
+::1 - - [20/Dec/2018:13:16:41 +0000] "GET /api/book/all HTTP/1.1" 200 106356 "-" "PostmanRuntime/7.4.0"
+::1 - - [20/Dec/2018:13:35:07 +0000] "GET /api/category/all HTTP/1.1" 200 1086 "-" "PostmanRuntime/7.4.0"
+::1 - - [20/Dec/2018:13:35:23 +0000] "GET /api/category/fa3fd7b5-3637-4fbc-91a7-cc81ba5e5a8f HTTP/1.1" 200 115 "-" "PostmanRuntime/7.4.0"

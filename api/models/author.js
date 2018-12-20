@@ -30,7 +30,7 @@ const writeFile = util.promisify(fs.writeFile);
 
 const readAuthorById = async id => {
   try {
-    const data = await readFile(path.join(__dirname, "booksTest.json"));
+    const data = await readFile(path.join(__dirname, "books.json"));
     const dataParsed = JSON.parse(data);
     var item = _.find(dataParsed.authors, function(i) {
       return i.id == id;
@@ -43,7 +43,7 @@ const readAuthorById = async id => {
 
 const createAuthor = async author => {
   try {
-    const data = await readFile(path.join(__dirname, "booksTest.json"));
+    const data = await readFile(path.join(__dirname, "books.json"));
     const dataParsed = JSON.parse(data);
     var authors = dataParsed.authors;
 
@@ -66,7 +66,7 @@ const createAuthor = async author => {
     }
     var newFile = JSON.stringify(dataParsed);
 
-    await writeFile(path.join(__dirname, "booksTest.json"), newFile);
+    await writeFile(path.join(__dirname, "books.json"), newFile);
     return author;
   } catch (e) {
     throw e;
@@ -75,7 +75,7 @@ const createAuthor = async author => {
 
 const updateAuthorById = async (id, author) => {
   try {
-    const data = await readFile(path.join(__dirname, "booksTest.json"));
+    const data = await readFile(path.join(__dirname, "books.json"));
     const dataParsed = JSON.parse(data);
     //get the item
     var item = _.find(dataParsed.authors, function(i) {
@@ -100,7 +100,7 @@ const updateAuthorById = async (id, author) => {
 
     //Stringify it again to save it in file
     var afterUpdateFile = JSON.stringify(dataParsed);
-    await writeFile(path.join(__dirname, "booksTest.json"), afterUpdateFile);
+    await writeFile(path.join(__dirname, "books.json"), afterUpdateFile);
 
     return item;
   } catch (e) {
@@ -110,7 +110,7 @@ const updateAuthorById = async (id, author) => {
 
 const deleteAuthorById = async id => {
   try {
-    const data = await readFile(path.join(__dirname, "booksTest.json"));
+    const data = await readFile(path.join(__dirname, "books.json"));
     const dataParsed = JSON.parse(data);
     //get the item
     var item = _.find(dataParsed.authors, function(i) {
@@ -130,7 +130,7 @@ const deleteAuthorById = async id => {
     dataParsed.authors = authorsAfterRemove;
     var afterRemoveFile = JSON.stringify(dataParsed);
 
-    await writeFile(path.join(__dirname, "booksTest.json"), afterRemoveFile);
+    await writeFile(path.join(__dirname, "books.json"), afterRemoveFile);
     return item;
   } catch (e) {
     throw e;

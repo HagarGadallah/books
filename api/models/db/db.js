@@ -6,7 +6,7 @@ const readFile = util.promisify(fs.readFile);
 
 const readAll = async () => {
   try {
-    const data = await readFile(path.join(__dirname, "books.json"));
+    const data = await readFile(path.join(__dirname, "../books.json"));
     const dataParsed = JSON.parse(data);
     return dataParsed;
   } catch (e) {

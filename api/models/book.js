@@ -45,7 +45,7 @@ const writeFile = util.promisify(fs.writeFile);
 
 const readBookById = async id => {
   try {
-    const data = await readFile(path.join(__dirname, "booksTest.json"));
+    const data = await readFile(path.join(__dirname, "books.json"));
     const dataParsed = JSON.parse(data);
     var item = _.find(dataParsed.books, function(i) {
       return i.id == id;
@@ -58,7 +58,7 @@ const readBookById = async id => {
 
 const createBook = async book => {
   try {
-    const data = await readFile(path.join(__dirname, "booksTest.json"));
+    const data = await readFile(path.join(__dirname, "books.json"));
     const dataParsed = JSON.parse(data);
     var books = dataParsed.books;
 
@@ -101,7 +101,7 @@ const createBook = async book => {
 
 const updateBookById = async (id, book) => {
   try {
-    const data = await readFile(path.join(__dirname, "booksTest.json"));
+    const data = await readFile(path.join(__dirname, "books.json"));
     const dataParsed = JSON.parse(data);
     //get the item
     var item = _.find(dataParsed.books, function(i) {
@@ -142,7 +142,7 @@ const updateBookById = async (id, book) => {
 
     //Stringify it again to save it in file
     var afterUpdateFile = JSON.stringify(dataParsed);
-    await writeFile(path.join(__dirname, "booksTest.json"), afterUpdateFile);
+    await writeFile(path.join(__dirname, "books.json"), afterUpdateFile);
 
     return item;
   } catch (e) {
@@ -152,7 +152,7 @@ const updateBookById = async (id, book) => {
 
 const deleteBookById = async id => {
   try {
-    const data = await readFile(path.join(__dirname, "booksTest.json"));
+    const data = await readFile(path.join(__dirname, "books.json"));
     const dataParsed = JSON.parse(data);
     //get the item
     var item = _.find(dataParsed.books, function(i) {
@@ -163,7 +163,7 @@ const deleteBookById = async id => {
     //add it to the parsed data and stringify it again to save it in file
     dataParsed.books = booksAfterRemove;
     var afterRemoveFile = JSON.stringify(dataParsed);
-    await writeFile(path.join(__dirname, "booksTest.json"), afterRemoveFile);
+    await writeFile(path.join(__dirname, "books.json"), afterRemoveFile);
 
     return item;
   } catch (e) {

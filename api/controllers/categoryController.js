@@ -4,7 +4,7 @@ const {
   updateCategoryById,
   deleteCategoryById
 } = require("../models/category");
-const { readAll } = require("../db/db");
+const { readAll } = require("../models/db/db");
 
 module.exports.getAll = async function(req, res) {
   try {

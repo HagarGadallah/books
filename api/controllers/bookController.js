@@ -1,4 +1,4 @@
-const { readAll } = require("../db/db");
+const { readAll } = require("../models/db/db");
 const {
   readBookById,
   deleteBookById,
