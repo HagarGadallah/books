@@ -131,6 +131,22 @@ const deleteCategoryById = async id => {
   }
 };
 
+// const searchCategories = async options => {
+//   try {
+//     const data = await readFile(path.join(__dirname, "books.json"));
+//     const dataParsed = JSON.parse(data);
+
+//     var categories = dataParsed.categories;
+
+//     var afterRemoveFile = JSON.stringify(dataParsed);
+
+//     await writeFile(path.join(__dirname, "books.json"), afterRemoveFile);
+//     return item;
+//   } catch (e) {
+//     throw e;
+//   }
+// };
+
 module.exports = {
   readCategoryById,
   createCategory,

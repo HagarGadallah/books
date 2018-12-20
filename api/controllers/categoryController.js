@@ -120,3 +120,31 @@ module.exports.create = async function(req, res) {
     });
   }
 };
+
+module.exports.search = async function(req, res) {
+  try {
+    var options = {
+      filter: req.body.filter
+      // page: req.body.page
+    };
+    let newCategory = await createCategory(category);
+    if (newCategory == "Invalid data, please send valid data and try again") {
+      res.status(400).json({
+        data: newCategory,
+        message: "Category not created"
+      });
+      return;
+    }
+    res.status(200).json({
+      data: newCategory,
+      message: "Category created successfully"
+    });
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({
+      data: null,
+      message: "Internal server error",
+      error: e
+    });
+  }
+};
