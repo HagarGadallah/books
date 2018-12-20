@@ -1,11 +1,10 @@
-//const mongoose = require("mongoose");
+const { readAll } = require("../db/db");
 const {
-  readAll,
   readAuthorById,
   deleteAuthorById,
-  updateAuthorById
-} = require("../db/db");
-// const Author = require("../models/author");
+  updateAuthorById,
+  createAuthor
+} = require("../models/author");
 
 module.exports.getAll = async function(req, res) {
   try {
@@ -49,7 +48,7 @@ module.exports.delete = async function(req, res) {
     ) {
       res.status(200).json({
         data: author,
-        message: "Author not removed"
+        message: "Author was not removed"
       });
       return;
     }
@@ -81,6 +80,35 @@ module.exports.update = async function(req, res) {
     res.status(200).json({
       data: updatedAuthor,
       message: "Author updated successfully"
+    });
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({
+      data: null,
+      message: "Internal server error",
+      error: e
+    });
+  }
+};
+
+module.exports.create = async function(req, res) {
+  try {
+    var author = {
+      name: req.body.name,
+      jobTitle: req.body.jobTitle,
+      bio: req.body.bio
+    };
+    let newAuthor = await createAuthor(author);
+    if (newAuthor == "Invalid data, please send valid data and try again") {
+      res.status(400).json({
+        data: newAuthor,
+        message: "Author was not created"
+      });
+      return;
+    }
+    res.status(200).json({
+      data: newAuthor,
+      message: "Author created successfully"
     });
   } catch (e) {
     console.log(e);

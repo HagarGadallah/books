@@ -1,13 +1,10 @@
-//const mongoose = require("mongoose");
+const { readAll } = require("../db/db");
 const {
-  readAll,
   readBookById,
   deleteBookById,
-  updateBookById
-} = require("../db/db");
-// const Book = require("../models/book");
-// const Author = require("../models/author");
-// const Category = require("../models/category");
+  updateBookById,
+  createBook
+} = require("../models/book");
 
 module.exports.getAll = async function(req, res) {
   try {
@@ -74,6 +71,40 @@ module.exports.update = async function(req, res) {
     res.status(200).json({
       data: updatedBook,
       message: "Book updated successfully"
+    });
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({
+      data: null,
+      message: "Internal server error",
+      error: e
+    });
+  }
+};
+
+module.exports.create = async function(req, res) {
+  try {
+    var book = {
+      title: req.body.title,
+      author: req.body.author,
+      description: req.body.description,
+      isbn: req.body.isbn,
+      publishYear: req.body.publishYear,
+      pagesNumber: req.body.pagesNumber,
+      image: req.body.image,
+      category: req.body.category
+    };
+    let newBook = await createBook(book);
+    if (newBook == "Invalid data, please send valid data and try again") {
+      res.status(400).json({
+        data: newBook,
+        message: "Book was not created"
+      });
+      return;
+    }
+    res.status(200).json({
+      data: newBook,
+      message: "Book created successfully"
     });
   } catch (e) {
     console.log(e);

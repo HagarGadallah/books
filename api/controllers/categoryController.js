@@ -1,11 +1,10 @@
-//const mongoose = require("mongoose");
 const {
-  readAll,
   readCategoryById,
-  deleteCategoryById,
-  updateCategoryById
-} = require("../db/db");
-// const Category = require("../models/category");
+  createCategory,
+  updateCategoryById,
+  deleteCategoryById
+} = require("../models/category");
+const { readAll } = require("../db/db");
 
 module.exports.getAll = async function(req, res) {
   try {
@@ -84,6 +83,33 @@ module.exports.update = async function(req, res) {
     res.status(200).json({
       data: updatedCategory,
       message: "Category updated successfully"
+    });
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({
+      data: null,
+      message: "Internal server error",
+      error: e
+    });
+  }
+};
+
+module.exports.create = async function(req, res) {
+  try {
+    var category = {
+      name: req.body.name
+    };
+    let newCategory = await createCategory(category);
+    if (newCategory == "Invalid data, please send valid data and try again") {
+      res.status(400).json({
+        data: newCategory,
+        message: "Category not created"
+      });
+      return;
+    }
+    res.status(200).json({
+      data: newCategory,
+      message: "Category created successfully"
     });
   } catch (e) {
     console.log(e);
