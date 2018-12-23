@@ -2,15 +2,24 @@ const {
   readCategoryById,
   createCategory,
   updateCategoryById,
-  deleteCategoryById
+  deleteCategoryById,
+  getCategories
 } = require("../models/category");
-const { readAll } = require("../models/db/db");
 
 module.exports.getAll = async function(req, res) {
   try {
-    let all = await readAll();
+    /* var page = req.query.page;
+       var size = req.query.size;
+       var filter = req.query.filter;
+       var sort = req.query.sort;*/
+    var options = {
+      page: req.body.page,
+      size: req.body.size,
+      sortBy: req.body.sortBy
+    };
+    let filteredCategories = await getCategories(options);
     res.status(200).json({
-      data: all.categories,
+      data: filteredCategories,
       message: "Categories loaded successfully"
     });
   } catch (e) {
@@ -120,31 +129,3 @@ module.exports.create = async function(req, res) {
     });
   }
 };
-
-// module.exports.search = async function(req, res) {
-//   try {
-//     var options = {
-//       filter: req.body.filter
-//       // page: req.body.page
-//     };
-//     let newCategory = await createCategory(category);
-//     if (newCategory == "Invalid data, please send valid data and try again") {
-//       res.status(400).json({
-//         data: newCategory,
-//         message: "Category not created"
-//       });
-//       return;
-//     }
-//     res.status(200).json({
-//       data: newCategory,
-//       message: "Category created successfully"
-//     });
-//   } catch (e) {
-//     console.log(e);
-//     res.status(500).json({
-//       data: null,
-//       message: "Internal server error",
-//       error: e
-//     });
-//   }
-// };

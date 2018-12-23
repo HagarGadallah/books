@@ -125,25 +125,58 @@ const deleteCategoryById = async id => {
   }
 };
 
-// const searchCategories = async options => {
-//   try {
-//     const data = await readFile(path.join(__dirname, "books.json"));
-//     const dataParsed = JSON.parse(data);
+const sortCategories = async (categories, sortBy) => {
+  try {
+    var sortedCategories = _.sortBy(categories, sortBy);
+    return sortedCategories;
+  } catch (e) {
+    throw e;
+  }
+};
 
-//     var categories = dataParsed.categories;
+const getCategories = async options => {
+  try {
+    const data = await readAll();
+    var categories = data.categories;
+    var length = categories.length;
+    var size = options.size;
+    var page = options.page;
+    var sortBy = options.sortBy;
 
-//     var afterRemoveFile = JSON.stringify(dataParsed);
+    if (page == undefined && size == undefined && sortBy == undefined) {
+      return categories; //Normal GET all with no filterations
+    } else if (page < 1 || page == undefined) {
+      var defaultCategories = _.take(categories, size || 10);
 
-//     await writeFile(path.join(__dirname, "books.json"), afterRemoveFile);
-//     return item;
-//   } catch (e) {
-//     throw e;
-//   }
-// };
+      if (sortBy != undefined && options.sortBy.trim() != "") {
+        return await sortCategories(defaultCategories, sortBy); //if page length is less than 1
+      }
+
+      return defaultCategories;
+    } else if (page > length / 10 || size > length) {
+      //console.log("inside size more than limit");
+      var droppedCategories = _.drop(categories, length - (size || 10));
+      defaultCategories = _.take(droppedCategories, size || 10);
+
+      return defaultCategories; // if page number/size is more than categories length
+    } else {
+      //console.log("normal scenario");
+      var categoriesSkipped = _.drop(categories, (page - 1) * size);
+      var pickedCategories = _.take(categoriesSkipped, size);
+
+      if (sortBy != undefined && options.sortBy.trim() != "") {
+        return await sortCategories(pickedCategories, sortBy);
+      } else return _.take(pickedCategories, size); //normal scenario
+    }
+  } catch (e) {
+    throw e;
+  }
+};
 
 module.exports = {
   readCategoryById,
   createCategory,
   updateCategoryById,
-  deleteCategoryById
+  deleteCategoryById,
+  getCategories
 };
