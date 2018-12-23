@@ -6,8 +6,8 @@ var path = require("path");
 const util = require("util");
 const _ = require("lodash");
 const uuidv4 = require("uuid/v4");
+const { readAll } = require("./db/db");
 
-const readFile = util.promisify(fs.readFile);
 const writeFile = util.promisify(fs.writeFile);
 
 // const Book = mongoose.model(
@@ -45,9 +45,8 @@ const writeFile = util.promisify(fs.writeFile);
 
 const readBookById = async id => {
   try {
-    const data = await readFile(path.join(__dirname, "books.json"));
-    const dataParsed = JSON.parse(data);
-    var item = _.find(dataParsed.books, function(i) {
+    const data = await readAll();
+    var item = _.find(data.books, function(i) {
       return i.id == id;
     });
     return item;
@@ -58,19 +57,18 @@ const readBookById = async id => {
 
 const createBook = async book => {
   try {
-    const data = await readFile(path.join(__dirname, "books.json"));
-    const dataParsed = JSON.parse(data);
-    var books = dataParsed.books;
+    const data = await readAll();
+    var books = data.books;
 
     var bookId = uuidv4();
     book.id = bookId;
 
     //to check if category/author provided is in my database and if not, book does not get updated
-    var categoryCheck = _.find(dataParsed.categories, function(i) {
+    var categoryCheck = _.find(data.categories, function(i) {
       return i.id == book.category;
     });
 
-    var authorCheck = _.find(dataParsed.authors, function(i) {
+    var authorCheck = _.find(data.authors, function(i) {
       return i.id == book.author;
     });
 
@@ -90,9 +88,9 @@ const createBook = async book => {
       //Push it
       books.push(book);
     }
-    var newFile = JSON.stringify(dataParsed);
+    var newFile = JSON.stringify(data);
 
-    await writeFile(path.join(__dirname, "booksTest.json"), newFile);
+    await writeFile(path.join(__dirname, "books.json"), newFile);
     return book;
   } catch (e) {
     throw e;
@@ -101,19 +99,18 @@ const createBook = async book => {
 
 const updateBookById = async (id, book) => {
   try {
-    const data = await readFile(path.join(__dirname, "books.json"));
-    const dataParsed = JSON.parse(data);
+    const data = await readAll();
     //get the item
-    var item = _.find(dataParsed.books, function(i) {
+    var item = _.find(data.books, function(i) {
       return i.id == id;
     });
 
     //to check if category/author provided is in my database and if not, book does not get updated
-    var categoryCheck = _.find(dataParsed.categories, function(i) {
+    var categoryCheck = _.find(data.categories, function(i) {
       return i.id == book.category;
     });
 
-    var authorCheck = _.find(dataParsed.authors, function(i) {
+    var authorCheck = _.find(data.authors, function(i) {
       return i.id == book.author;
     });
 
@@ -141,7 +138,7 @@ const updateBookById = async (id, book) => {
     }
 
     //Stringify it again to save it in file
-    var afterUpdateFile = JSON.stringify(dataParsed);
+    var afterUpdateFile = JSON.stringify(data);
     await writeFile(path.join(__dirname, "books.json"), afterUpdateFile);
 
     return item;
@@ -152,17 +149,16 @@ const updateBookById = async (id, book) => {
 
 const deleteBookById = async id => {
   try {
-    const data = await readFile(path.join(__dirname, "books.json"));
-    const dataParsed = JSON.parse(data);
+    const data = await readAll();
     //get the item
-    var item = _.find(dataParsed.books, function(i) {
+    var item = _.find(data.books, function(i) {
       return i.id == id;
     });
     //remove it
-    var booksAfterRemove = dataParsed.books.filter(b => b.id != item.id);
+    var booksAfterRemove = data.books.filter(b => b.id != item.id);
     //add it to the parsed data and stringify it again to save it in file
-    dataParsed.books = booksAfterRemove;
-    var afterRemoveFile = JSON.stringify(dataParsed);
+    data.books = booksAfterRemove;
+    var afterRemoveFile = JSON.stringify(data);
     await writeFile(path.join(__dirname, "books.json"), afterRemoveFile);
 
     return item;

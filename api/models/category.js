@@ -3,12 +3,12 @@
 //var Joi = require("Joi");
 
 const fs = require("fs");
-var path = require("path");
+const path = require("path");
 const util = require("util");
 const _ = require("lodash");
 const uuidv4 = require("uuid/v4");
+const { readAll } = require("./db/db");
 
-const readFile = util.promisify(fs.readFile);
 const writeFile = util.promisify(fs.writeFile);
 
 //Schema
@@ -34,9 +34,8 @@ const writeFile = util.promisify(fs.writeFile);
 
 const readCategoryById = async id => {
   try {
-    const data = await readFile(path.join(__dirname, "books.json"));
-    const dataParsed = JSON.parse(data);
-    var item = _.find(dataParsed.categories, function(i) {
+    const data = await readAll();
+    var item = _.find(data.categories, function(i) {
       return i.id == id;
     });
     return item;
@@ -47,9 +46,8 @@ const readCategoryById = async id => {
 
 const createCategory = async category => {
   try {
-    const data = await readFile(path.join(__dirname, "books.json"));
-    const dataParsed = JSON.parse(data);
-    var categories = dataParsed.categories;
+    const data = await readAll();
+    var categories = data.categories;
 
     var categoryId = uuidv4();
     category.id = categoryId;
@@ -63,7 +61,7 @@ const createCategory = async category => {
       //Push it
       categories.push(category);
     }
-    var newFile = JSON.stringify(dataParsed);
+    var newFile = JSON.stringify(data);
 
     await writeFile(path.join(__dirname, "books.json"), newFile);
     return category;
@@ -74,10 +72,9 @@ const createCategory = async category => {
 
 const updateCategoryById = async (id, category) => {
   try {
-    const data = await readFile(path.join(__dirname, "books.json"));
-    const dataParsed = JSON.parse(data);
+    const data = await readAll();
     //get the item
-    var item = _.find(dataParsed.categories, function(i) {
+    var item = _.find(data.categories, function(i) {
       return i.id == id;
     });
 
@@ -91,7 +88,7 @@ const updateCategoryById = async (id, category) => {
     }
 
     //Stringify it again to save it in file
-    var afterUpdateFile = JSON.stringify(dataParsed);
+    var afterUpdateFile = JSON.stringify(data);
     await writeFile(path.join(__dirname, "books.json"), afterUpdateFile);
 
     return item;
@@ -102,27 +99,24 @@ const updateCategoryById = async (id, category) => {
 
 const deleteCategoryById = async id => {
   try {
-    const data = await readFile(path.join(__dirname, "books.json"));
-    const dataParsed = JSON.parse(data);
+    const data = await readAll();
     //get the item
-    var item = _.find(dataParsed.categories, function(i) {
+    var item = _.find(data.categories, function(i) {
       return i.id == id;
     });
 
     // check occurence
-    for (let i = 0; i < dataParsed.books.length; i++) {
-      if (dataParsed.books[i].category == item.id) {
+    for (let i = 0; i < data.books.length; i++) {
+      if (data.books[i].category == item.id) {
         return "Cannot delete a category, without deleting books under it first";
       }
     }
 
     //remove it
-    var categoriesAfterRemove = dataParsed.categories.filter(
-      c => c.id != item.id
-    );
+    var categoriesAfterRemove = data.categories.filter(c => c.id != item.id);
     //add it to the parsed data and stringify it again to save it in file
-    dataParsed.categories = categoriesAfterRemove;
-    var afterRemoveFile = JSON.stringify(dataParsed);
+    data.categories = categoriesAfterRemove;
+    var afterRemoveFile = JSON.stringify(data);
 
     await writeFile(path.join(__dirname, "books.json"), afterRemoveFile);
     return item;

@@ -6,8 +6,8 @@ var path = require("path");
 const util = require("util");
 const _ = require("lodash");
 const uuidv4 = require("uuid/v4");
+const { readAll } = require("./db/db");
 
-const readFile = util.promisify(fs.readFile);
 const writeFile = util.promisify(fs.writeFile);
 
 // const Author = mongoose.model(
@@ -30,9 +30,8 @@ const writeFile = util.promisify(fs.writeFile);
 
 const readAuthorById = async id => {
   try {
-    const data = await readFile(path.join(__dirname, "books.json"));
-    const dataParsed = JSON.parse(data);
-    var item = _.find(dataParsed.authors, function(i) {
+    const data = await readAll();
+    var item = _.find(data.authors, function(i) {
       return i.id == id;
     });
     return item;
@@ -43,9 +42,8 @@ const readAuthorById = async id => {
 
 const createAuthor = async author => {
   try {
-    const data = await readFile(path.join(__dirname, "books.json"));
-    const dataParsed = JSON.parse(data);
-    var authors = dataParsed.authors;
+    const data = await readAll();
+    var authors = data.authors;
 
     var authorId = uuidv4();
     author.id = authorId;
@@ -64,7 +62,7 @@ const createAuthor = async author => {
       //Push it
       authors.push(author);
     }
-    var newFile = JSON.stringify(dataParsed);
+    var newFile = JSON.stringify(data);
 
     await writeFile(path.join(__dirname, "books.json"), newFile);
     return author;
@@ -75,10 +73,9 @@ const createAuthor = async author => {
 
 const updateAuthorById = async (id, author) => {
   try {
-    const data = await readFile(path.join(__dirname, "books.json"));
-    const dataParsed = JSON.parse(data);
+    const data = await readAll();
     //get the item
-    var item = _.find(dataParsed.authors, function(i) {
+    var item = _.find(data.authors, function(i) {
       return i.id == id;
     });
 
@@ -99,7 +96,7 @@ const updateAuthorById = async (id, author) => {
     }
 
     //Stringify it again to save it in file
-    var afterUpdateFile = JSON.stringify(dataParsed);
+    var afterUpdateFile = JSON.stringify(data);
     await writeFile(path.join(__dirname, "books.json"), afterUpdateFile);
 
     return item;
@@ -110,25 +107,24 @@ const updateAuthorById = async (id, author) => {
 
 const deleteAuthorById = async id => {
   try {
-    const data = await readFile(path.join(__dirname, "books.json"));
-    const dataParsed = JSON.parse(data);
+    const data = await readAll();
     //get the item
-    var item = _.find(dataParsed.authors, function(i) {
+    var item = _.find(data.authors, function(i) {
       return i.id == id;
     });
 
     // check occurence
-    for (let i = 0; i < dataParsed.books.length; i++) {
-      if (dataParsed.books[i].author == item.id) {
+    for (let i = 0; i < data.books.length; i++) {
+      if (data.books[i].author == item.id) {
         return "Cannot delete an author, without deleting his/her books first";
       }
     }
 
     //remove it
-    var authorsAfterRemove = dataParsed.authors.filter(a => a.id != item.id);
+    var authorsAfterRemove = data.authors.filter(a => a.id != item.id);
     //add it to the parsed data and stringify it again to save it in file
-    dataParsed.authors = authorsAfterRemove;
-    var afterRemoveFile = JSON.stringify(dataParsed);
+    data.authors = authorsAfterRemove;
+    var afterRemoveFile = JSON.stringify(data);
 
     await writeFile(path.join(__dirname, "books.json"), afterRemoveFile);
     return item;
