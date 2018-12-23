@@ -19,7 +19,7 @@ router.put("/api/update/book/:id", bookController.update);
 router.delete("/api/delete/book/:id", bookController.delete);
 
 //Authors Routes
-router.get("/api/author/all", authorController.getAll);
+router.post("/api/author/all", authorController.getAll);
 router.get("/api/author/:id", authorController.get);
 router.post("/api/author/create", authorController.create);
 router.put("/api/update/author/:id", authorController.update);

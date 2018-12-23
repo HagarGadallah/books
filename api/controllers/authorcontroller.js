@@ -1,16 +1,25 @@
-const { readAll } = require("../models/db/db");
 const {
   readAuthorById,
   deleteAuthorById,
   updateAuthorById,
-  createAuthor
+  createAuthor,
+  getAuthors
 } = require("../models/author");
 
 module.exports.getAll = async function(req, res) {
   try {
-    let all = await readAll();
+    /* var page = req.query.page;
+       var size = req.query.size;
+       var filter = req.query.filter;
+       var sort = req.query.sort;*/
+    var options = {
+      page: req.body.page,
+      size: req.body.size,
+      sortBy: req.body.sortBy
+    };
+    let filteredAuthors = await getAuthors(options);
     res.status(200).json({
-      data: all.authors,
+      data: filteredAuthors,
       message: "Authors loaded successfully"
     });
   } catch (e) {

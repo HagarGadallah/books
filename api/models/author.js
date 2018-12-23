@@ -133,9 +133,64 @@ const deleteAuthorById = async id => {
   }
 };
 
+const sortAuthors = async (authors, sortBy) => {
+  try {
+    var sortedAuthors = _.sortBy(authors, sortBy);
+    return sortedAuthors;
+  } catch (e) {
+    throw e;
+  }
+};
+
+const getAuthors = async options => {
+  try {
+    const data = await readAll();
+    var authors = data.authors;
+    var length = authors.length;
+    var size = options.size;
+    var page = options.page;
+    var sortBy = options.sortBy;
+
+    if (page == undefined && size == undefined && sortBy == undefined) {
+      return authors; //Normal GET all with no filterations
+    } else if (page < 1 || page == undefined) {
+      var defaultAuthors = _.take(authors, size || 10);
+
+      if (
+        (sortBy != undefined && options.sortBy.length > 0) ||
+        options.sortBy.trim() != ""
+      ) {
+        return await sortAuthors(defaultAuthors, sortBy); //if page length is less than 1
+      }
+
+      return defaultAuthors;
+    } else if (page > length / 10 || size > length) {
+      //console.log("inside size more than limit");
+      var droppedAuthors = _.drop(authors, length - (size || 10));
+      defaultAuthors = _.take(droppedAuthors, size || 10);
+
+      return defaultAuthors; // if page number/size is more than authors length
+    } else {
+      //console.log("normal scenario");
+      var authorsSkipped = _.drop(authors, (page - 1) * size);
+      var pickedAuthors = _.take(authorsSkipped, size);
+
+      if (
+        (sortBy != undefined && options.sortBy.length > 0) ||
+        options.sortBy.trim() != ""
+      ) {
+        return await sortAuthors(pickedAuthors, sortBy);
+      } else return _.take(pickedAuthors, size); //normal scenario
+    }
+  } catch (e) {
+    throw e;
+  }
+};
+
 module.exports = {
   readAuthorById,
   deleteAuthorById,
   updateAuthorById,
-  createAuthor
+  createAuthor,
+  getAuthors
 };
