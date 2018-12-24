@@ -85,12 +85,13 @@ const updateCategoryById = async (id, category) => {
       item.name = category.name;
     }
 
-    console.log("item after update", item);
+    //console.log("item after update", item);
+    //console.log("data after updating item", data.categories);
 
     //save it in file
     await write(data);
 
-    console.log("data after update", data.categories);
+    //console.log("data after update", data.categories);
 
     return item;
   } catch (e) {

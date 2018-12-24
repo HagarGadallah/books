@@ -3,6 +3,7 @@
 //var Joi = require("Joi");
 const _ = require("lodash");
 const uuidv4 = require("uuid/v4");
+const validate = require("uuid-validate");
 const { readAll, sort, write } = require("./db/db");
 
 // const Book = mongoose.model(
@@ -41,10 +42,15 @@ const { readAll, sort, write } = require("./db/db");
 const readBookById = async id => {
   try {
     const data = await readAll();
-    var item = _.find(data.books, function(i) {
-      return i.id == id;
-    });
-    return item;
+    var valid = validate(id);
+    if (!valid) {
+      return "No id match";
+    } else {
+      var item = _.find(data.books, function(i) {
+        return i.id == id;
+      });
+      return item;
+    }
   } catch (e) {
     throw e;
   }
@@ -144,9 +150,7 @@ const deleteBookById = async id => {
   try {
     const data = await readAll();
     //get the item
-    var item = _.find(data.books, function(i) {
-      return i.id == id;
-    });
+    var item = await readBookById(id);
     //remove it
     var booksAfterRemove = data.books.filter(b => b.id != item.id);
     //add it to data and save it in file
