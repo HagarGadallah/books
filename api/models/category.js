@@ -7,7 +7,7 @@ const path = require("path");
 const util = require("util");
 const _ = require("lodash");
 const uuidv4 = require("uuid/v4");
-const { readAll } = require("./db/db");
+const { readAll, sort } = require("./db/db");
 
 const writeFile = util.promisify(fs.writeFile);
 
@@ -125,15 +125,6 @@ const deleteCategoryById = async id => {
   }
 };
 
-const sortCategories = async (categories, sortBy) => {
-  try {
-    var sortedCategories = _.sortBy(categories, sortBy);
-    return sortedCategories;
-  } catch (e) {
-    throw e;
-  }
-};
-
 const getCategories = async options => {
   try {
     const data = await readAll();
@@ -149,7 +140,7 @@ const getCategories = async options => {
       var defaultCategories = _.take(categories, size || 10);
 
       if (sortBy != undefined && options.sortBy.trim() != "") {
-        return await sortCategories(defaultCategories, sortBy); //if page length is less than 1
+        return await sort(defaultCategories, sortBy); //if page length is less than 1
       }
 
       return defaultCategories;
@@ -158,6 +149,10 @@ const getCategories = async options => {
       var droppedCategories = _.drop(categories, length - (size || 10));
       defaultCategories = _.take(droppedCategories, size || 10);
 
+      if (sortBy != undefined && options.sortBy.trim() != "") {
+        return await sort(defaultCategories, sortBy); //if page length is less than 1
+      }
+
       return defaultCategories; // if page number/size is more than categories length
     } else {
       //console.log("normal scenario");
@@ -165,7 +160,7 @@ const getCategories = async options => {
       var pickedCategories = _.take(categoriesSkipped, size);
 
       if (sortBy != undefined && options.sortBy.trim() != "") {
-        return await sortCategories(pickedCategories, sortBy);
+        return await sort(pickedCategories, sortBy);
       } else return _.take(pickedCategories, size); //normal scenario
     }
   } catch (e) {

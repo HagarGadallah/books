@@ -1,6 +1,7 @@
 const fs = require("fs");
 var path = require("path");
 const util = require("util");
+const _ = require("lodash");
 
 const readFile = util.promisify(fs.readFile);
 
@@ -14,6 +15,16 @@ const readAll = async () => {
   }
 };
 
+const sort = async (collection, sortBy) => {
+  try {
+    var sortedCollection = _.sortBy(collection, sortBy);
+    return sortedCollection;
+  } catch (e) {
+    throw e;
+  }
+};
+
 module.exports = {
-  readAll
+  readAll,
+  sort
 };

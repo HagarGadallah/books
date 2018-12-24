@@ -6,7 +6,7 @@ var path = require("path");
 const util = require("util");
 const _ = require("lodash");
 const uuidv4 = require("uuid/v4");
-const { readAll } = require("./db/db");
+const { readAll, sort } = require("./db/db");
 
 const writeFile = util.promisify(fs.writeFile);
 
@@ -133,15 +133,6 @@ const deleteAuthorById = async id => {
   }
 };
 
-const sortAuthors = async (authors, sortBy) => {
-  try {
-    var sortedAuthors = _.sortBy(authors, sortBy);
-    return sortedAuthors;
-  } catch (e) {
-    throw e;
-  }
-};
-
 const getAuthors = async options => {
   try {
     const data = await readAll();
@@ -160,7 +151,7 @@ const getAuthors = async options => {
         (sortBy != undefined && options.sortBy.length > 0) ||
         options.sortBy.trim() != ""
       ) {
-        return await sortAuthors(defaultAuthors, sortBy); //if page length is less than 1
+        return await sort(defaultAuthors, sortBy); //if page length is less than 1
       }
 
       return defaultAuthors;
@@ -168,6 +159,13 @@ const getAuthors = async options => {
       //console.log("inside size more than limit");
       var droppedAuthors = _.drop(authors, length - (size || 10));
       defaultAuthors = _.take(droppedAuthors, size || 10);
+
+      if (
+        (sortBy != undefined && options.sortBy.length > 0) ||
+        options.sortBy.trim() != ""
+      ) {
+        return await sort(defaultAuthors, sortBy); //if page length is less than 1
+      }
 
       return defaultAuthors; // if page number/size is more than authors length
     } else {
@@ -179,7 +177,7 @@ const getAuthors = async options => {
         (sortBy != undefined && options.sortBy.length > 0) ||
         options.sortBy.trim() != ""
       ) {
-        return await sortAuthors(pickedAuthors, sortBy);
+        return await sort(pickedAuthors, sortBy);
       } else return _.take(pickedAuthors, size); //normal scenario
     }
   } catch (e) {
