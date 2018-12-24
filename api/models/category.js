@@ -1,15 +1,9 @@
 //const mongoose = require("mongoose");
 //var validate = require("uuid-validate");
 //var Joi = require("Joi");
-
-const fs = require("fs");
-const path = require("path");
-const util = require("util");
 const _ = require("lodash");
 const uuidv4 = require("uuid/v4");
-const { readAll, sort } = require("./db/db");
-
-const writeFile = util.promisify(fs.writeFile);
+const { readAll, sort, write } = require("./db/db");
 
 //Schema
 // var Category = mongoose.model(
@@ -61,9 +55,7 @@ const createCategory = async category => {
       //Push it
       categories.push(category);
     }
-    var newFile = JSON.stringify(data);
-
-    await writeFile(path.join(__dirname, "books.json"), newFile);
+    await write(data);
     return category;
   } catch (e) {
     throw e;
@@ -87,9 +79,8 @@ const updateCategoryById = async (id, category) => {
       item.name = category.name;
     }
 
-    //Stringify it again to save it in file
-    var afterUpdateFile = JSON.stringify(data);
-    await writeFile(path.join(__dirname, "books.json"), afterUpdateFile);
+    //save it in file
+    await write(data);
 
     return item;
   } catch (e) {
@@ -114,11 +105,10 @@ const deleteCategoryById = async id => {
 
     //remove it
     var categoriesAfterRemove = data.categories.filter(c => c.id != item.id);
-    //add it to the parsed data and stringify it again to save it in file
+    //add it to the parsed data and save it in file
     data.categories = categoriesAfterRemove;
-    var afterRemoveFile = JSON.stringify(data);
 
-    await writeFile(path.join(__dirname, "books.json"), afterRemoveFile);
+    await write(data);
     return item;
   } catch (e) {
     throw e;

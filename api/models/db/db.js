@@ -4,6 +4,7 @@ const util = require("util");
 const _ = require("lodash");
 
 const readFile = util.promisify(fs.readFile);
+const writeFile = util.promisify(fs.writeFile);
 
 const readAll = async () => {
   try {
@@ -24,7 +25,13 @@ const sort = async (collection, sortBy) => {
   }
 };
 
+const write = async data => {
+  var newFile = JSON.stringify(data);
+  await writeFile(path.join(__dirname, "../books.json"), newFile);
+};
+
 module.exports = {
   readAll,
-  sort
+  sort,
+  write
 };

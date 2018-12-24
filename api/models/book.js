@@ -6,7 +6,7 @@ var path = require("path");
 const util = require("util");
 const _ = require("lodash");
 const uuidv4 = require("uuid/v4");
-const { readAll, sort } = require("./db/db");
+const { readAll, sort, write } = require("./db/db");
 
 const writeFile = util.promisify(fs.writeFile);
 
@@ -88,9 +88,8 @@ const createBook = async book => {
       //Push it
       books.push(book);
     }
-    var newFile = JSON.stringify(data);
 
-    await writeFile(path.join(__dirname, "books.json"), newFile);
+    await write(data);
     return book;
   } catch (e) {
     throw e;
@@ -137,9 +136,8 @@ const updateBookById = async (id, book) => {
       return "Invalid data, please send valid data and try again";
     }
 
-    //Stringify it again to save it in file
-    var afterUpdateFile = JSON.stringify(data);
-    await writeFile(path.join(__dirname, "books.json"), afterUpdateFile);
+    // save it in file
+    await write(data);
 
     return item;
   } catch (e) {
@@ -158,8 +156,8 @@ const deleteBookById = async id => {
     var booksAfterRemove = data.books.filter(b => b.id != item.id);
     //add it to the parsed data and stringify it again to save it in file
     data.books = booksAfterRemove;
-    var afterRemoveFile = JSON.stringify(data);
-    await writeFile(path.join(__dirname, "books.json"), afterRemoveFile);
+
+    await write(data);
 
     return item;
   } catch (e) {

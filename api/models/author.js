@@ -1,14 +1,9 @@
 //const mongoose = require("mongoose");
 //var validate = require("uuid-validate");
 //var Joi = require("Joi");
-const fs = require("fs");
-var path = require("path");
-const util = require("util");
 const _ = require("lodash");
 const uuidv4 = require("uuid/v4");
-const { readAll, sort } = require("./db/db");
-
-const writeFile = util.promisify(fs.writeFile);
+const { readAll, sort, write } = require("./db/db");
 
 // const Author = mongoose.model(
 //   "Author",
@@ -62,9 +57,8 @@ const createAuthor = async author => {
       //Push it
       authors.push(author);
     }
-    var newFile = JSON.stringify(data);
 
-    await writeFile(path.join(__dirname, "books.json"), newFile);
+    await write(data);
     return author;
   } catch (e) {
     throw e;
@@ -96,8 +90,8 @@ const updateAuthorById = async (id, author) => {
     }
 
     //Stringify it again to save it in file
-    var afterUpdateFile = JSON.stringify(data);
-    await writeFile(path.join(__dirname, "books.json"), afterUpdateFile);
+
+    await write(data);
 
     return item;
   } catch (e) {
@@ -124,9 +118,8 @@ const deleteAuthorById = async id => {
     var authorsAfterRemove = data.authors.filter(a => a.id != item.id);
     //add it to the parsed data and stringify it again to save it in file
     data.authors = authorsAfterRemove;
-    var afterRemoveFile = JSON.stringify(data);
 
-    await writeFile(path.join(__dirname, "books.json"), afterRemoveFile);
+    await write(data);
     return item;
   } catch (e) {
     throw e;
