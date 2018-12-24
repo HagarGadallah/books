@@ -73,6 +73,7 @@ const createAuthor = async author => {
 
 const updateAuthorById = async (id, author) => {
   try {
+    var data = await readAll();
     //get the item
     var item = await readAuthorById(id);
 
@@ -103,6 +104,7 @@ const updateAuthorById = async (id, author) => {
 
 const deleteAuthorById = async id => {
   try {
+    var data = await readAll();
     //get the item
     var item = await readAuthorById(id);
 

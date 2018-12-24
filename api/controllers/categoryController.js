@@ -35,6 +35,13 @@ module.exports.getAll = async function(req, res) {
 module.exports.get = async function(req, res) {
   try {
     let category = await readCategoryById(req.params.id);
+    if (category == "No id match") {
+      res.status(404).json({
+        data: category,
+        message: "Category not found"
+      });
+      return;
+    }
     res.status(200).json({
       data: category,
       message: "Category found successfully"

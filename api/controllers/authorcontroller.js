@@ -36,7 +36,7 @@ module.exports.get = async function(req, res) {
   try {
     let author = await readAuthorById(req.params.id);
     if (author == "No id match") {
-      res.status(200).json({
+      res.status(404).json({
         data: author,
         message: "Author not found"
       });

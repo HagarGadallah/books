@@ -3,6 +3,7 @@
 //var Joi = require("Joi");
 const _ = require("lodash");
 const uuidv4 = require("uuid/v4");
+const validate = require("uuid-validate");
 const { readAll, sort, write } = require("./db/db");
 
 //Schema
@@ -29,10 +30,15 @@ const { readAll, sort, write } = require("./db/db");
 const readCategoryById = async id => {
   try {
     const data = await readAll();
-    var item = _.find(data.categories, function(i) {
-      return i.id == id;
-    });
-    return item;
+    var valid = validate(id);
+    if (!valid) {
+      return "No id match";
+    } else {
+      var item = _.find(data.categories, function(i) {
+        return i.id == id;
+      });
+      return item;
+    }
   } catch (e) {
     throw e;
   }
@@ -64,7 +70,7 @@ const createCategory = async category => {
 
 const updateCategoryById = async (id, category) => {
   try {
-    const data = await readAll();
+    var data = await readAll();
     //get the item
     var item = _.find(data.categories, function(i) {
       return i.id == id;
@@ -79,8 +85,12 @@ const updateCategoryById = async (id, category) => {
       item.name = category.name;
     }
 
+    console.log("item after update", item);
+
     //save it in file
     await write(data);
+
+    console.log("data after update", data.categories);
 
     return item;
   } catch (e) {
@@ -92,9 +102,7 @@ const deleteCategoryById = async id => {
   try {
     const data = await readAll();
     //get the item
-    var item = _.find(data.categories, function(i) {
-      return i.id == id;
-    });
+    var item = await readCategoryById(id);
 
     // check occurence
     for (let i = 0; i < data.books.length; i++) {
