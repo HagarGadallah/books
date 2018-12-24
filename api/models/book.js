@@ -215,7 +215,7 @@ const getBooks = async options => {
         sortBy != undefined &&
         (options.sortBy.length > 0 || options.sortBy.trim() != "")
       ) {
-        return await sortAuthors(pickedBooks, sortBy);
+        return await sortBooks(pickedBooks, sortBy);
       } else return _.take(pickedBooks, size); //normal scenario
     }
   } catch (e) {
