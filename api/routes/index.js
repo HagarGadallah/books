@@ -12,7 +12,7 @@ const categoryController = require("../controllers/categoryController");
 // });
 
 //Books Routes
-router.get("/api/book/all", bookController.getAll);
+router.post("/api/book/all", bookController.getAll);
 router.get("/api/book/:id", bookController.get);
 router.post("/api/book/create", bookController.create);
 router.put("/api/update/book/:id", bookController.update);

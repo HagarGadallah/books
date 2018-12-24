@@ -167,4 +167,66 @@ const deleteBookById = async id => {
   }
 };
 
-module.exports = { readBookById, deleteBookById, updateBookById, createBook };
+const sortBooks = async (books, sortBy) => {
+  try {
+    var sortedBooks = _.sortBy(books, sortBy);
+    return sortedBooks;
+  } catch (e) {
+    throw e;
+  }
+};
+
+const getBooks = async options => {
+  try {
+    const data = await readAll();
+    var books = data.books;
+    var length = books.length;
+    var size = options.size;
+    var page = options.page;
+    var sortBy = options.sortBy;
+
+    if (page == undefined && size == undefined && sortBy == undefined) {
+      return books; //Normal GET all with no filterations
+    } else if (page < 1 || page == undefined || size < 1) {
+      var defaultBooks = _.take(books, 10);
+
+      //console.log("page less than 1");
+
+      if (
+        sortBy != undefined &&
+        (options.sortBy.length > 0 || options.sortBy.trim() != "")
+      ) {
+        return await sortBooks(defaultBooks, sortBy); //if page length is less than 1
+      }
+
+      return defaultBooks;
+    } else if (page > length / 10 || size > length) {
+      //console.log("inside size more than limit");
+      var droppedBooks = _.drop(books, length - (size || 10));
+      defaultBooks = _.take(droppedBooks, size || 10);
+
+      return defaultBooks; // if page number/size is more than authors length
+    } else {
+      //console.log("normal scenario");
+      var booksSkipped = _.drop(books, (page - 1) * size);
+      var pickedBooks = _.take(booksSkipped, size);
+
+      if (
+        sortBy != undefined &&
+        (options.sortBy.length > 0 || options.sortBy.trim() != "")
+      ) {
+        return await sortAuthors(pickedBooks, sortBy);
+      } else return _.take(pickedBooks, size); //normal scenario
+    }
+  } catch (e) {
+    throw e;
+  }
+};
+
+module.exports = {
+  readBookById,
+  deleteBookById,
+  updateBookById,
+  createBook,
+  getBooks
+};
