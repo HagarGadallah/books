@@ -4,6 +4,7 @@
 const _ = require("lodash");
 const uuidv4 = require("uuid/v4");
 const { readAll, sort, write } = require("./db/db");
+const validate = require("uuid-validate");
 
 // const Author = mongoose.model(
 //   "Author",
@@ -26,10 +27,15 @@ const { readAll, sort, write } = require("./db/db");
 const readAuthorById = async id => {
   try {
     const data = await readAll();
-    var item = _.find(data.authors, function(i) {
-      return i.id == id;
-    });
-    return item;
+    var valid = validate(id);
+    if (!valid) {
+      return "No id match";
+    } else {
+      var item = _.find(data.authors, function(i) {
+        return i.id == id;
+      });
+      return item;
+    }
   } catch (e) {
     throw e;
   }
@@ -37,7 +43,7 @@ const readAuthorById = async id => {
 
 const createAuthor = async author => {
   try {
-    const data = await readAll();
+    var data = await readAll();
     var authors = data.authors;
 
     var authorId = uuidv4();
@@ -67,11 +73,8 @@ const createAuthor = async author => {
 
 const updateAuthorById = async (id, author) => {
   try {
-    const data = await readAll();
     //get the item
-    var item = _.find(data.authors, function(i) {
-      return i.id == id;
-    });
+    var item = await readAuthorById(id);
 
     //check if name is not in the body and if it's in, it is not empty and same for the job title
     //and based on such either update or return bad request
@@ -89,8 +92,7 @@ const updateAuthorById = async (id, author) => {
       return "Invalid data, please send valid data and try again";
     }
 
-    //Stringify it again to save it in file
-
+    //save it in file
     await write(data);
 
     return item;
@@ -101,11 +103,8 @@ const updateAuthorById = async (id, author) => {
 
 const deleteAuthorById = async id => {
   try {
-    const data = await readAll();
     //get the item
-    var item = _.find(data.authors, function(i) {
-      return i.id == id;
-    });
+    var item = await readAuthorById(id);
 
     // check occurence
     for (let i = 0; i < data.books.length; i++) {
@@ -116,7 +115,7 @@ const deleteAuthorById = async id => {
 
     //remove it
     var authorsAfterRemove = data.authors.filter(a => a.id != item.id);
-    //add it to the parsed data and stringify it again to save it in file
+    //add it to data and save it in file
     data.authors = authorsAfterRemove;
 
     await write(data);
@@ -128,7 +127,7 @@ const deleteAuthorById = async id => {
 
 const getAuthors = async options => {
   try {
-    const data = await readAll();
+    var data = await readAll();
     var authors = data.authors;
     var length = authors.length;
     var size = options.size;

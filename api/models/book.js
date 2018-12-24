@@ -1,14 +1,9 @@
 //const mongoose = require("mongoose");
 //var validate = require("uuid-validate");
 //var Joi = require("Joi");
-const fs = require("fs");
-var path = require("path");
-const util = require("util");
 const _ = require("lodash");
 const uuidv4 = require("uuid/v4");
 const { readAll, sort, write } = require("./db/db");
-
-const writeFile = util.promisify(fs.writeFile);
 
 // const Book = mongoose.model(
 //   "Book",
@@ -154,7 +149,7 @@ const deleteBookById = async id => {
     });
     //remove it
     var booksAfterRemove = data.books.filter(b => b.id != item.id);
-    //add it to the parsed data and stringify it again to save it in file
+    //add it to data and save it in file
     data.books = booksAfterRemove;
 
     await write(data);

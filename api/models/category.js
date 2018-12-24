@@ -105,7 +105,7 @@ const deleteCategoryById = async id => {
 
     //remove it
     var categoriesAfterRemove = data.categories.filter(c => c.id != item.id);
-    //add it to the parsed data and save it in file
+    //add it to data and save it in file
     data.categories = categoriesAfterRemove;
 
     await write(data);
