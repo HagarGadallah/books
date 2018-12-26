@@ -1,10 +1,14 @@
 const express = require("express");
 const morgan = require("morgan");
 var routes = require("./api/routes");
-var fs = require("fs");
-var path = require("path");
+const fs = require("fs");
+const path = require("path");
+const pug = require("pug");
 
 const app = express();
+
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", pug);
 
 app.use(express.json());
 
