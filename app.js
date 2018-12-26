@@ -23,4 +23,8 @@ app.use(morgan("dev"));
 app.use("/", routes);
 
 const port = process.env.PORT || 3000;
-app.listen(port, () => console.log("App is up and listening on port 3000"));
+const server = app.listen(port, () =>
+  console.log("App is up and listening on port 3000")
+);
+
+module.exports = server;
