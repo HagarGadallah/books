@@ -1,0 +1,746 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for books/api/models/book.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\..\..\prettify.css" />
+    <link rel="stylesheet" href="..\..\..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\..\..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\..\..\index.html">All files</a> / <a href="index.html">books/api/models</a> book.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">11.11% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>10/90</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/71</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/12</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">11.24% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>10/89</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">//const mongoose = require("mongoose");
+//var validate = require("uuid-validate");
+//var Joi = require("Joi");
+const _ = require("lodash");
+const uuidv4 = require("uuid/v4");
+const validate = require("uuid-validate");
+const { readAll, sort, write } = require("./db/db");
+&nbsp;
+// const Book = mongoose.model(
+//   "Book",
+//   new mongoose.Schema({
+//     title: {
+//       type: String,
+//       required: true,
+//       minlength: 2,
+//       maxlength: 300
+//     },
+//     author: {
+//       type: mongoose.Schema.ObjectId,
+//       ref: "Author"
+//     },
+//     description: {
+//       type: String,
+//       maxlength: 500
+//     },
+//     isbn: {
+//       type: String,
+//       maxlength: 50
+//     },
+//     publishYear: {
+//       type: Number
+//     },
+//     pagesNumber: Number,
+//     image: String,
+//     author: {
+//       type: mongoose.Schema.ObjectId,
+//       ref: "Category"
+//     }
+//   })
+// );
+&nbsp;
+const readBookById = <span class="fstat-no" title="function not covered" >as</span>ync id =&gt; {
+<span class="cstat-no" title="statement not covered" >  try {</span>
+    const data = <span class="cstat-no" title="statement not covered" >await readAll();</span>
+    var valid = <span class="cstat-no" title="statement not covered" >validate(id);</span>
+<span class="cstat-no" title="statement not covered" >    if (!valid) {</span>
+<span class="cstat-no" title="statement not covered" >      return "No id match";</span>
+    } else {
+      var item = <span class="cstat-no" title="statement not covered" >_.find(data.books, <span class="fstat-no" title="function not covered" >fu</span>nction(i) {</span>
+<span class="cstat-no" title="statement not covered" >        return i.id == id;</span>
+      });
+<span class="cstat-no" title="statement not covered" >      return item;</span>
+    }
+  } catch (e) {
+<span class="cstat-no" title="statement not covered" >    throw e;</span>
+  }
+};
+&nbsp;
+const createBook = <span class="fstat-no" title="function not covered" >as</span>ync book =&gt; {
+<span class="cstat-no" title="statement not covered" >  try {</span>
+    const data = <span class="cstat-no" title="statement not covered" >await readAll();</span>
+    var books = <span class="cstat-no" title="statement not covered" >data.books;</span>
+&nbsp;
+    var bookId = <span class="cstat-no" title="statement not covered" >uuidv4();</span>
+<span class="cstat-no" title="statement not covered" >    book.id = bookId;</span>
+&nbsp;
+    //to check if category/author provided is in my database and if not, book does not get updated
+    var categoryCheck = <span class="cstat-no" title="statement not covered" >_.find(data.categories, <span class="fstat-no" title="function not covered" >fu</span>nction(i) {</span>
+<span class="cstat-no" title="statement not covered" >      return i.id == book.category;</span>
+    });
+&nbsp;
+    var authorCheck = <span class="cstat-no" title="statement not covered" >_.find(data.authors, <span class="fstat-no" title="function not covered" >fu</span>nction(i) {</span>
+<span class="cstat-no" title="statement not covered" >      return i.id == book.author;</span>
+    });
+&nbsp;
+    //Invalid data check
+<span class="cstat-no" title="statement not covered" >    if (</span>
+      book.title == undefined ||
+      book.title.trim() == "" ||
+      book.isbn == undefined ||
+      book.isbn.trim().length &lt; 34 ||
+      (book.category != undefined &amp;&amp; categoryCheck == undefined) ||
+      (book.author != undefined &amp;&amp; authorCheck == undefined)
+    ) {
+<span class="cstat-no" title="statement not covered" >      return "Invalid data, please send valid data and try again";</span>
+    }
+    //Created Successfully
+    else {
+      //Push it
+<span class="cstat-no" title="statement not covered" >      books.push(book);</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    await write(data);</span>
+<span class="cstat-no" title="statement not covered" >    return book;</span>
+  } catch (e) {
+<span class="cstat-no" title="statement not covered" >    throw e;</span>
+  }
+};
+&nbsp;
+const updateBookById = <span class="fstat-no" title="function not covered" >as</span>ync (id, book) =&gt; {
+<span class="cstat-no" title="statement not covered" >  try {</span>
+    const data = <span class="cstat-no" title="statement not covered" >await readAll();</span>
+    //get the item
+    var item = <span class="cstat-no" title="statement not covered" >_.find(data.books, <span class="fstat-no" title="function not covered" >fu</span>nction(i) {</span>
+<span class="cstat-no" title="statement not covered" >      return i.id == id;</span>
+    });
+&nbsp;
+    //to check if category/author provided is in my database and if not, book does not get updated
+    var categoryCheck = <span class="cstat-no" title="statement not covered" >_.find(data.categories, <span class="fstat-no" title="function not covered" >fu</span>nction(i) {</span>
+<span class="cstat-no" title="statement not covered" >      return i.id == book.category;</span>
+    });
+&nbsp;
+    var authorCheck = <span class="cstat-no" title="statement not covered" >_.find(data.authors, <span class="fstat-no" title="function not covered" >fu</span>nction(i) {</span>
+<span class="cstat-no" title="statement not covered" >      return i.id == book.author;</span>
+    });
+&nbsp;
+    //check if paramters is not in the body and if it's in, it is not empty and valid
+    //and based on such either update or return bad request
+<span class="cstat-no" title="statement not covered" >    if (</span>
+      (book.title == undefined || book.title.trim() != "") &amp;&amp;
+      (book.isbn == undefined || book.isbn.trim().length &gt; 34) &amp;&amp;
+      (book.category == undefined || categoryCheck != undefined) &amp;&amp;
+      (book.author == undefined || authorCheck != undefined)
+    ) {
+      //actual update
+<span class="cstat-no" title="statement not covered" >      item.title = book.title || item.title;</span>
+<span class="cstat-no" title="statement not covered" >      item.author = book.author || item.author;</span>
+<span class="cstat-no" title="statement not covered" >      item.description = book.description || item.description;</span>
+<span class="cstat-no" title="statement not covered" >      item.isbn = book.isbn || item.isbn;</span>
+<span class="cstat-no" title="statement not covered" >      item.publishYear = book.publishYear || item.publishYear;</span>
+<span class="cstat-no" title="statement not covered" >      item.pagesNumber = book.pagesNumber || item.pagesNumber;</span>
+<span class="cstat-no" title="statement not covered" >      item.image = book.image || item.image;</span>
+<span class="cstat-no" title="statement not covered" >      item.category = book.category || item.category;</span>
+    }
+    //Invalid data check
+    else {
+<span class="cstat-no" title="statement not covered" >      return "Invalid data, please send valid data and try again";</span>
+    }
+&nbsp;
+    // save it in file
+<span class="cstat-no" title="statement not covered" >    await write(data);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return item;</span>
+  } catch (e) {
+<span class="cstat-no" title="statement not covered" >    throw e;</span>
+  }
+};
+&nbsp;
+const deleteBookById = <span class="fstat-no" title="function not covered" >as</span>ync id =&gt; {
+<span class="cstat-no" title="statement not covered" >  try {</span>
+    const data = <span class="cstat-no" title="statement not covered" >await readAll();</span>
+    //get the item
+    var item = <span class="cstat-no" title="statement not covered" >await readBookById(id);</span>
+    //remove it
+    var booksAfterRemove = <span class="cstat-no" title="statement not covered" >data.books.filter(<span class="fstat-no" title="function not covered" >b </span>=&gt; <span class="cstat-no" title="statement not covered" >b.id != item.id)</span>;</span>
+    //add it to data and save it in file
+<span class="cstat-no" title="statement not covered" >    data.books = booksAfterRemove;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    await write(data);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return item;</span>
+  } catch (e) {
+<span class="cstat-no" title="statement not covered" >    throw e;</span>
+  }
+};
+&nbsp;
+const getBooks = <span class="fstat-no" title="function not covered" >as</span>ync options =&gt; {
+<span class="cstat-no" title="statement not covered" >  try {</span>
+    const data = <span class="cstat-no" title="statement not covered" >await readAll();</span>
+    var books = <span class="cstat-no" title="statement not covered" >data.books;</span>
+    var length = <span class="cstat-no" title="statement not covered" >books.length;</span>
+    var size = <span class="cstat-no" title="statement not covered" >options.size;</span>
+    var page = <span class="cstat-no" title="statement not covered" >options.page;</span>
+    var sortBy = <span class="cstat-no" title="statement not covered" >options.sortBy;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (page == undefined &amp;&amp; size == undefined &amp;&amp; sortBy == undefined) {</span>
+<span class="cstat-no" title="statement not covered" >      return books; </span>//Normal GET all with no filterations
+    } else <span class="cstat-no" title="statement not covered" >if (page &lt; 1 || page == undefined || size &lt; 1) {</span>
+      var defaultBooks = <span class="cstat-no" title="statement not covered" >_.take(books, 10);</span>
+&nbsp;
+      //console.log("page less than 1");
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (</span>
+        sortBy != undefined &amp;&amp;
+        (options.sortBy.length &gt; 0 || options.sortBy.trim() != "")
+      ) {
+<span class="cstat-no" title="statement not covered" >        return await sort(defaultBooks, sortBy); </span>//if page length is less than 1
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      return defaultBooks;</span>
+    } else <span class="cstat-no" title="statement not covered" >if (page &gt; length / 10 || size &gt; length) {</span>
+      //console.log("inside size more than limit");
+      var droppedBooks = <span class="cstat-no" title="statement not covered" >_.drop(books, length - (size || 10));</span>
+<span class="cstat-no" title="statement not covered" >      defaultBooks = _.take(droppedBooks, size || 10);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (</span>
+        sortBy != undefined &amp;&amp;
+        (options.sortBy.length &gt; 0 || options.sortBy.trim() != "")
+      ) {
+<span class="cstat-no" title="statement not covered" >        return await sort(defaultBooks, sortBy); </span>//if page length is less than 1
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      return defaultBooks; </span>// if page number/size is more than authors length
+    } else {
+      //console.log("normal scenario");
+      var booksSkipped = <span class="cstat-no" title="statement not covered" >_.drop(books, (page - 1) * size);</span>
+      var pickedBooks = <span class="cstat-no" title="statement not covered" >_.take(booksSkipped, size);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (</span>
+        sortBy != undefined &amp;&amp;
+        (options.sortBy.length &gt; 0 || options.sortBy.trim() != "")
+      ) {
+<span class="cstat-no" title="statement not covered" >        return await sort(pickedBooks, sortBy);</span>
+      } else <span class="cstat-no" title="statement not covered" >return _.take(pickedBooks, size); </span>//normal scenario
+    }
+  } catch (e) {
+<span class="cstat-no" title="statement not covered" >    throw e;</span>
+  }
+};
+&nbsp;
+module.exports = {
+  readBookById,
+  deleteBookById,
+  updateBookById,
+  createBook,
+  getBooks
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Dec 26 2018 23:27:17 GMT+0200 (Eastern European Standard Time)
+</div>
+</div>
+<script src="..\..\..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\..\..\sorter.js"></script>
+</body>
+</html>

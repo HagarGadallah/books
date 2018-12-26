@@ -80,6 +80,9 @@ const updateCategoryById = async (id, category) => {
     if (category.name == undefined || category.name.trim() == "") {
       return "Invalid data, please send valid data and try again";
     }
+    else if(item == undefined){
+      return "No id match";
+    }
     //Updated Successfully
     else {
       item.name = category.name;
@@ -104,6 +107,10 @@ const deleteCategoryById = async id => {
     const data = await readAll();
     //get the item
     var item = await readCategoryById(id);
+
+    if(item == undefined){
+      return "No id match";
+    }
 
     // check occurence
     for (let i = 0; i < data.books.length; i++) {

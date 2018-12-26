@@ -1,8 +1,8 @@
 const uuidv4 = require("uuid/v4");
 const request = require("supertest");
-const server = require("../../../app");
-const category = require("../../../api/models/category");
-const { readAll } = require("../../../api/models/db/db");
+const server = require("../../app");
+const category = require("../../api/models/category");
+const { readAll } = require("../../api/models/db/db");
 const _ = require("lodash");
 
 describe("GET /api/category/:id", () => {
@@ -82,74 +82,112 @@ describe("POST /api/category/create", () => {
   });
 });
 
-describe("PUT api/update/category/:id", () => {
+describe("PUT /api/update/category/:id", () => {
   var newName;
-  var id = "dc1d741a-d4e9-4e64-b33a-4eeb0970903c"; //existing id in the file
+  var id;
 
   const exec = async () => {
-    return await request(server)
-      .put("api/update/category/" + id)
+    return await request(server).put("/api/update/category/" + id)
       .send({ name: newName });
   };
 
-  // it("should return 400 if category's name is empty", async () => {
-  //   newName = "        ";
-
-  //   const res = await exec();
-
-  //   expect(res.status).toBe(400);
-  // });
-
-  it("should return 404 if id is invalid", async () => {
-    id = 1;
-    newName = "updated name";
-
+  it("should return 400 if category's name is empty", async () => {
+    id = "dc1d741a-d4e9-4e64-b33a-4eeb0970903c"; 
+    newName = "            ";
     const res = await exec();
+    expect(res.status).toBe(400);
+    //expect(res.body).toHaveProperty("data","Invalid data, please send valid data and try again");
+  });
 
+  it("should return 404 if category with the given id was not found", async () => {
+    id = uuidv4();
+    newName = "updated name";
+    const res = await exec();
     expect(res.status).toBe(404);
   });
 
-  // it("should return 404 if category with the given id was not found", async () => {
-  //   id = mongoose.Types.ObjectId();
-
+  // it("should return 404 if id is invalid", async () => {
+  //   id = 1;
   //   const res = await exec();
-
   //   expect(res.status).toBe(404);
   // });
 
-  //SHOULD BE UNCOMMENTEDDDDD
   // it("should update the category if input is valid", async () => {
-  //   await exec();
-
-  //   const updatedGenre = await Genre.findById(genre._id);
-
-  //   expect(updatedGenre.name).toBe(newName);
-  // });
-
-  // it("should return the updated category if it is valid", async () => {
   //   newName = "updated name";
-  //   const res = await exec();
-
-  //   expect(res.body).toHaveProperty("data.id");
-  //   expect(res.body).toHaveProperty("data.name", newName);
+  //   id = "dc1d741a-d4e9-4e64-b33a-4eeb0970903c"; //existing id in the file
+  //   const data = await readAll();
+  //   await exec();
+  //   var updatedCategory = _.find(data.categories, function(i) {
+  //     return i.id == id;
+  //   });
+  //   expect(updatedCategory.name).toBe(newName);
   // });
+
+  it("should return the updated category if it is a valid update", async () => {
+    id = "dc1d741a-d4e9-4e64-b33a-4eeb0970903c"; //existing id in the file
+    newName = "updated name";
+    const res = await exec();
+
+    expect(res.body).toHaveProperty("data.id");
+    expect(res.body).toHaveProperty("data.name", newName);
+  });
 });
 
-// describe("POST /api/category", () => {
-//   afterEach(async () => {
-//     await server.close();
-//   });
+describe('DELETE /api/delete/category/:id', () => {
+  var id; 
 
-//   it("should return 200 if all categories are retrieved", async () => {
-//     afterEach(async () => {
-//       await server.close();
-//     });
+  const exec = async () => {
+    return await request(server)
+      .delete('/api/delete/category/' + id)
+      .send();
+  }
 
-//     var res = await readAll();
-//     var categories = res.categories;
-//     var message = "Categories loaded successfully";
+  // it('should return 404 if id is invalid', async () => {
+  //   id = 1; 
+  //   const res = await exec();
+  //   expect(res.status).toBe(404);
+  // });
 
-//     //expect(res.body).toContain(message);
-//     expect(res.body).toHaveProperty("data");
-//   });
-// });
+  it('should return 404 if no genre with the given id was found', async () => {
+    id = uuidv4();
+    const res = await exec();
+    expect(res.status).toBe(404);
+  });
+
+  // it('should delete the genre if input is valid', async () => {
+  //   await exec();
+  //   const genreInDb = await Genre.findById(id);
+  //   expect(genreInDb).toBeNull();
+  // });
+
+  it('should abort deleting the category if it has books listed under it', async () => {
+    id = "dc1d741a-d4e9-4e64-b33a-4eeb0970903c";
+    const res = await exec();
+
+    expect(res.status).toBe(400);
+    expect(res.body).toHaveProperty('data',
+    "Cannot delete a category, without deleting books under it first");
+  }); 
+
+  it('should return the removed category', async () => {
+    id = "e7c15bc8-078c-4b6f-b416-803688ffd9bf";
+    const res = await exec();
+
+    expect(res.body).toHaveProperty('data.id', id);
+    expect(res.body).toHaveProperty('data.name', "test category");
+  });
+});  
+
+describe("POST /api/category", () => {
+  afterEach(async () => {
+    await server.close();
+  });
+
+  it("should return 200 if all categories are retrieved", async () => {
+    var res = await request(server).post('/api/category/');
+    var message = "Categories loaded successfully";
+
+    expect(res.status).toBe(200);
+    expect(res.body).toHaveProperty("message", message);
+  });
+});
