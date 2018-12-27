@@ -6,9 +6,9 @@ const { readAll } = require("../../api/models/db/db");
 const _ = require("lodash");
 
 describe("GET /api/category/:id", () => {
-  afterEach(async () => {
-    await server.close();
-  });
+  // afterEach(async () => {
+  //   await server.close();
+  // });
 
   it("should return category if valid id is passed", async () => {
     // existing id in the file

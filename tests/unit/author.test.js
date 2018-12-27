@@ -91,7 +91,7 @@ describe("PUT /api/update/author/:id", () => {
       expect(res.status).toBe(400);
     });
   
-    it("should return 404 if category with the given id was not found", async () => {
+    it("should return 404 if author with the given id was not found", async () => {
       id = uuidv4();
       newName = "updated name";
       newJobTitle = "updated job title";
@@ -99,7 +99,7 @@ describe("PUT /api/update/author/:id", () => {
       expect(res.status).toBe(404);
     });
 
-    it("should return the updated author if it is a valid update", async () => {
+    it("should return the updated author if it is a valid update ", async () => {
       id = "1fb64057-cffc-46e6-a347-4bb5631f0e83"; //existing id in the file
       newName = "updated name";
       newJobTitle = "updated job title";
@@ -110,6 +110,31 @@ describe("PUT /api/update/author/:id", () => {
       expect(res.body).toHaveProperty("data.name", newName);
       expect(res.body).toHaveProperty("data.jobTitle", newJobTitle);
     });
+
+    it("should return the updated author if it is a valid update, only job title", async () => {
+        id = "1fb64057-cffc-46e6-a347-4bb5631f0e83"; //existing id in the file
+        newJobTitle = "updated job title";
+
+        const res = await request(server).put("/api/update/author/" + id)
+        .send({ jobTitle: newJobTitle });
+    
+        expect(res.body).toHaveProperty("data.id");
+        expect(res.body).toHaveProperty("data.bio");
+        expect(res.body).toHaveProperty("data.jobTitle", newJobTitle);
+      });
+
+      it("should return the updated author if it is a valid update, only name", async () => {
+        id = "1fb64057-cffc-46e6-a347-4bb5631f0e83"; //existing id in the file
+        newName = "updated name";
+
+        const res = await request(server).put("/api/update/author/" + id)
+        .send({ name: newName });
+    
+        expect(res.body).toHaveProperty("data.id");
+        expect(res.body).toHaveProperty("data.bio");
+        expect(res.body).toHaveProperty("data.name", newName);
+      });
+
   });
 
 describe('DELETE /api/delete/author/:id', () => {
