@@ -62,9 +62,15 @@ module.exports.delete = async function(req, res) {
     if (
       author == "Cannot delete an author, without deleting his/her books first"
     ) {
-      res.status(200).json({
+      res.status(400).json({
         data: author,
         message: "Author was not removed"
+      });
+      return;
+    } else if (author == "No id match") {
+      res.status(404).json({
+        data: author,
+        message: "Author is neither found nor removed"
       });
       return;
     }
@@ -90,6 +96,12 @@ module.exports.update = async function(req, res) {
       res.status(400).json({
         data: updatedAuthor,
         message: "Author was not updated"
+      });
+      return;
+    } else if (updatedAuthor == "No id match") {
+      res.status(404).json({
+        data: updatedAuthor,
+        message: "Author is neither found nor updated"
       });
       return;
     }

@@ -75,11 +75,16 @@ const updateAuthorById = async (id, author) => {
   try {
     var data = await readAll();
     //get the item
-    var item = await readAuthorById(id);
+    var item = _.find(data.authors, function(i) {
+      return i.id == id;
+    });
 
+    if(item == undefined){
+      return "No id match";
+    }
     //check if name is not in the body and if it's in, it is not empty and same for the job title
     //and based on such either update or return bad request
-    if (
+    else if (
       (author.name == undefined || author.name.trim() != "") &&
       (author.jobTitle == undefined || author.jobTitle.trim() != "")
     ) {
@@ -107,6 +112,10 @@ const deleteAuthorById = async id => {
     var data = await readAll();
     //get the item
     var item = await readAuthorById(id);
+
+    if(item == undefined){
+      return "No id match";
+    }
 
     // check occurence
     for (let i = 0; i < data.books.length; i++) {

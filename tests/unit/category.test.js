@@ -73,7 +73,7 @@ describe("POST /api/category/create", () => {
     expect(category).not.toBeNull();
   });
 
-  it("should return the category if it is valid", async () => {
+  it("should return the category if it is created successfully", async () => {
     name = "test category";
     const res = await exec();
 
@@ -148,7 +148,7 @@ describe('DELETE /api/delete/category/:id', () => {
   //   expect(res.status).toBe(404);
   // });
 
-  it('should return 404 if no genre with the given id was found', async () => {
+  it('should return 404 if no category with the given id was found', async () => {
     id = uuidv4();
     const res = await exec();
     expect(res.status).toBe(404);
