@@ -6,9 +6,9 @@ const { readAll } = require("../../api/models/db/db");
 const _ = require("lodash");
 
 describe("GET /api/category/:id", () => {
-  // afterEach(async () => {
-  //   await server.close();
-  // });
+  afterAll(async () => {
+    await server.close();
+  });
 
   it("should return category if valid id is passed", async () => {
     // existing id in the file
@@ -36,7 +36,7 @@ describe("GET /api/category/:id", () => {
 });
 
 describe("POST /api/category/create", () => {
-  afterEach(async () => {
+  afterAll(async () => {
     await server.close();
   });
 
@@ -179,7 +179,7 @@ describe('DELETE /api/delete/category/:id', () => {
 });  
 
 describe("POST /api/category", () => {
-  afterEach(async () => {
+  afterAll(async () => {
     await server.close();
   });
 

@@ -78,7 +78,7 @@ const createBook = async book => {
       book.title == undefined ||
       book.title.trim() == "" ||
       book.isbn == undefined ||
-      book.isbn.trim().length < 34 ||
+      book.isbn.trim().length < 30 ||
       (book.category != undefined && categoryCheck == undefined) ||
       (book.author != undefined && authorCheck == undefined)
     ) {

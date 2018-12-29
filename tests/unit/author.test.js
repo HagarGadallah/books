@@ -6,9 +6,9 @@ const { readAll } = require("../../api/models/db/db");
 const _ = require("lodash");
 
 describe("GET /api/author/:id", () => {
-    // beforeAll(async () => {
-    //   await server.close();
-    // });
+    afterAll(async () => {
+      await server.close();
+    });
   
     it("should return author if valid id is passed", async () => {
       // existing id in the file
@@ -172,7 +172,7 @@ describe('DELETE /api/delete/author/:id', () => {
   }); 
 
 describe("POST /api/category", () => {
-    afterEach(async () => {
+    afterAll(async () => {
       await server.close();
     });
   
