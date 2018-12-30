@@ -4,7 +4,7 @@
 const _ = require("lodash");
 const uuidv4 = require("uuid/v4");
 const validate = require("uuid-validate");
-const { readAll, sort, write } = require("./db/db");
+const { readAll, write, finalizeSort } = require("./db/db");
 
 //Schema
 // var Category = mongoose.model(
@@ -79,8 +79,7 @@ const updateCategoryById = async (id, category) => {
     //Invalid data check
     if (category.name == undefined || category.name.trim() == "") {
       return "Invalid data, please send valid data and try again";
-    }
-    else if(item == undefined){
+    } else if (item == undefined) {
       return "No id match";
     }
     //Updated Successfully
@@ -108,7 +107,7 @@ const deleteCategoryById = async id => {
     //get the item
     var item = await readCategoryById(id);
 
-    if(item == undefined){
+    if (item == undefined) {
       return "No id match";
     }
 
@@ -135,39 +134,14 @@ const getCategories = async options => {
   try {
     const data = await readAll();
     var categories = data.categories;
-    var length = categories.length;
     var size = options.size;
     var page = options.page;
     var sortBy = options.sortBy;
 
     if (page == undefined && size == undefined && sortBy == undefined) {
       return categories; //Normal GET all with no filterations
-    } else if (page < 1 || page == undefined) {
-      var defaultCategories = _.take(categories, size || 10);
-
-      if (sortBy != undefined && options.sortBy.trim() != "") {
-        return await sort(defaultCategories, sortBy); //if page length is less than 1
-      }
-
-      return defaultCategories;
-    } else if (page > length / 10 || size > length) {
-      //console.log("inside size more than limit");
-      var droppedCategories = _.drop(categories, length - (size || 10));
-      defaultCategories = _.take(droppedCategories, size || 10);
-
-      if (sortBy != undefined && options.sortBy.trim() != "") {
-        return await sort(defaultCategories, sortBy); //if page length is less than 1
-      }
-
-      return defaultCategories; // if page number/size is more than categories length
     } else {
-      //console.log("normal scenario");
-      var categoriesSkipped = _.drop(categories, (page - 1) * size);
-      var pickedCategories = _.take(categoriesSkipped, size);
-
-      if (sortBy != undefined && options.sortBy.trim() != "") {
-        return await sort(pickedCategories, sortBy);
-      } else return _.take(pickedCategories, size); //normal scenario
+      return await finalizeSort(categories, page, size, sortBy);
     }
   } catch (e) {
     throw e;
