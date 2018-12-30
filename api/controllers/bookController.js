@@ -59,6 +59,13 @@ module.exports.get = async function(req, res) {
 module.exports.delete = async function(req, res) {
   try {
     let book = await deleteBookById(req.params.id);
+    if (book == "No id match") {
+      res.status(404).json({
+        data: book,
+        message: "Book is neither found nor removed"
+      });
+      return;
+    }
     res.status(200).json({
       data: book,
       message: "Book removed successfully"
@@ -81,6 +88,12 @@ module.exports.update = async function(req, res) {
       res.status(400).json({
         data: updatedBook,
         message: "Book was not updated"
+      });
+      return;
+    } else if (updatedBook == "No id match") {
+      res.status(404).json({
+        data: updatedBook,
+        message: "Book is neither found nor removed"
       });
       return;
     }

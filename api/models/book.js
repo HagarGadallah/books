@@ -114,11 +114,14 @@ const updateBookById = async (id, book) => {
       return i.id == book.author;
     });
 
+    if (item == undefined) {
+      return "No id match";
+    }
     //check if paramters is not in the body and if it's in, it is not empty and valid
     //and based on such either update or return bad request
     if (
       (book.title == undefined || book.title.trim() != "") &&
-      (book.isbn == undefined || book.isbn.trim().length > 34) &&
+      (book.isbn == undefined || book.isbn.trim().length > 30) &&
       (book.category == undefined || categoryCheck != undefined) &&
       (book.author == undefined || authorCheck != undefined)
     ) {
@@ -151,6 +154,11 @@ const deleteBookById = async id => {
     const data = await readAll();
     //get the item
     var item = await readBookById(id);
+
+    if (item == undefined) {
+      return "No id match";
+    }
+
     //remove it
     var booksAfterRemove = data.books.filter(b => b.id != item.id);
     //add it to data and save it in file

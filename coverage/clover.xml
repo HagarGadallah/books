@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1546109145658" clover="3.2.0">
-  <project timestamp="1546109145658" name="All files">
-    <metrics statements="462" coveredstatements="326" conditionals="210" coveredconditionals="96" methods="48" coveredmethods="38" elements="720" coveredelements="460" complexity="0" loc="462" ncloc="462" packages="5" files="9" classes="9">
+<coverage generated="1546155971563" clover="3.2.0">
+  <project timestamp="1546155971563" name="All files">
+    <metrics statements="472" coveredstatements="373" conditionals="218" coveredconditionals="132" methods="48" coveredmethods="46" elements="738" coveredelements="551" complexity="0" loc="472" ncloc="472" packages="5" files="9" classes="9">
       <package name="books">
         <metrics statements="18" coveredstatements="18" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
-        <file name="app.js" path="F:\ITWORX\books\app.js">
+        <file name="app.js" path="E:\Tasks\books\app.js">
           <metrics statements="18" coveredstatements="18" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
           <line num="1" count="3" type="stmt"/>
           <line num="2" count="3" type="stmt"/>
@@ -27,8 +27,8 @@
         </file>
       </package>
       <package name="books.api.controllers">
-        <metrics statements="147" coveredstatements="107" conditionals="30" coveredconditionals="28" methods="15" coveredmethods="13"/>
-        <file name="authorcontroller.js" path="F:\ITWORX\books\api\controllers\authorcontroller.js">
+        <metrics statements="153" coveredstatements="123" conditionals="34" coveredconditionals="34" methods="15" coveredmethods="15"/>
+        <file name="authorcontroller.js" path="E:\Tasks\books\api\controllers\authorcontroller.js">
           <metrics statements="52" coveredstatements="42" conditionals="12" coveredconditionals="12" methods="5" coveredmethods="5"/>
           <line num="7" count="3" type="stmt"/>
           <line num="9" count="3" type="stmt"/>
@@ -83,8 +83,8 @@
           <line num="142" count="0" type="stmt"/>
           <line num="143" count="0" type="stmt"/>
         </file>
-        <file name="bookController.js" path="F:\ITWORX\books\api\controllers\bookController.js">
-          <metrics statements="43" coveredstatements="23" conditionals="6" coveredconditionals="4" methods="5" coveredmethods="3"/>
+        <file name="bookController.js" path="E:\Tasks\books\api\controllers\bookController.js">
+          <metrics statements="49" coveredstatements="39" conditionals="10" coveredconditionals="10" methods="5" coveredmethods="5"/>
           <line num="7" count="3" type="stmt"/>
           <line num="9" count="3" type="stmt"/>
           <line num="10" count="1" type="stmt"/>
@@ -103,33 +103,39 @@
           <line num="50" count="0" type="stmt"/>
           <line num="51" count="0" type="stmt"/>
           <line num="59" count="3" type="stmt"/>
-          <line num="60" count="0" type="stmt"/>
-          <line num="61" count="0" type="stmt"/>
-          <line num="62" count="0" type="stmt"/>
-          <line num="67" count="0" type="stmt"/>
-          <line num="68" count="0" type="stmt"/>
-          <line num="76" count="3" type="stmt"/>
-          <line num="77" count="0" type="stmt"/>
-          <line num="78" count="0" type="stmt"/>
-          <line num="79" count="0" type="stmt"/>
-          <line num="80" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="81" count="0" type="stmt"/>
-          <line num="85" count="0" type="stmt"/>
-          <line num="87" count="0" type="stmt"/>
-          <line num="92" count="0" type="stmt"/>
-          <line num="93" count="0" type="stmt"/>
-          <line num="101" count="3" type="stmt"/>
-          <line num="102" count="4" type="stmt"/>
-          <line num="103" count="4" type="stmt"/>
-          <line num="113" count="4" type="stmt"/>
-          <line num="114" count="4" type="cond" truecount="2" falsecount="0"/>
-          <line num="115" count="3" type="stmt"/>
-          <line num="119" count="3" type="stmt"/>
-          <line num="121" count="1" type="stmt"/>
-          <line num="126" count="0" type="stmt"/>
-          <line num="127" count="0" type="stmt"/>
+          <line num="60" count="2" type="stmt"/>
+          <line num="61" count="2" type="stmt"/>
+          <line num="62" count="2" type="cond" truecount="2" falsecount="0"/>
+          <line num="63" count="1" type="stmt"/>
+          <line num="67" count="1" type="stmt"/>
+          <line num="69" count="1" type="stmt"/>
+          <line num="74" count="0" type="stmt"/>
+          <line num="75" count="0" type="stmt"/>
+          <line num="83" count="3" type="stmt"/>
+          <line num="84" count="7" type="stmt"/>
+          <line num="85" count="7" type="stmt"/>
+          <line num="86" count="7" type="stmt"/>
+          <line num="87" count="7" type="cond" truecount="2" falsecount="0"/>
+          <line num="88" count="3" type="stmt"/>
+          <line num="92" count="3" type="stmt"/>
+          <line num="93" count="4" type="cond" truecount="2" falsecount="0"/>
+          <line num="94" count="1" type="stmt"/>
+          <line num="98" count="1" type="stmt"/>
+          <line num="100" count="3" type="stmt"/>
+          <line num="105" count="0" type="stmt"/>
+          <line num="106" count="0" type="stmt"/>
+          <line num="114" count="3" type="stmt"/>
+          <line num="115" count="4" type="stmt"/>
+          <line num="116" count="4" type="stmt"/>
+          <line num="126" count="4" type="stmt"/>
+          <line num="127" count="4" type="cond" truecount="2" falsecount="0"/>
+          <line num="128" count="3" type="stmt"/>
+          <line num="132" count="3" type="stmt"/>
+          <line num="134" count="1" type="stmt"/>
+          <line num="139" count="0" type="stmt"/>
+          <line num="140" count="0" type="stmt"/>
         </file>
-        <file name="categoryController.js" path="F:\ITWORX\books\api\controllers\categoryController.js">
+        <file name="categoryController.js" path="E:\Tasks\books\api\controllers\categoryController.js">
           <metrics statements="52" coveredstatements="42" conditionals="12" coveredconditionals="12" methods="5" coveredmethods="5"/>
           <line num="7" count="3" type="stmt"/>
           <line num="9" count="3" type="stmt"/>
@@ -186,8 +192,8 @@
         </file>
       </package>
       <package name="books.api.models">
-        <metrics statements="253" coveredstatements="163" conditionals="178" coveredconditionals="66" methods="28" coveredmethods="22"/>
-        <file name="author.js" path="F:\ITWORX\books\api\models\author.js">
+        <metrics statements="257" coveredstatements="194" conditionals="182" coveredconditionals="96" methods="28" coveredmethods="28"/>
+        <file name="author.js" path="E:\Tasks\books\api\models\author.js">
           <metrics statements="83" coveredstatements="62" conditionals="60" coveredconditionals="30" methods="8" coveredmethods="8"/>
           <line num="4" count="3" type="stmt"/>
           <line num="5" count="3" type="stmt"/>
@@ -273,21 +279,21 @@
           <line num="187" count="0" type="stmt"/>
           <line num="191" count="3" type="stmt"/>
         </file>
-        <file name="book.js" path="F:\ITWORX\books\api\models\book.js">
-          <metrics statements="89" coveredstatements="41" conditionals="71" coveredconditionals="16" methods="12" coveredmethods="6"/>
+        <file name="book.js" path="E:\Tasks\books\api\models\book.js">
+          <metrics statements="93" coveredstatements="72" conditionals="75" coveredconditionals="46" methods="12" coveredmethods="12"/>
           <line num="4" count="3" type="stmt"/>
           <line num="5" count="3" type="stmt"/>
           <line num="6" count="3" type="stmt"/>
           <line num="7" count="3" type="stmt"/>
           <line num="42" count="3" type="stmt"/>
-          <line num="43" count="3" type="stmt"/>
-          <line num="44" count="3" type="stmt"/>
-          <line num="45" count="3" type="stmt"/>
-          <line num="46" count="3" type="cond" truecount="2" falsecount="0"/>
+          <line num="43" count="5" type="stmt"/>
+          <line num="44" count="5" type="stmt"/>
+          <line num="45" count="5" type="stmt"/>
+          <line num="46" count="5" type="cond" truecount="2" falsecount="0"/>
           <line num="47" count="1" type="stmt"/>
-          <line num="49" count="2" type="stmt"/>
-          <line num="50" count="2" type="stmt"/>
-          <line num="52" count="2" type="stmt"/>
+          <line num="49" count="4" type="stmt"/>
+          <line num="50" count="205" type="stmt"/>
+          <line num="52" count="4" type="stmt"/>
           <line num="55" count="0" type="stmt"/>
           <line num="59" count="3" type="stmt"/>
           <line num="60" count="4" type="stmt"/>
@@ -306,66 +312,70 @@
           <line num="94" count="1" type="stmt"/>
           <line num="96" count="0" type="stmt"/>
           <line num="100" count="3" type="stmt"/>
-          <line num="101" count="0" type="stmt"/>
-          <line num="102" count="0" type="stmt"/>
-          <line num="104" count="0" type="stmt"/>
-          <line num="105" count="0" type="stmt"/>
-          <line num="109" count="0" type="stmt"/>
-          <line num="110" count="0" type="stmt"/>
-          <line num="113" count="0" type="stmt"/>
-          <line num="114" count="0" type="stmt"/>
-          <line num="119" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="126" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="127" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="128" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="129" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="130" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="131" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="132" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="133" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="137" count="0" type="stmt"/>
-          <line num="141" count="0" type="stmt"/>
-          <line num="143" count="0" type="stmt"/>
-          <line num="145" count="0" type="stmt"/>
-          <line num="149" count="3" type="stmt"/>
-          <line num="150" count="0" type="stmt"/>
-          <line num="151" count="0" type="stmt"/>
-          <line num="153" count="0" type="stmt"/>
-          <line num="155" count="0" type="stmt"/>
-          <line num="157" count="0" type="stmt"/>
-          <line num="159" count="0" type="stmt"/>
-          <line num="161" count="0" type="stmt"/>
-          <line num="163" count="0" type="stmt"/>
-          <line num="167" count="3" type="stmt"/>
-          <line num="168" count="1" type="stmt"/>
+          <line num="101" count="7" type="stmt"/>
+          <line num="102" count="7" type="stmt"/>
+          <line num="104" count="7" type="stmt"/>
+          <line num="105" count="208" type="stmt"/>
+          <line num="109" count="7" type="stmt"/>
+          <line num="110" count="112" type="stmt"/>
+          <line num="113" count="7" type="stmt"/>
+          <line num="114" count="217" type="stmt"/>
+          <line num="117" count="7" type="cond" truecount="2" falsecount="0"/>
+          <line num="118" count="1" type="stmt"/>
+          <line num="122" count="6" type="cond" truecount="2" falsecount="0"/>
+          <line num="129" count="3" type="cond" truecount="2" falsecount="0"/>
+          <line num="130" count="3" type="cond" truecount="2" falsecount="0"/>
+          <line num="131" count="3" type="cond" truecount="2" falsecount="0"/>
+          <line num="132" count="3" type="cond" truecount="2" falsecount="0"/>
+          <line num="133" count="3" type="cond" truecount="2" falsecount="0"/>
+          <line num="134" count="3" type="cond" truecount="2" falsecount="0"/>
+          <line num="135" count="3" type="cond" truecount="2" falsecount="0"/>
+          <line num="136" count="3" type="cond" truecount="2" falsecount="0"/>
+          <line num="140" count="3" type="stmt"/>
+          <line num="144" count="3" type="stmt"/>
+          <line num="146" count="3" type="stmt"/>
+          <line num="148" count="0" type="stmt"/>
+          <line num="152" count="3" type="stmt"/>
+          <line num="153" count="2" type="stmt"/>
+          <line num="154" count="2" type="stmt"/>
+          <line num="156" count="2" type="stmt"/>
+          <line num="158" count="2" type="cond" truecount="2" falsecount="0"/>
+          <line num="159" count="1" type="stmt"/>
+          <line num="163" count="102" type="stmt"/>
+          <line num="165" count="1" type="stmt"/>
+          <line num="167" count="1" type="stmt"/>
           <line num="169" count="1" type="stmt"/>
-          <line num="170" count="1" type="stmt"/>
-          <line num="171" count="1" type="stmt"/>
-          <line num="172" count="1" type="stmt"/>
-          <line num="173" count="1" type="stmt"/>
-          <line num="174" count="1" type="stmt"/>
-          <line num="176" count="1" type="cond" truecount="4" falsecount="1"/>
+          <line num="171" count="0" type="stmt"/>
+          <line num="175" count="3" type="stmt"/>
+          <line num="176" count="1" type="stmt"/>
           <line num="177" count="1" type="stmt"/>
-          <line num="178" count="0" type="cond" truecount="0" falsecount="5"/>
-          <line num="179" count="0" type="stmt"/>
-          <line num="183" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="178" count="1" type="stmt"/>
+          <line num="179" count="1" type="stmt"/>
+          <line num="180" count="1" type="stmt"/>
+          <line num="181" count="1" type="stmt"/>
+          <line num="182" count="1" type="stmt"/>
+          <line num="184" count="1" type="cond" truecount="4" falsecount="1"/>
+          <line num="185" count="1" type="stmt"/>
+          <line num="186" count="0" type="cond" truecount="0" falsecount="5"/>
           <line num="187" count="0" type="stmt"/>
-          <line num="190" count="0" type="stmt"/>
-          <line num="191" count="0" type="cond" truecount="0" falsecount="4"/>
-          <line num="193" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="194" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="196" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="200" count="0" type="stmt"/>
-          <line num="203" count="0" type="stmt"/>
-          <line num="206" count="0" type="stmt"/>
-          <line num="207" count="0" type="stmt"/>
-          <line num="209" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="213" count="0" type="stmt"/>
+          <line num="191" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="195" count="0" type="stmt"/>
+          <line num="198" count="0" type="stmt"/>
+          <line num="199" count="0" type="cond" truecount="0" falsecount="4"/>
+          <line num="201" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="202" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="204" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="208" count="0" type="stmt"/>
+          <line num="211" count="0" type="stmt"/>
           <line num="214" count="0" type="stmt"/>
-          <line num="217" count="0" type="stmt"/>
-          <line num="221" count="3" type="stmt"/>
+          <line num="215" count="0" type="stmt"/>
+          <line num="217" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="221" count="0" type="stmt"/>
+          <line num="222" count="0" type="stmt"/>
+          <line num="225" count="0" type="stmt"/>
+          <line num="229" count="3" type="stmt"/>
         </file>
-        <file name="category.js" path="F:\ITWORX\books\api\models\category.js">
+        <file name="category.js" path="E:\Tasks\books\api\models\category.js">
           <metrics statements="81" coveredstatements="60" conditionals="47" coveredconditionals="20" methods="8" coveredmethods="8"/>
           <line num="4" count="3" type="stmt"/>
           <line num="5" count="3" type="stmt"/>
@@ -452,7 +462,7 @@
       </package>
       <package name="books.api.models.db">
         <metrics statements="21" coveredstatements="16" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
-        <file name="db.js" path="F:\ITWORX\books\api\models\db\db.js">
+        <file name="db.js" path="E:\Tasks\books\api\models\db\db.js">
           <metrics statements="21" coveredstatements="16" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
           <line num="1" count="3" type="stmt"/>
           <line num="2" count="3" type="stmt"/>
@@ -461,10 +471,10 @@
           <line num="6" count="3" type="stmt"/>
           <line num="7" count="3" type="stmt"/>
           <line num="9" count="3" type="stmt"/>
-          <line num="10" count="43" type="stmt"/>
-          <line num="11" count="43" type="stmt"/>
-          <line num="12" count="43" type="stmt"/>
-          <line num="13" count="43" type="stmt"/>
+          <line num="10" count="54" type="stmt"/>
+          <line num="11" count="54" type="stmt"/>
+          <line num="12" count="54" type="stmt"/>
+          <line num="13" count="54" type="stmt"/>
           <line num="15" count="0" type="stmt"/>
           <line num="19" count="3" type="stmt"/>
           <line num="20" count="0" type="stmt"/>
@@ -472,14 +482,14 @@
           <line num="22" count="0" type="stmt"/>
           <line num="24" count="0" type="stmt"/>
           <line num="28" count="3" type="stmt"/>
-          <line num="29" count="10" type="stmt"/>
-          <line num="30" count="10" type="stmt"/>
+          <line num="29" count="14" type="stmt"/>
+          <line num="30" count="14" type="stmt"/>
           <line num="33" count="3" type="stmt"/>
         </file>
       </package>
       <package name="books.api.routes">
         <metrics statements="23" coveredstatements="22" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <file name="index.js" path="F:\ITWORX\books\api\routes\index.js">
+        <file name="index.js" path="E:\Tasks\books\api\routes\index.js">
           <metrics statements="23" coveredstatements="22" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
           <line num="1" count="3" type="stmt"/>
           <line num="2" count="3" type="stmt"/>

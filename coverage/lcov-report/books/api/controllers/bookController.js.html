@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">53.49% </span>
+        <span class="strong">79.59% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>23/43</span>
+        <span class='fraction'>39/49</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">66.67% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>4/6</span>
+        <span class='fraction'>10/10</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">60% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>3/5</span>
+        <span class='fraction'>5/5</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">53.49% </span>
+        <span class="strong">79.59% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>23/43</span>
+        <span class='fraction'>39/49</span>
       </div>
     </div>
   </div>
@@ -176,7 +176,20 @@
 131
 132
 133
-134</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -235,9 +248,16 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -252,17 +272,23 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -367,10 +393,17 @@ module.exports.get = async function(req, res) {
   }
 };
 &nbsp;
-module.exports.delete = <span class="fstat-no" title="function not covered" >as</span>ync function(req, res) {
-<span class="cstat-no" title="statement not covered" >  try {</span>
-    let book = <span class="cstat-no" title="statement not covered" >await deleteBookById(req.params.id);</span>
-<span class="cstat-no" title="statement not covered" >    res.status(200).json({</span>
+module.exports.delete = async function(req, res) {
+  try {
+    let book = await deleteBookById(req.params.id);
+    if (book == "No id match") {
+      res.status(404).json({
+        data: book,
+        message: "Book is neither found nor removed"
+      });
+      return;
+    }
+    res.status(200).json({
       data: book,
       message: "Book removed successfully"
     });
@@ -384,18 +417,24 @@ module.exports.delete = <span class="fstat-no" title="function not covered" >as<
   }
 };
 &nbsp;
-module.exports.update = <span class="fstat-no" title="function not covered" >as</span>ync function(req, res) {
-<span class="cstat-no" title="statement not covered" >  try {</span>
-    var bookId = <span class="cstat-no" title="statement not covered" >req.params.id;</span>
-    let updatedBook = <span class="cstat-no" title="statement not covered" >await updateBookById(bookId, req.body);</span>
-<span class="cstat-no" title="statement not covered" >    if (updatedBook == "Invalid data, please send valid data and try again") {</span>
-<span class="cstat-no" title="statement not covered" >      res.status(400).json({</span>
+module.exports.update = async function(req, res) {
+  try {
+    var bookId = req.params.id;
+    let updatedBook = await updateBookById(bookId, req.body);
+    if (updatedBook == "Invalid data, please send valid data and try again") {
+      res.status(400).json({
         data: updatedBook,
         message: "Book was not updated"
       });
-<span class="cstat-no" title="statement not covered" >      return;</span>
+      return;
+    } else if (updatedBook == "No id match") {
+      res.status(404).json({
+        data: updatedBook,
+        message: "Book is neither found nor removed"
+      });
+      return;
     }
-<span class="cstat-no" title="statement not covered" >    res.status(200).json({</span>
+    res.status(200).json({
       data: updatedBook,
       message: "Book updated successfully"
     });
@@ -448,7 +487,7 @@ module.exports.create = async function(req, res) {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Dec 29 2018 20:45:45 GMT+0200 (Eastern European Standard Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Dec 30 2018 09:46:11 GMT+0200 (Eastern European Standard Time)
 </div>
 </div>
 <script src="..\..\..\prettify.js"></script>

@@ -87,12 +87,13 @@ describe("PUT /api/update/category/:id", () => {
   var id;
 
   const exec = async () => {
-    return await request(server).put("/api/update/category/" + id)
+    return await request(server)
+      .put("/api/update/category/" + id)
       .send({ name: newName });
   };
 
   it("should return 400 if category's name is empty", async () => {
-    id = "dc1d741a-d4e9-4e64-b33a-4eeb0970903c"; 
+    id = "dc1d741a-d4e9-4e64-b33a-4eeb0970903c";
     newName = "            ";
     const res = await exec();
     expect(res.status).toBe(400);
@@ -133,22 +134,22 @@ describe("PUT /api/update/category/:id", () => {
   });
 });
 
-describe('DELETE /api/delete/category/:id', () => {
-  var id; 
+describe("DELETE /api/delete/category/:id", () => {
+  var id;
 
   const exec = async () => {
     return await request(server)
-      .delete('/api/delete/category/' + id)
+      .delete("/api/delete/category/" + id)
       .send();
-  }
+  };
 
   // it('should return 404 if id is invalid', async () => {
-  //   id = 1; 
+  //   id = 1;
   //   const res = await exec();
   //   expect(res.status).toBe(404);
   // });
 
-  it('should return 404 if no category with the given id was found', async () => {
+  it("should return 404 if no category with the given id was found", async () => {
     id = uuidv4();
     const res = await exec();
     expect(res.status).toBe(404);
@@ -160,23 +161,25 @@ describe('DELETE /api/delete/category/:id', () => {
   //   expect(genreInDb).toBeNull();
   // });
 
-  it('should abort deleting the category if it has books listed under it', async () => {
+  it("should abort deleting the category if it has books listed under it", async () => {
     id = "dc1d741a-d4e9-4e64-b33a-4eeb0970903c";
     const res = await exec();
 
     expect(res.status).toBe(400);
-    expect(res.body).toHaveProperty('data',
-    "Cannot delete a category, without deleting books under it first");
-  }); 
+    expect(res.body).toHaveProperty(
+      "data",
+      "Cannot delete a category, without deleting books under it first"
+    );
+  });
 
-  it('should return the removed category', async () => {
+  it("should return the removed category", async () => {
     id = "e7c15bc8-078c-4b6f-b416-803688ffd9bf";
     const res = await exec();
 
-    expect(res.body).toHaveProperty('data.id', id);
-    expect(res.body).toHaveProperty('data.name', "test category");
+    expect(res.body).toHaveProperty("data.id", id);
+    expect(res.body).toHaveProperty("data.name", "test category");
   });
-});  
+});
 
 describe("POST /api/category", () => {
   afterAll(async () => {
@@ -184,7 +187,7 @@ describe("POST /api/category", () => {
   });
 
   it("should return 200 if all categories are retrieved", async () => {
-    var res = await request(server).post('/api/category/');
+    var res = await request(server).post("/api/category/");
     var message = "Categories loaded successfully";
 
     expect(res.status).toBe(200);

@@ -59,14 +59,16 @@ module.exports.get = async function(req, res) {
 module.exports.delete = async function(req, res) {
   try {
     let category = await deleteCategoryById(req.params.id);
-    if (category == "Cannot delete a category, without deleting books under it first") {
+    if (
+      category ==
+      "Cannot delete a category, without deleting books under it first"
+    ) {
       res.status(400).json({
         data: category,
         message: "Category not removed"
       });
       return;
-    }
-    else if (category == "No id match") {
+    } else if (category == "No id match") {
       res.status(404).json({
         data: category,
         message: "Category is neither found nor deleted"
@@ -91,7 +93,9 @@ module.exports.update = async function(req, res) {
   try {
     var categoryId = req.params.id;
     let updatedCategory = await updateCategoryById(categoryId, req.body);
-    if (updatedCategory == "Invalid data, please send valid data and try again") {
+    if (
+      updatedCategory == "Invalid data, please send valid data and try again"
+    ) {
       res.status(400).json({
         data: updatedCategory,
         message: "Category was not updated"
