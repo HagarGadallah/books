@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">77.66% </span>
+        <span class="strong">93.59% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>73/94</span>
+        <span class='fraction'>73/78</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">61.33% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>46/75</span>
+        <span class='fraction'>47/47</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -35,13 +35,13 @@
         <span class='fraction'>12/12</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">77.42% </span>
+        <span class="strong">93.51% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>72/93</span>
+        <span class='fraction'>72/77</span>
       </div>
     </div>
   </div>
-  <div class='status-line medium'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -242,43 +242,7 @@
 197
 198
 199
-200
-201
-202
-203
-204
-205
-206
-207
-208
-209
-210
-211
-212
-213
-214
-215
-216
-217
-218
-219
-220
-221
-222
-223
-224
-225
-226
-227
-228
-229
-230
-231
-232
-233
-234
-235
-236</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+200</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
@@ -453,53 +417,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -519,7 +447,7 @@
 const _ = require("lodash");
 const uuidv4 = require("uuid/v4");
 const validate = require("uuid-validate");
-const { readAll, sort, write } = require("./db/db");
+const { readAll, sort, write, finalizeSort } = require("./db/db");
 &nbsp;
 // const Book = mongoose.model(
 //   "Book",
@@ -691,50 +619,14 @@ const getBooks = async options =&gt; {
   try {
     const data = await readAll();
     var books = data.books;
-    var length = books.length;
     var size = options.size;
     var page = options.page;
     var sortBy = options.sortBy;
 &nbsp;
-    <span class="missing-if-branch" title="else path not taken" >E</span>if (page == undefined &amp;&amp; size == undefined &amp;&amp; sortBy == undefined) {
+    if (page == undefined &amp;&amp; size == undefined &amp;&amp; sortBy == undefined) {
       return books; //Normal GET all with no filterations
-    } else <span class="cstat-no" title="statement not covered" >if (page &lt; 1 || page == undefined || size &lt; 1) {</span>
-      var defaultBooks = <span class="cstat-no" title="statement not covered" >_.take(books, 10);</span>
-&nbsp;
-      //console.log("page less than 1");
-&nbsp;
-<span class="cstat-no" title="statement not covered" >      if (</span>
-        sortBy != undefined &amp;&amp;
-        (options.sortBy.length &gt; 0 || options.sortBy.trim() != "")
-      ) {
-<span class="cstat-no" title="statement not covered" >        return await sort(defaultBooks, sortBy); </span>//if page length is less than 1
-      }
-&nbsp;
-<span class="cstat-no" title="statement not covered" >      return defaultBooks;</span>
-    } else <span class="cstat-no" title="statement not covered" >if (page &gt; length / 10 || size &gt; length) {</span>
-      //console.log("inside size more than limit");
-      var droppedBooks = <span class="cstat-no" title="statement not covered" >_.drop(books, length - (size || 10));</span>
-<span class="cstat-no" title="statement not covered" >      defaultBooks = _.take(droppedBooks, size || 10);</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >      if (</span>
-        sortBy != undefined &amp;&amp;
-        (options.sortBy.length &gt; 0 || options.sortBy.trim() != "")
-      ) {
-<span class="cstat-no" title="statement not covered" >        return await sort(defaultBooks, sortBy); </span>//if page length is less than 1
-      }
-&nbsp;
-<span class="cstat-no" title="statement not covered" >      return defaultBooks; </span>// if page number/size is more than authors length
     } else {
-      //console.log("normal scenario");
-      var booksSkipped = <span class="cstat-no" title="statement not covered" >_.drop(books, (page - 1) * size);</span>
-      var pickedBooks = <span class="cstat-no" title="statement not covered" >_.take(booksSkipped, size);</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >      if (</span>
-        sortBy != undefined &amp;&amp;
-        (options.sortBy.length &gt; 0 || options.sortBy.trim() != "")
-      ) {
-<span class="cstat-no" title="statement not covered" >        return await sort(pickedBooks, sortBy);</span>
-      } else <span class="cstat-no" title="statement not covered" >return _.take(pickedBooks, size); </span>//normal scenario
+      return await finalizeSort(books, page, size, sortBy);
     }
   } catch (e) {
 <span class="cstat-no" title="statement not covered" >    throw e;</span>
@@ -754,7 +646,7 @@ module.exports = {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Dec 30 2018 09:46:11 GMT+0200 (Eastern European Standard Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Dec 30 2018 16:18:44 GMT+0200 (Eastern European Standard Time)
 </div>
 </div>
 <script src="..\..\..\prettify.js"></script>

@@ -173,6 +173,8 @@ describe("DELETE /api/delete/author/:id", () => {
 });
 
 describe("POST /api/category", () => {
+  var page, size, sortBy;
+
   afterAll(async () => {
     await server.close();
   });
@@ -183,5 +185,17 @@ describe("POST /api/category", () => {
 
     expect(res.status).toBe(200);
     expect(res.body).toHaveProperty("message", message);
+  });
+
+  it("should return last 3 records in file if page number exceeded records in file", async () => {
+    page = 100;
+    size = 3;
+    var res = await request(server)
+      .post("/api/author/")
+      .send({ page, size });
+
+    expect(res.status).toBe(200);
+    expect(res.body.data).toHaveLength(3);
+    expect(res.body.data[2]).toHaveProperty("jobTitle", "architect");
   });
 });

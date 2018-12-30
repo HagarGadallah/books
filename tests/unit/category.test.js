@@ -182,6 +182,8 @@ describe("DELETE /api/delete/category/:id", () => {
 });
 
 describe("POST /api/category", () => {
+  var page, size, sortBy;
+
   afterAll(async () => {
     await server.close();
   });
@@ -192,5 +194,74 @@ describe("POST /api/category", () => {
 
     expect(res.status).toBe(200);
     expect(res.body).toHaveProperty("message", message);
+  });
+
+  it("should return last 10 records in file if page number exceeded records in file", async () => {
+    page = 100;
+    var res = await request(server)
+      .post("/api/category/")
+      .send({ page });
+
+    expect(res.status).toBe(200);
+    expect(res.body.data).toHaveLength(10);
+    // expect(res.body).toHaveProperty("data.name", "test category");
+  });
+
+  it("should return last 10 records in file if page number exceeded records in file, sorted", async () => {
+    page = 100;
+    sortBy = "name";
+    var res = await request(server)
+      .post("/api/category/")
+      .send({ page, sortBy });
+
+    expect(res.status).toBe(200);
+    expect(res.body.data).toHaveLength(10);
+  });
+
+  it("should return first 10 records in file if page number is -ve", async () => {
+    page = -100;
+    var res = await request(server)
+      .post("/api/category/")
+      .send({ page });
+
+    expect(res.status).toBe(200);
+    expect(res.body.data).toHaveLength(10);
+  });
+
+  it("should return first 10 records in file if page number is -ve, sorted", async () => {
+    page = -100;
+    sortBy = "name";
+    var res = await request(server)
+      .post("/api/category/")
+      .send({ page, sortBy });
+
+    expect(res.status).toBe(200);
+    expect(res.body.data).toHaveLength(10);
+  });
+
+  it("should return records based on page number and size given", async () => {
+    page = 1;
+    size = 5;
+    //sortBy = "name";
+    var res = await request(server)
+      .post("/api/category/")
+      .send({ page, size });
+
+    expect(res.status).toBe(200);
+    expect(res.body.data).toHaveLength(5);
+    expect(res.body.data[0]).toHaveProperty("name", "Alena Graham");
+  });
+
+  it("should return records based on page number and size given, sorted", async () => {
+    page = 1;
+    size = 5;
+    sortBy = "name";
+    var res = await request(server)
+      .post("/api/category/")
+      .send({ page, size, sortBy });
+
+    expect(res.status).toBe(200);
+    expect(res.body.data).toHaveLength(5);
+    expect(res.body.data[4]).toHaveProperty("name", "Roger Lakin");
   });
 });

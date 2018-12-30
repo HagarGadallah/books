@@ -210,6 +210,8 @@ describe("DELETE /api/delete/book/:id", () => {
 });
 
 describe("POST /api/book", () => {
+  var page, size, sortBy;
+
   it("should return 200 if all books are retrieved", async () => {
     var res = await request(server).post("/api/book/");
     var message = "Books loaded successfully";
@@ -217,4 +219,24 @@ describe("POST /api/book", () => {
     expect(res.status).toBe(200);
     expect(res.body).toHaveProperty("message", message);
   });
+
+  it("should return first 3 records in file if page number is -ve", async () => {
+    page = -100;
+    size = 3;
+    var res = await request(server)
+      .post("/api/book/")
+      .send({ page, size });
+
+    expect(res.status).toBe(200);
+    expect(res.body.data).toHaveLength(3);
+  });
+
+  // it("should throw an error", async () => {
+  //   var options = "test";
+  //   var res = await request(server)
+  //     .post("/api/book/")
+  //     .send({ options });
+
+  //   expect(res.status).toBe(500);
+  // });
 });

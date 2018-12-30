@@ -26,39 +26,47 @@ const sort = async (collection, sortBy) => {
 };
 
 const finalizeSort = async (collection, page, size, sortBy) => {
-  var defaultCollection;
-  var length = collection.length;
+  try {
+    var defaultCollection;
+    var length = collection.length;
 
-  if (page < 1 || page == undefined) {
-    defaultCollection = _.take(collection, size || 10);
+    if (page < 1 || page == undefined) {
+      defaultCollection = _.take(collection, size || 10);
 
-    if (sortBy != undefined && sortBy.trim() != "") {
-      return await sort(defaultCollection, sortBy); //if page length is less than 1
+      if (sortBy != undefined && sortBy.trim() != "") {
+        return await sort(defaultCollection, sortBy); //if page length is less than 1
+      }
+
+      return defaultCollection;
+    } else if (page > length / 10 || size > length) {
+      var droppedCollection = _.drop(collection, length - (size || 10));
+      defaultCollection = _.take(droppedCollection, size || 10);
+
+      if (sortBy != undefined && sortBy.trim() != "") {
+        return await sort(defaultCollection, sortBy);
+      }
+
+      return defaultCollection; // if page number/size is more than collection's length
+    } else {
+      var documentsSkipped = _.drop(collection, (page - 1) * size);
+      var pickedDocuments = _.take(documentsSkipped, size);
+
+      if (sortBy != undefined && sortBy.trim() != "") {
+        return await sort(pickedDocuments, sortBy);
+      } else return _.take(pickedDocuments, size); //normal scenario
     }
-
-    return defaultCollection;
-  } else if (page > length / 10 || size > length) {
-    var droppedCollection = _.drop(collection, length - (size || 10));
-    defaultCollection = _.take(droppedCollection, size || 10);
-
-    if (sortBy != undefined && sortBy.trim() != "") {
-      return await sort(defaultCollection, sortBy);
-    }
-
-    return defaultCollection; // if page number/size is more than collection's length
-  } else {
-    var documentsSkipped = _.drop(collection, (page - 1) * size);
-    var pickedDocuments = _.take(documentsSkipped, size);
-
-    if (sortBy != undefined && sortBy.trim() != "") {
-      return await sort(pickedDocuments, sortBy);
-    } else return _.take(pickedDocuments, size); //normal scenario
+  } catch (e) {
+    throw e;
   }
 };
 
 const write = async data => {
-  var newFile = JSON.stringify(data);
-  await writeFile(path.join(__dirname, "../books.json"), newFile);
+  try {
+    var newFile = JSON.stringify(data);
+    await writeFile(path.join(__dirname, "../books.json"), newFile);
+  } catch (e) {
+    throw e;
+  }
 };
 
 module.exports = {

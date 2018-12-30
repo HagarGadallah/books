@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">75% </span>
+        <span class="strong">92.65% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>63/84</span>
+        <span class='fraction'>63/68</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">50% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>30/60</span>
+        <span class='fraction'>31/31</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -35,13 +35,13 @@
         <span class='fraction'>8/8</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">74.7% </span>
+        <span class="strong">92.54% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>62/83</span>
+        <span class='fraction'>62/67</span>
       </div>
     </div>
   </div>
-  <div class='status-line medium'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -206,41 +206,7 @@
 161
 162
 163
-164
-165
-166
-167
-168
-169
-170
-171
-172
-173
-174
-175
-176
-177
-178
-179
-180
-181
-182
-183
-184
-185
-186
-187
-188
-189
-190
-191
-192
-193
-194
-195
-196
-197
-198</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+164</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
@@ -379,51 +345,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -442,7 +374,7 @@
 //var Joi = require("Joi");
 const _ = require("lodash");
 const uuidv4 = require("uuid/v4");
-const { readAll, sort, write } = require("./db/db");
+const { readAll, write, finalizeSort } = require("./db/db");
 const validate = require("uuid-validate");
 &nbsp;
 // const Author = mongoose.model(
@@ -518,7 +450,7 @@ const updateAuthorById = async (id, author) =&gt; {
       return i.id == id;
     });
 &nbsp;
-    if(item == undefined){
+    if (item == undefined) {
       return "No id match";
     }
     //check if name is not in the body and if it's in, it is not empty and same for the job title
@@ -552,7 +484,7 @@ const deleteAuthorById = async id =&gt; {
     //get the item
     var item = await readAuthorById(id);
 &nbsp;
-    if(item == undefined){
+    if (item == undefined) {
       return "No id match";
     }
 &nbsp;
@@ -579,48 +511,14 @@ const getAuthors = async options =&gt; {
   try {
     var data = await readAll();
     var authors = data.authors;
-    var length = authors.length;
     var size = options.size;
     var page = options.page;
     var sortBy = options.sortBy;
 &nbsp;
-    <span class="missing-if-branch" title="else path not taken" >E</span>if (page == undefined &amp;&amp; size == undefined &amp;&amp; sortBy == undefined) {
+    if (page == undefined &amp;&amp; size == undefined &amp;&amp; sortBy == undefined) {
       return authors; //Normal GET all with no filterations
-    } else <span class="cstat-no" title="statement not covered" >if (page &lt; 1 || page == undefined) {</span>
-      var defaultAuthors = <span class="cstat-no" title="statement not covered" >_.take(authors, size || 10);</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >      if (</span>
-        (sortBy != undefined &amp;&amp; options.sortBy.length &gt; 0) ||
-        options.sortBy.trim() != ""
-      ) {
-<span class="cstat-no" title="statement not covered" >        return await sort(defaultAuthors, sortBy); </span>//if page length is less than 1
-      }
-&nbsp;
-<span class="cstat-no" title="statement not covered" >      return defaultAuthors;</span>
-    } else <span class="cstat-no" title="statement not covered" >if (page &gt; length / 10 || size &gt; length) {</span>
-      //console.log("inside size more than limit");
-      var droppedAuthors = <span class="cstat-no" title="statement not covered" >_.drop(authors, length - (size || 10));</span>
-<span class="cstat-no" title="statement not covered" >      defaultAuthors = _.take(droppedAuthors, size || 10);</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >      if (</span>
-        (sortBy != undefined &amp;&amp; options.sortBy.length &gt; 0) ||
-        options.sortBy.trim() != ""
-      ) {
-<span class="cstat-no" title="statement not covered" >        return await sort(defaultAuthors, sortBy); </span>//if page length is less than 1
-      }
-&nbsp;
-<span class="cstat-no" title="statement not covered" >      return defaultAuthors; </span>// if page number/size is more than authors length
     } else {
-      //console.log("normal scenario");
-      var authorsSkipped = <span class="cstat-no" title="statement not covered" >_.drop(authors, (page - 1) * size);</span>
-      var pickedAuthors = <span class="cstat-no" title="statement not covered" >_.take(authorsSkipped, size);</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >      if (</span>
-        (sortBy != undefined &amp;&amp; options.sortBy.length &gt; 0) ||
-        options.sortBy.trim() != ""
-      ) {
-<span class="cstat-no" title="statement not covered" >        return await sort(pickedAuthors, sortBy);</span>
-      } else <span class="cstat-no" title="statement not covered" >return _.take(pickedAuthors, size); </span>//normal scenario
+      return await finalizeSort(authors, page, size, sortBy);
     }
   } catch (e) {
 <span class="cstat-no" title="statement not covered" >    throw e;</span>
@@ -640,7 +538,7 @@ module.exports = {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Dec 30 2018 09:46:11 GMT+0200 (Eastern European Standard Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Dec 30 2018 16:18:44 GMT+0200 (Eastern European Standard Time)
 </div>
 </div>
 <script src="..\..\..\prettify.js"></script>
