@@ -3,7 +3,11 @@
 //var Joi = require("Joi");
 const _ = require("lodash");
 const uuidv4 = require("uuid/v4");
-const { readAll, write, finalizeSort } = require("./db/db");
+const {
+  readAll,
+  write,
+  finalizeSort
+} = require("../models/utilities/utilities");
 const validate = require("uuid-validate");
 
 // const Author = mongoose.model(

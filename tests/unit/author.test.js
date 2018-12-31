@@ -2,7 +2,6 @@ const uuidv4 = require("uuid/v4");
 const request = require("supertest");
 const server = require("../../app");
 const author = require("../../api/models/author");
-const { readAll } = require("../../api/models/db/db");
 const _ = require("lodash");
 
 describe("GET /api/author/:id", () => {

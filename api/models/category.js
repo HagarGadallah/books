@@ -4,8 +4,11 @@
 const _ = require("lodash");
 const uuidv4 = require("uuid/v4");
 const validate = require("uuid-validate");
-const { readAll, write, finalizeSort } = require("./db/db");
-
+const {
+  readAll,
+  write,
+  finalizeSort
+} = require("../models/utilities/utilities");
 //Schema
 // var Category = mongoose.model(
 //   "Category",

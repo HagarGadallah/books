@@ -2,7 +2,7 @@ const uuidv4 = require("uuid/v4");
 const request = require("supertest");
 const server = require("../../app");
 const category = require("../../api/models/category");
-const { readAll } = require("../../api/models/db/db");
+const { readAll } = require("../../api/models/utilities/utilities");
 const _ = require("lodash");
 
 describe("GET /api/category/:id", () => {
