@@ -39,7 +39,7 @@ const finalizeSort = async (collection, page, size, sortBy, filterBy) => {
     var defaultCollection;
     var length = collection.length;
 
-    if (page < 1 || page == undefined) {
+    if (page < 1) {
       defaultCollection = _.take(collection, size || 10);
 
       if (filterBy != undefined) {
@@ -71,8 +71,9 @@ const finalizeSort = async (collection, page, size, sortBy, filterBy) => {
 
         if (sortBy != undefined && sortBy.trim() != "") {
           return await sort(result, sortBy);
-        } else return result;
-      } else return collection;
+        }
+        return result;
+      }
     } else {
       //normal scenario
 

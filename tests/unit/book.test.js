@@ -47,6 +47,14 @@ describe("POST /api/book/create", () => {
       .send({ title, isbn });
   };
 
+  it("should return 500", async () => {
+    title = "test book";
+    isbn = 500;
+    var res = await exec();
+
+    expect(res.status).toBe(500);
+  });
+
   it("should return 400 if book's title is empty", async () => {
     title = "       ";
     isbn = "1PZF17IST7CO81RIJV0YH4PSVGGOUSG2OO";
@@ -105,6 +113,14 @@ describe("PUT /api/update/book/:id", () => {
       .put("/api/update/book/" + id)
       .send({ title: newTitle, isbn: newIsbn });
   };
+
+  it("should return 500", async () => {
+    id = "a7ff7cd8-7f45-42fe-ac3b-ed8d275e91be";
+    newIsbn = 500;
+    var res = await exec();
+
+    expect(res.status).toBe(500);
+  });
 
   it("should return 400 if book's title is empty", async () => {
     id = "a7ff7cd8-7f45-42fe-ac3b-ed8d275e91be";
@@ -210,7 +226,18 @@ describe("DELETE /api/delete/book/:id", () => {
 });
 
 describe("POST /api/book", () => {
-  var page, size, sortBy;
+  var page, size, filterBy, sortBy;
+
+  it("should return 500", async () => {
+    sortBy = 123;
+    page = 2;
+    size = 15;
+    var res = await request(server)
+      .post("/api/book/")
+      .send({ page, size, sortBy });
+
+    expect(res.status).toBe(500);
+  });
 
   it("should return 200 if all books are retrieved", async () => {
     var res = await request(server).post("/api/book/");
@@ -218,6 +245,26 @@ describe("POST /api/book", () => {
 
     expect(res.status).toBe(200);
     expect(res.body).toHaveProperty("message", message);
+  });
+
+  it("should return records in file wrt filter specified", async () => {
+    page = 1;
+    size = 15;
+    filterBy = { author: "8dec0840-5ab5-4e07-8452-a0c787fa8805" };
+    var res = await request(server)
+      .post("/api/book/")
+      .send({ page, size, filterBy });
+
+    expect(res.status).toBe(200);
+    expect(res.body.data).toHaveLength(2);
+    expect(res.body.data[0]).toHaveProperty(
+      "author",
+      "8dec0840-5ab5-4e07-8452-a0c787fa8805"
+    );
+    expect(res.body.data[1]).toHaveProperty(
+      "author",
+      "8dec0840-5ab5-4e07-8452-a0c787fa8805"
+    );
   });
 
   it("should return first 3 records in file if page number is -ve", async () => {
@@ -231,12 +278,63 @@ describe("POST /api/book", () => {
     expect(res.body.data).toHaveLength(3);
   });
 
-  // it("should throw an error", async () => {
-  //   var options = "test";
-  //   var res = await request(server)
-  //     .post("/api/book/")
-  //     .send({ options });
+  it("should return records in file wrt filter if page number is -ve", async () => {
+    page = -100;
+    size = 15;
+    filterBy = { author: "8dec0840-5ab5-4e07-8452-a0c787fa8805" };
+    var res = await request(server)
+      .post("/api/book/")
+      .send({ page, size, filterBy });
 
-  //   expect(res.status).toBe(500);
-  // });
+    expect(res.status).toBe(200);
+    expect(res.body.data).toHaveLength(2);
+    expect(res.body.data[0]).toHaveProperty(
+      "author",
+      "8dec0840-5ab5-4e07-8452-a0c787fa8805"
+    );
+    expect(res.body.data[1]).toHaveProperty(
+      "author",
+      "8dec0840-5ab5-4e07-8452-a0c787fa8805"
+    );
+  });
+
+  it("should return records in file wrt filter if page number exceeded records in file", async () => {
+    page = 500;
+    filterBy = { publishYear: 2002 };
+    var res = await request(server)
+      .post("/api/book/")
+      .send({ page, filterBy });
+
+    expect(res.status).toBe(200);
+    expect(res.body.data).toHaveLength(1);
+    expect(res.body.data[0]).toHaveProperty("publishYear", 2002);
+  });
+
+  it("should return all books in file whose publish year is 2002", async () => {
+    filterBy = { publishYear: 2002 };
+    var res = await request(server)
+      .post("/api/book/")
+      .send({ filterBy });
+
+    expect(res.status).toBe(200);
+    expect(res.body.data).toHaveLength(3);
+    expect(res.body.data[0]).toHaveProperty("publishYear", 2002);
+    expect(res.body.data[1]).toHaveProperty("publishYear", 2002);
+    expect(res.body.data[2]).toHaveProperty("publishYear", 2002);
+  });
+
+  it("should return all books in file whose publish year is 2002, sorted", async () => {
+    //just for branch coverage
+    filterBy = { publishYear: 2002 };
+    sortBy = "title";
+    var res = await request(server)
+      .post("/api/book/")
+      .send({ filterBy, sortBy });
+
+    expect(res.status).toBe(200);
+    expect(res.body.data).toHaveLength(3);
+    expect(res.body.data[0]).toHaveProperty("publishYear", 2002);
+    expect(res.body.data[1]).toHaveProperty("publishYear", 2002);
+    expect(res.body.data[2]).toHaveProperty("publishYear", 2002);
+  });
 });

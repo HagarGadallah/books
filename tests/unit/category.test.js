@@ -52,6 +52,13 @@ describe("POST /api/category/create", () => {
       .send({ name });
   };
 
+  it("should return 500", async () => {
+    name = 500;
+    var res = await exec();
+
+    expect(res.status).toBe(500);
+  });
+
   it("should return 400 if category's name is empty", async () => {
     name = "       ";
 
@@ -91,6 +98,14 @@ describe("PUT /api/update/category/:id", () => {
       .put("/api/update/category/" + id)
       .send({ name: newName });
   };
+
+  it("should return 500", async () => {
+    id = "dc1d741a-d4e9-4e64-b33a-4eeb0970903c";
+    newName = 500;
+    var res = await exec();
+
+    expect(res.status).toBe(500);
+  });
 
   it("should return 400 if category's name is empty", async () => {
     id = "dc1d741a-d4e9-4e64-b33a-4eeb0970903c";

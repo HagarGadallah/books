@@ -44,6 +44,14 @@ describe("POST /api/author/create", () => {
       .send({ name, jobTitle });
   };
 
+  it("should return 500", async () => {
+    name = 123;
+    jobTitle = "architect";
+    var res = await exec();
+
+    expect(res.status).toBe(500);
+  });
+
   it("should return 400 if author's name is empty", async () => {
     name = "       ";
     jobTitle = "software testing engineer";
@@ -82,6 +90,14 @@ describe("PUT /api/update/author/:id", () => {
       .put("/api/update/author/" + id)
       .send({ name: newName, jobTitle: newJobTitle });
   };
+
+  it("should return 500", async () => {
+    id = "1fb64057-cffc-46e6-a347-4bb5631f0e83";
+    newName = 123;
+    var res = await exec();
+
+    expect(res.status).toBe(500);
+  });
 
   it("should return 400 if author's name is empty", async () => {
     id = "1fb64057-cffc-46e6-a347-4bb5631f0e83";
