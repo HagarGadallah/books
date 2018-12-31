@@ -4,7 +4,7 @@
 const _ = require("lodash");
 const uuidv4 = require("uuid/v4");
 const validate = require("uuid-validate");
-const { readAll, sort, write, finalizeSort } = require("./db/db");
+const { readAll, write, finalizeSort } = require("./db/db");
 
 // const Book = mongoose.model(
 //   "Book",
@@ -179,11 +179,17 @@ const getBooks = async options => {
     var size = options.size;
     var page = options.page;
     var sortBy = options.sortBy;
+    var filterBy = options.filterBy;
 
-    if (page == undefined && size == undefined && sortBy == undefined) {
+    if (
+      page == undefined &&
+      size == undefined &&
+      sortBy == undefined &&
+      filterBy == undefined
+    ) {
       return books; //Normal GET all with no filterations
     } else {
-      return await finalizeSort(books, page, size, sortBy);
+      return await finalizeSort(books, page, size, sortBy, filterBy);
     }
   } catch (e) {
     throw e;

@@ -15,7 +15,8 @@ module.exports.getAll = async function(req, res) {
     var options = {
       page: req.body.page,
       size: req.body.size,
-      sortBy: req.body.sortBy
+      sortBy: req.body.sortBy,
+      filterBy: req.body.filterBy
     };
     let filteredBooks = await getBooks(options);
     res.status(200).json({
