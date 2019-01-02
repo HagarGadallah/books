@@ -91,15 +91,15 @@ describe("POST /api/book/create", () => {
   });
 
   it("should return the book if it is created successfully", async () => {
-    title = "test book";
-    isbn = "3A3RLG23HNSGQ2QGJ0GEU0A5V70DODPU";
+    title = "test title";
+    isbn = "3A3RLG23HNSGQ2QGJ0GEU0A5vwjovjmwepvjqmevjwqkvjiqpV70DODPU";
     const res = await exec();
 
     expect(res.body).toHaveProperty("data.id");
-    expect(res.body).toHaveProperty("data.title", "test book");
+    expect(res.body).toHaveProperty("data.title", "test title");
     expect(res.body).toHaveProperty(
       "data.isbn",
-      "3A3RLG23HNSGQ2QGJ0GEU0A5V70DODPU"
+      "3A3RLG23HNSGQ2QGJ0GEU0A5vwjovjmwepvjqmevjwqkvjiqpV70DODPU"
     );
   });
 });

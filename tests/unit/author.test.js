@@ -69,14 +69,25 @@ describe("POST /api/author/create", () => {
     expect(res.status).toBe(400);
   });
 
+  //TO BE REVIEWED
+  // it("should not create the author if its name already exists", async () => {
+  //   name = "Alena Graham";
+  //   jobTitle = "poet";
+  //   var message = "Author with the same name already exists";
+  //   const res = await exec();
+
+  //   expect(res.status).toBe(200);
+  //   expect(res.body).toHaveProperty("data.message", message);
+  // });
+
   it("should return the author if it is created successfully", async () => {
-    name = "Zaha";
-    jobTitle = "architect";
+    name = "Sylvia Plath";
+    jobTitle = "poet";
     const res = await exec();
 
     expect(res.body).toHaveProperty("data.id");
-    expect(res.body).toHaveProperty("data.name", "Zaha");
-    expect(res.body).toHaveProperty("data.jobTitle", "architect");
+    expect(res.body).toHaveProperty("data.name", "Sylvia Plath");
+    expect(res.body).toHaveProperty("data.jobTitle", "poet");
   });
 });
 
@@ -187,7 +198,7 @@ describe("DELETE /api/delete/author/:id", () => {
   });
 });
 
-describe("POST /api/category", () => {
+describe("POST /api/author", () => {
   var page, size, sortBy;
 
   afterAll(async () => {
@@ -211,6 +222,6 @@ describe("POST /api/category", () => {
 
     expect(res.status).toBe(200);
     expect(res.body.data).toHaveLength(3);
-    expect(res.body.data[2]).toHaveProperty("jobTitle", "architect");
+    expect(res.body.data[1]).toHaveProperty("jobTitle", "updated job title");
   });
 });

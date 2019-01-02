@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">95.59% </span>
+        <span class="strong">94.52% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>65/68</span>
+        <span class='fraction'>69/73</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">96.97% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>31/31</span>
+        <span class='fraction'>32/33</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>8/8</span>
+        <span class='fraction'>9/9</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">95.52% </span>
+        <span class="strong">94.44% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>64/67</span>
+        <span class='fraction'>68/72</span>
       </div>
     </div>
   </div>
@@ -210,7 +210,15 @@
 165
 166
 167
-168</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+168
+169
+170
+171
+172
+173
+174
+175
+176</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
@@ -248,7 +256,7 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">130x</span>
+<span class="cline-any cline-yes">131x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -258,15 +266,22 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">156x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -277,11 +292,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -292,7 +308,7 @@
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">182x</span>
+<span class="cline-any cline-yes">183x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
@@ -341,7 +357,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">32x</span>
+<span class="cline-any cline-yes">33x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -429,26 +445,34 @@ const createAuthor = async author =&gt; {
     var data = await readAll();
     var authors = data.authors;
 &nbsp;
-    var authorId = uuidv4();
-    author.id = authorId;
+    const name = author.name;
 &nbsp;
-    //Invalid data check
-    if (
-      author.name == undefined ||
-      author.name.trim() == "" ||
-      author.jobTitle == undefined ||
-      author.jobTitle.trim() == ""
-    ) {
-      return "Invalid data, please send valid data and try again";
-    }
-    //Created Successfully
-    else {
-      //Push it
-      authors.push(author);
-    }
+    const item = _.find(authors, function(i) {
+      return i.name == name;
+    });
 &nbsp;
-    await write(data);
-    return author;
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (item == undefined) {
+      var authorId = uuidv4();
+      author.id = authorId;
+&nbsp;
+      //Invalid data check
+      if (
+        author.name == undefined ||
+        author.name.trim() == "" ||
+        author.jobTitle == undefined ||
+        author.jobTitle.trim() == ""
+      ) {
+        return "Invalid data, please send valid data and try again";
+      }
+      //Created Successfully
+      else {
+        //Push it
+        authors.push(author);
+      }
+&nbsp;
+      await write(data);
+      return author;
+    } else <span class="cstat-no" title="statement not covered" >return "Author with the same name already exists";</span>
   } catch (e) {
     throw e;
   }
@@ -550,7 +574,7 @@ module.exports = {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Dec 31 2018 14:12:12 GMT+0200 (Eastern European Standard Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Jan 02 2019 16:18:53 GMT+0200 (Eastern European Standard Time)
 </div>
 </div>
 <script src="..\..\..\prettify.js"></script>

@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">97.47% </span>
+        <span class="strong">96.51% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>77/79</span>
+        <span class='fraction'>83/86</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">96.15% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>48/48</span>
+        <span class='fraction'>50/52</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>12/12</span>
+        <span class='fraction'>13/13</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">97.44% </span>
+        <span class="strong">96.47% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>76/78</span>
+        <span class='fraction'>82/85</span>
       </div>
     </div>
   </div>
@@ -252,7 +252,18 @@
 207
 208
 209
-210</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
@@ -322,13 +333,23 @@
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">505x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">85x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">155x</span>
+<span class="cline-any cline-yes">80x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">160x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -350,6 +371,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -365,11 +387,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">136x</span>
+<span class="cline-any cline-yes">128x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">248x</span>
+<span class="cline-any cline-yes">256x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">8x</span>
@@ -528,37 +550,48 @@ const createBook = async book =&gt; {
     const data = await readAll();
     var books = data.books;
 &nbsp;
-    var bookId = uuidv4();
-    book.id = bookId;
+    const title = book.title;
+    const isbn = book.isbn;
 &nbsp;
-    //to check if category/author provided is in my database and if not, book does not get updated
-    var categoryCheck = _.find(data.categories, function(i) {
-      return i.id == book.category;
+    const item = _.find(books, function(i) {
+      return i.title == title &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >i.isbn == isbn;</span>
     });
 &nbsp;
-    var authorCheck = _.find(data.authors, function(i) {
-      return i.id == book.author;
-    });
+    console.log("item", item);
 &nbsp;
-    //Invalid data check
-    if (
-      book.title == undefined ||
-      book.title.trim() == "" ||
-      book.isbn == undefined ||
-      book.isbn.trim().length &lt; 30 ||
-      (book.category != undefined &amp;&amp; categoryCheck == undefined) ||
-      (book.author != undefined &amp;&amp; authorCheck == undefined)
-    ) {
-      return "Invalid data, please send valid data and try again";
-    }
-    //Created Successfully
-    else {
-      //Push it
-      books.push(book);
-    }
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (item == undefined) {
+      var bookId = uuidv4();
+      book.id = bookId;
 &nbsp;
-    await write(data);
-    return book;
+      //to check if category/author provided is in my database and if not, book does not get updated
+      var categoryCheck = _.find(data.categories, function(i) {
+        return i.id == book.category;
+      });
+&nbsp;
+      var authorCheck = _.find(data.authors, function(i) {
+        return i.id == book.author;
+      });
+&nbsp;
+      //Invalid data check
+      if (
+        book.title == undefined ||
+        book.title.trim() == "" ||
+        book.isbn == undefined ||
+        book.isbn.trim().length &lt; 30 ||
+        (book.category != undefined &amp;&amp; categoryCheck == undefined) ||
+        (book.author != undefined &amp;&amp; authorCheck == undefined)
+      ) {
+        return "Invalid data, please send valid data and try again";
+      }
+      //Created Successfully
+      else {
+        //Push it
+        books.push(book);
+      }
+&nbsp;
+      await write(data);
+      return book;
+    } else <span class="cstat-no" title="statement not covered" >return "Book with the same title and isbn already exists";</span>
   } catch (e) {
     throw e;
   }
@@ -676,7 +709,7 @@ module.exports = {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Dec 31 2018 14:12:12 GMT+0200 (Eastern European Standard Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Jan 02 2019 16:18:53 GMT+0200 (Eastern European Standard Time)
 </div>
 </div>
 <script src="..\..\..\prettify.js"></script>

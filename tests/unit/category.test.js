@@ -81,11 +81,11 @@ describe("POST /api/category/create", () => {
   });
 
   it("should return the category if it is created successfully", async () => {
-    name = "test category";
+    name = "test name";
     const res = await exec();
 
     expect(res.body).toHaveProperty("data.id");
-    expect(res.body).toHaveProperty("data.name", "test category");
+    expect(res.body).toHaveProperty("data.name", "test name");
   });
 });
 
