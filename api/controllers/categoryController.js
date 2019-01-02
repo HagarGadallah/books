@@ -3,7 +3,8 @@ const {
   createCategory,
   updateCategoryById,
   deleteCategoryById,
-  getCategories
+  getCategories,
+  readCategoryByName
 } = require("../models/category");
 
 module.exports.getAll = async function(req, res) {
@@ -55,6 +56,31 @@ module.exports.get = async function(req, res) {
     });
   }
 };
+
+// module.exports.getByName = async function(req, res) {
+//   try {
+//     console.log("inside read by name api");
+//     let category = await readCategoryByName(req.params.name);
+//     if (category == "No match found") {
+//       res.status(404).json({
+//         data: category,
+//         message: "Category not found"
+//       });
+//       return;
+//     }
+//     res.status(200).json({
+//       data: category,
+//       message: "Category found successfully"
+//     });
+//   } catch (e) {
+//     console.log(e);
+//     res.status(500).json({
+//       data: null,
+//       message: "Internal server error",
+//       error: e
+//     });
+//   }
+// };
 
 module.exports.delete = async function(req, res) {
   try {
@@ -131,7 +157,13 @@ module.exports.create = async function(req, res) {
     if (newCategory == "Invalid data, please send valid data and try again") {
       res.status(400).json({
         data: newCategory,
-        message: "Category not created"
+        message: "Category was not created"
+      });
+      return;
+    } else if (newCategory == "Category with the same name already exists") {
+      res.status(200).json({
+        data: newCategory,
+        message: "Category was not created"
       });
       return;
     }

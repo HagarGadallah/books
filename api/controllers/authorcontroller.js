@@ -133,6 +133,12 @@ module.exports.create = async function(req, res) {
         message: "Author was not created"
       });
       return;
+    } else if (newAuthor == "Author with the same name already exists") {
+      res.status(200).json({
+        data: newAuthor,
+        message: "Author was not created"
+      });
+      return;
     }
     res.status(200).json({
       data: newAuthor,

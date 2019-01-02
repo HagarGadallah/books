@@ -131,6 +131,12 @@ module.exports.create = async function(req, res) {
         message: "Book was not created"
       });
       return;
+    } else if (newBook == "Book with the same title and isbn already exists") {
+      res.status(200).json({
+        data: newBook,
+        message: "Book was not created"
+      });
+      return;
     }
     res.status(200).json({
       data: newBook,

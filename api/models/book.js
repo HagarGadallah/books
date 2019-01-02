@@ -65,37 +65,48 @@ const createBook = async book => {
     const data = await readAll();
     var books = data.books;
 
-    var bookId = uuidv4();
-    book.id = bookId;
+    const title = book.title;
+    const isbn = book.isbn;
 
-    //to check if category/author provided is in my database and if not, book does not get updated
-    var categoryCheck = _.find(data.categories, function(i) {
-      return i.id == book.category;
+    const item = _.find(books, function(i) {
+      return i.title == title && i.isbn == isbn;
     });
 
-    var authorCheck = _.find(data.authors, function(i) {
-      return i.id == book.author;
-    });
+    console.log("item", item);
 
-    //Invalid data check
-    if (
-      book.title == undefined ||
-      book.title.trim() == "" ||
-      book.isbn == undefined ||
-      book.isbn.trim().length < 30 ||
-      (book.category != undefined && categoryCheck == undefined) ||
-      (book.author != undefined && authorCheck == undefined)
-    ) {
-      return "Invalid data, please send valid data and try again";
-    }
-    //Created Successfully
-    else {
-      //Push it
-      books.push(book);
-    }
+    if (item == undefined) {
+      var bookId = uuidv4();
+      book.id = bookId;
 
-    await write(data);
-    return book;
+      //to check if category/author provided is in my database and if not, book does not get updated
+      var categoryCheck = _.find(data.categories, function(i) {
+        return i.id == book.category;
+      });
+
+      var authorCheck = _.find(data.authors, function(i) {
+        return i.id == book.author;
+      });
+
+      //Invalid data check
+      if (
+        book.title == undefined ||
+        book.title.trim() == "" ||
+        book.isbn == undefined ||
+        book.isbn.trim().length < 30 ||
+        (book.category != undefined && categoryCheck == undefined) ||
+        (book.author != undefined && authorCheck == undefined)
+      ) {
+        return "Invalid data, please send valid data and try again";
+      }
+      //Created Successfully
+      else {
+        //Push it
+        books.push(book);
+      }
+
+      await write(data);
+      return book;
+    } else return "Book with the same title and isbn already exists";
   } catch (e) {
     throw e;
   }

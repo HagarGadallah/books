@@ -50,26 +50,34 @@ const createAuthor = async author => {
     var data = await readAll();
     var authors = data.authors;
 
-    var authorId = uuidv4();
-    author.id = authorId;
+    const name = author.name;
 
-    //Invalid data check
-    if (
-      author.name == undefined ||
-      author.name.trim() == "" ||
-      author.jobTitle == undefined ||
-      author.jobTitle.trim() == ""
-    ) {
-      return "Invalid data, please send valid data and try again";
-    }
-    //Created Successfully
-    else {
-      //Push it
-      authors.push(author);
-    }
+    const item = _.find(authors, function(i) {
+      return i.name == name;
+    });
 
-    await write(data);
-    return author;
+    if (item == undefined) {
+      var authorId = uuidv4();
+      author.id = authorId;
+
+      //Invalid data check
+      if (
+        author.name == undefined ||
+        author.name.trim() == "" ||
+        author.jobTitle == undefined ||
+        author.jobTitle.trim() == ""
+      ) {
+        return "Invalid data, please send valid data and try again";
+      }
+      //Created Successfully
+      else {
+        //Push it
+        authors.push(author);
+      }
+
+      await write(data);
+      return author;
+    } else return "Author with the same name already exists";
   } catch (e) {
     throw e;
   }

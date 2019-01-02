@@ -47,25 +47,50 @@ const readCategoryById = async id => {
   }
 };
 
+const readCategoryByName = async name => {
+  try {
+    console.log("inside read by name function");
+    const data = await readAll();
+    var nameToLookUp = _.replace(name, "%20", " ");
+    var item = _.find(data.categories, function(i) {
+      return i.name == name;
+    });
+    console.log("item", item);
+    if (item != undefined) {
+      return item;
+    } else return "No match found";
+  } catch (e) {
+    throw e;
+  }
+};
+
 const createCategory = async category => {
   try {
     const data = await readAll();
     var categories = data.categories;
 
-    var categoryId = uuidv4();
-    category.id = categoryId;
+    const name = category.name;
 
-    //Invalid data check
-    if (category.name == undefined || category.name.trim() == "") {
-      return "Invalid data, please send valid data and try again";
-    }
-    //Created Successfully
-    else {
-      //Push it
-      categories.push(category);
-    }
-    await write(data);
-    return category;
+    const item = _.find(categories, function(i) {
+      return i.name == name;
+    });
+
+    if (item == undefined) {
+      var categoryId = uuidv4();
+      category.id = categoryId;
+
+      //Invalid data check
+      if (category.name == undefined || category.name.trim() == "") {
+        return "Invalid data, please send valid data and try again";
+      }
+      //Created Successfully
+      else {
+        //Push it
+        categories.push(category);
+      }
+      await write(data);
+      return category;
+    } else return "Category with the same name already exists";
   } catch (e) {
     throw e;
   }
@@ -156,5 +181,6 @@ module.exports = {
   createCategory,
   updateCategoryById,
   deleteCategoryById,
-  getCategories
+  getCategories,
+  readCategoryByName
 };
