@@ -6,6 +6,8 @@ const {
   getBooks
 } = require("../models/book");
 
+const logger = require("../logger");
+
 module.exports.getAll = async function(req, res) {
   try {
     /* var page = req.query.page;
@@ -25,6 +27,7 @@ module.exports.getAll = async function(req, res) {
     });
   } catch (e) {
     console.log(e);
+    logger.error(e);
     res.status(500).json({
       data: null,
       message: "Internal server error",
@@ -49,6 +52,7 @@ module.exports.get = async function(req, res) {
     });
   } catch (e) {
     console.log(e);
+    logger.error(e);
     res.status(500).json({
       data: null,
       message: "Internal server error",
@@ -73,6 +77,7 @@ module.exports.delete = async function(req, res) {
     });
   } catch (e) {
     console.log(e);
+    logger.error(e);
     res.status(500).json({
       data: null,
       message: "Internal server error",
@@ -104,6 +109,7 @@ module.exports.update = async function(req, res) {
     });
   } catch (e) {
     console.log(e);
+    logger.error(e);
     res.status(500).json({
       data: null,
       message: "Internal server error",
@@ -144,6 +150,7 @@ module.exports.create = async function(req, res) {
     });
   } catch (e) {
     console.log(e);
+    logger.error(e);
     res.status(500).json({
       data: null,
       message: "Internal server error",
