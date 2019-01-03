@@ -69,16 +69,15 @@ describe("POST /api/author/create", () => {
     expect(res.status).toBe(400);
   });
 
-  //TO BE REVIEWED
-  // it("should not create the author if its name already exists", async () => {
-  //   name = "Alena Graham";
-  //   jobTitle = "poet";
-  //   var message = "Author with the same name already exists";
-  //   const res = await exec();
+  it("should not create the author if its name and job title already exist", async () => {
+    name = "Ford Veum";
+    jobTitle = "Human Metrics Consultant";
+    var data = "Author with the same name and job title already exists";
+    const res = await exec();
 
-  //   expect(res.status).toBe(200);
-  //   expect(res.body).toHaveProperty("data.message", message);
-  // });
+    expect(res.status).toBe(200);
+    expect(res.body).toHaveProperty("data", data);
+  });
 
   it("should return the author if it is created successfully", async () => {
     name = "Sylvia Plath";

@@ -90,6 +90,16 @@ describe("POST /api/book/create", () => {
     expect(res.status).toBe(400);
   });
 
+  it("should not create the book if there exists one with its title and isbn already", async () => {
+    title = "Iure voluptates et facere reprehenderit nobis autem";
+    isbn = "1PZF17IST7CO81RIJV0YH4PSVGGOUSG2OO";
+    var data = "Book with the same title and isbn already exists";
+    const res = await exec();
+
+    expect(res.status).toBe(200);
+    expect(res.body).toHaveProperty("data", data);
+  });
+
   it("should return the book if it is created successfully", async () => {
     title = "test title";
     isbn = "3A3RLG23HNSGQ2QGJ0GEU0A5vwjovjmwepvjqmevjwqkvjiqpV70DODPU";
