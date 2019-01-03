@@ -4853,3 +4853,8 @@
 ::ffff:127.0.0.1 - - [02/Jan/2019:14:18:53 +0000] "POST /api/category/ HTTP/1.1" 200 732 "-" "node-superagent/3.8.3"
 ::ffff:127.0.0.1 - - [02/Jan/2019:14:18:53 +0000] "POST /api/category/ HTTP/1.1" 200 390 "-" "node-superagent/3.8.3"
 ::ffff:127.0.0.1 - - [02/Jan/2019:14:18:53 +0000] "POST /api/category/ HTTP/1.1" 200 390 "-" "node-superagent/3.8.3"
+::1 - - [03/Jan/2019:08:34:42 +0000] "POST /api/author/create HTTP/1.1" 200 154 "-" "PostmanRuntime/7.4.0"
+::1 - - [03/Jan/2019:08:35:24 +0000] "POST /api/author/create HTTP/1.1" 200 100 "-" "PostmanRuntime/7.4.0"
+::1 - - [03/Jan/2019:08:35:35 +0000] "POST /api/author/create HTTP/1.1" 200 146 "-" "PostmanRuntime/7.4.0"
+::1 - - [03/Jan/2019:08:35:46 +0000] "POST /api/author/create HTTP/1.1" 200 100 "-" "PostmanRuntime/7.4.0"
+::1 - - [03/Jan/2019:08:35:52 +0000] "POST /api/author/create HTTP/1.1" 200 148 "-" "PostmanRuntime/7.4.0"

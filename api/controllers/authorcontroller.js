@@ -133,7 +133,9 @@ module.exports.create = async function(req, res) {
         message: "Author was not created"
       });
       return;
-    } else if (newAuthor == "Author with the same name already exists") {
+    } else if (
+      newAuthor == "Author with the same name and job title already exists"
+    ) {
       res.status(200).json({
         data: newAuthor,
         message: "Author was not created"

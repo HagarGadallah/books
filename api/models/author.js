@@ -51,9 +51,10 @@ const createAuthor = async author => {
     var authors = data.authors;
 
     const name = author.name;
+    const jobTitle = author.jobTitle;
 
     const item = _.find(authors, function(i) {
-      return i.name == name;
+      return i.name == name && i.jobTitle == jobTitle;
     });
 
     if (item == undefined) {
@@ -77,7 +78,7 @@ const createAuthor = async author => {
 
       await write(data);
       return author;
-    } else return "Author with the same name already exists";
+    } else return "Author with the same name and job title already exists";
   } catch (e) {
     throw e;
   }
