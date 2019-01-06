@@ -137,6 +137,18 @@ module.exports.create = async function(req, res) {
         message: "Book was not created"
       });
       return;
+    } else if (newBook == "There is no category with such data available") {
+      res.status(400).json({
+        data: newBook,
+        message: "Book was not created"
+      });
+      return;
+    } else if (newBook == "There is no author with such data available") {
+      res.status(400).json({
+        data: newBook,
+        message: "Book was not created"
+      });
+      return;
     } else if (newBook == "Book with the same title and isbn already exists") {
       res.status(200).json({
         data: newBook,

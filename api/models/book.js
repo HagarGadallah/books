@@ -72,29 +72,30 @@ const createBook = async book => {
       return i.title == title && i.isbn == isbn;
     });
 
-    console.log("item", item);
-
     if (item == undefined) {
       var bookId = uuidv4();
       book.id = bookId;
 
       //to check if category/author provided is in my database and if not, book does not get updated
       var categoryCheck = _.find(data.categories, function(i) {
-        return i.id == book.category;
+        return i.name == book.category;
       });
 
       var authorCheck = _.find(data.authors, function(i) {
-        return i.id == book.author;
+        return i.name == book.author;
       });
 
+      if (book.category != undefined && categoryCheck == undefined){
+        return "There is no category with such data available";
+      } else if(book.author != undefined && authorCheck == undefined){
+        return "There is no author with such data available";
+      }
       //Invalid data check
-      if (
+      else if (
         book.title == undefined ||
         book.title.trim() == "" ||
         book.isbn == undefined ||
-        book.isbn.trim().length < 30 ||
-        (book.category != undefined && categoryCheck == undefined) ||
-        (book.author != undefined && authorCheck == undefined)
+        book.isbn.trim().length < 30 
       ) {
         return "Invalid data, please send valid data and try again";
       }

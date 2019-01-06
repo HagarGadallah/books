@@ -1,2 +1,15 @@
 2019-01-03T13:34:22.515Z  error: sortBy.trim is not a function
 2019-01-03T13:35:30.265Z  error: sortBy.trim is not a function
+2019-01-04T07:29:10.349Z  error: Unexpected end of JSON input
+2019-01-04T07:32:37.591Z  error: Unexpected end of JSON input
+2019-01-04T07:33:49.984Z  error: Cannot read property 'push' of undefined
+2019-01-06T10:46:10.967Z  error: category.name.trim is not a function
+2019-01-06T10:51:39.736Z  error: category.name.trim is not a function
+2019-01-06T10:53:50.531Z  error: category.name.trim is not a function
+2019-01-06T10:53:50.588Z  error: Unexpected end of JSON input
+2019-01-06T11:17:27.846Z  error: Unexpected end of JSON input
+2019-01-06T11:27:08.118Z  error: Unexpected end of JSON input
+2019-01-06T12:04:37.046Z  error: Unexpected end of JSON input
+2019-01-06T12:07:47.322Z  error: Unexpected end of JSON input
+2019-01-06T13:37:20.803Z  error: Unexpected end of JSON input
+2019-01-06T13:39:32.264Z  error: Unexpected end of JSON input
