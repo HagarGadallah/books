@@ -6,6 +6,8 @@ const {
   getAuthors
 } = require("../models/author");
 
+const { getCreatedAt, getCurrentTime } = require("../models/utilities/utilities");
+
 const logger = require("../logger");
 
 module.exports.getAll = async function(req, res) {
@@ -139,12 +141,10 @@ module.exports.create = async function(req, res) {
         message: "Author was not created"
       });
       return;
-    } else if (
-      newAuthor == "Author with the same name and job title already exists"
-    ) {
+    } else if (getCreatedAt(newAuthor.id) < getCurrentTime()) {
       res.status(200).json({
         data: newAuthor,
-        message: "Author was not created"
+        message: "Author already exists"
       });
       return;
     }

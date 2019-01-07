@@ -7,6 +7,8 @@ const {
   readCategoryByName
 } = require("../models/category");
 
+const { getCreatedAt, getCurrentTime } = require("../models/utilities/utilities");
+
 const logger = require("../logger");
 
 module.exports.getAll = async function(req, res) {
@@ -166,10 +168,10 @@ module.exports.create = async function(req, res) {
         message: "Category was not created"
       });
       return;
-    } else if (newCategory == "Category with the same name already exists") {
+    } else if (getCreatedAt(newCategory.id) < getCurrentTime()) {
       res.status(200).json({
         data: newCategory,
-        message: "Category was not created"
+        message: "Category already exists"
       });
       return;
     }

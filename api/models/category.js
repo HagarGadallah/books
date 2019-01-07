@@ -1,13 +1,10 @@
-//const mongoose = require("mongoose");
-//var validate = require("uuid-validate");
-//var Joi = require("Joi");
 const _ = require("lodash");
-const uuidv4 = require("uuid/v4");
+const uuidv1 = require("uuid/v1");
 const validate = require("uuid-validate");
 const {
   readAll,
   write,
-  finalizeSort
+  finalizeSort,
 } = require("../models/utilities/utilities");
 //Schema
 // var Category = mongoose.model(
@@ -76,8 +73,8 @@ const createCategory = async category => {
     });
 
     if (item == undefined) {
-      var categoryId = uuidv4();
-      category.id = categoryId;
+      var categoryId = uuidv1();
+      category.id = categoryId;           
 
       //Invalid data check
       if (category.name == undefined || category.name.trim() == "") {
@@ -90,7 +87,7 @@ const createCategory = async category => {
       }
       await write(data);
       return category;
-    } else return "Category with the same name already exists";
+    } else return item; //category already existing in db
   } catch (e) {
     throw e;
   }

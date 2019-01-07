@@ -2,7 +2,7 @@
 //var validate = require("uuid-validate");
 //var Joi = require("Joi");
 const _ = require("lodash");
-const uuidv4 = require("uuid/v4");
+const uuidv1 = require("uuid/v1");
 const validate = require("uuid-validate");
 const {
   readAll,
@@ -73,7 +73,7 @@ const createBook = async book => {
     });
 
     if (item == undefined) {
-      var bookId = uuidv4();
+      var bookId = uuidv1();
       book.id = bookId;
 
       //to check if category/author provided is in my database and if not, book does not get updated
@@ -107,7 +107,7 @@ const createBook = async book => {
 
       await write(data);
       return book;
-    } else return "Book with the same title and isbn already exists";
+    } else return item; //book already existing in db;
   } catch (e) {
     throw e;
   }

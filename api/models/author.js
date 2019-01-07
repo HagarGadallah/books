@@ -2,7 +2,7 @@
 //var validate = require("uuid-validate");
 //var Joi = require("Joi");
 const _ = require("lodash");
-const uuidv4 = require("uuid/v4");
+const uuidv1 = require("uuid/v1");
 const {
   readAll,
   write,
@@ -58,7 +58,7 @@ const createAuthor = async author => {
     });
 
     if (item == undefined) {
-      var authorId = uuidv4();
+      var authorId = uuidv1();
       author.id = authorId;
 
       //Invalid data check
@@ -78,7 +78,7 @@ const createAuthor = async author => {
 
       await write(data);
       return author;
-    } else return "Author with the same name and job title already exists";
+    } else return item; //author already existing in db
   } catch (e) {
     throw e;
   }

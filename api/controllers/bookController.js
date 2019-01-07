@@ -6,6 +6,8 @@ const {
   getBooks
 } = require("../models/book");
 
+const { getCreatedAt, getCurrentTime } = require("../models/utilities/utilities");
+
 const logger = require("../logger");
 
 module.exports.getAll = async function(req, res) {
@@ -149,10 +151,10 @@ module.exports.create = async function(req, res) {
         message: "Book was not created"
       });
       return;
-    } else if (newBook == "Book with the same title and isbn already exists") {
+    } else if (getCreatedAt(newBook.id) < getCurrentTime()) {
       res.status(200).json({
         data: newBook,
-        message: "Book was not created"
+        message: "Book already exists"
       });
       return;
     }

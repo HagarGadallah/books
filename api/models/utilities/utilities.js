@@ -2,6 +2,7 @@ const fs = require("fs");
 var path = require("path");
 const util = require("util");
 const _ = require("lodash");
+var moment = require("moment");
 
 const readFile = util.promisify(fs.readFile);
 const writeFile = util.promisify(fs.writeFile);
@@ -102,8 +103,28 @@ const write = async data => {
   }
 };
 
+const getCurrentTime = function (){
+  return moment(Date.now()).format("YYYY-MMM-DD HH:mm:ss ZZ");
+}
+
+const getTimeInt = function (uuidStr) {
+  var uuidArr = uuidStr.split( '-' );
+  var timeStr = [ uuidArr[ 2 ].substring( 1 ), uuidArr[ 1 ], uuidArr[ 0 ] ].join( '' );
+  return parseInt( timeStr, 16 );
+};
+
+const getCreatedAt = function (uuidStr) {
+  var intTime = getTimeInt( uuidStr ) - 122192928000000000;
+  var intMillisec = Math.floor( intTime / 10000 );
+  var date = new Date( intMillisec );
+  return moment(date).format("YYYY-MMM-DD HH:mm:ss ZZ");
+    //return new Date( intMillisec );
+};
+
 module.exports = {
   readAll,
   write,
-  finalizeSort
+  finalizeSort,
+  getCreatedAt,
+  getCurrentTime
 };

@@ -13,3 +13,5 @@
 2019-01-06T12:07:47.322Z  error: Unexpected end of JSON input
 2019-01-06T13:37:20.803Z  error: Unexpected end of JSON input
 2019-01-06T13:39:32.264Z  error: Unexpected end of JSON input
+2019-01-06T20:54:24.487Z  error: Cannot read property 'id' of undefined
+2019-01-06T22:44:15.611Z  error: timestamp.format is not a function

@@ -1,5 +1,6 @@
 {
-    "books":[{
+    "books":[
+        {
         "title":"Iure voluptates et facere reprehenderit nobis autem",
         "author":"Roderick Conroy",
         "description":"Dolor autem labore dolore impedit accusantium earum. Qui ut optio et. Et dicta exercitationem quos est excepturi laboriosam quo repellat recusandae. Et enim dolor itaque iusto quis. Consequatur eum assumenda nisi dolor dignissimos quae aut iusto. Ex rerum facere officiis molestias ratione voluptatum officiis adipisci. Hic ad tenetur dolorum nam. Quidem velit nihil qui voluptatem assumenda eaque non aut. Esse facere provident id. Deleniti quod qui in et eum voluptas aut perspiciatis. Alias quia unde est enim adipisci sunt. Sapiente nobis asperiores ut unde iure deserunt et harum est. Laudantium molestias rerum et atque et rerum necessitatibus. Voluptates modi nesciunt ducimus quibusdam. Accusantium omnis magnam quia laudantium quas dignissimos autem.",
@@ -8,15 +9,20 @@
         "pagesNumber":527,
         "image":"https://picsum.photos/200/300/?random",
         "category":"Horacio Stoltenberg",
-        "id":"8379a966-3e9a-41f9-93fd-e5c83d9543e9"}
+        "id":"5a286970-11ed-11e9-b1b6-f9d1047eed46"
+        }
     ],
-    "authors":[{
+        "authors":[
+        {
         "name":"Roderick Conroy",
         "jobTitle":"Dynamic Branding Analyst",
         "bio":"Earum quo porro voluptas dignissimos aliquid animi totam. Occaecati eligendi officiis blanditiis quo enim harum quia consequatur voluptatum. Quaerat omnis at esse voluptatibus. Ut repellat nulla alias odio maiores. Cum voluptas cum sed nihil. Quae distinctio aliquid molestiae delectus veritatis quis qui vero.",
-        "id":"91fbb5c9-4700-4220-af8e-75a9a94beaeb"}
-        ],
-    "categories":[{
+        "id":"5a1e5750-11ed-11e9-b1b6-f9d1047eed46"
+        }
+    ],
+        "categories":[
+        {
         "name":"Horacio Stoltenberg",
-        "id":"ea920d2f-a55e-463b-9340-169155b8a02f"}
-            ]}
+        "id":"5a24bff0-11ed-11e9-b1b6-f9d1047eed46"}
+        ]
+}
