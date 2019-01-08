@@ -4,7 +4,7 @@ const validate = require("uuid-validate");
 const {
   readAll,
   write,
-  finalizeSort,
+  finalizeSort
 } = require("../models/utilities/utilities");
 //Schema
 // var Category = mongoose.model(
@@ -74,7 +74,7 @@ const createCategory = async category => {
 
     if (item == undefined) {
       var categoryId = uuidv1();
-      category.id = categoryId;           
+      category.id = categoryId;
 
       //Invalid data check
       if (category.name == undefined || category.name.trim() == "") {

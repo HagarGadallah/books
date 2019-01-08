@@ -103,22 +103,22 @@ const write = async data => {
   }
 };
 
-const getCurrentTime = function (){
+const getCurrentTime = function() {
   return moment(Date.now()).format("YYYY-MMM-DD HH:mm:ss ZZ");
-}
-
-const getTimeInt = function (uuidStr) {
-  var uuidArr = uuidStr.split( '-' );
-  var timeStr = [ uuidArr[ 2 ].substring( 1 ), uuidArr[ 1 ], uuidArr[ 0 ] ].join( '' );
-  return parseInt( timeStr, 16 );
 };
 
-const getCreatedAt = function (uuidStr) {
-  var intTime = getTimeInt( uuidStr ) - 122192928000000000;
-  var intMillisec = Math.floor( intTime / 10000 );
-  var date = new Date( intMillisec );
+const getTimeInt = function(uuidStr) {
+  var uuidArr = uuidStr.split("-");
+  var timeStr = [uuidArr[2].substring(1), uuidArr[1], uuidArr[0]].join("");
+  return parseInt(timeStr, 16);
+};
+
+const getCreatedAt = function(uuidStr) {
+  var intTime = getTimeInt(uuidStr) - 122192928000000000;
+  var intMillisec = Math.floor(intTime / 10000);
+  var date = new Date(intMillisec);
   return moment(date).format("YYYY-MMM-DD HH:mm:ss ZZ");
-    //return new Date( intMillisec );
+  //return new Date( intMillisec );
 };
 
 module.exports = {

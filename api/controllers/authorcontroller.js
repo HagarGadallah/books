@@ -6,7 +6,10 @@ const {
   getAuthors
 } = require("../models/author");
 
-const { getCreatedAt, getCurrentTime } = require("../models/utilities/utilities");
+const {
+  getCreatedAt,
+  getCurrentTime
+} = require("../models/utilities/utilities");
 
 const logger = require("../logger");
 

@@ -85,9 +85,9 @@ const createBook = async book => {
         return i.name == book.author;
       });
 
-      if (book.category != undefined && categoryCheck == undefined){
+      if (book.category != undefined && categoryCheck == undefined) {
         return "There is no category with such data available";
-      } else if(book.author != undefined && authorCheck == undefined){
+      } else if (book.author != undefined && authorCheck == undefined) {
         return "There is no author with such data available";
       }
       //Invalid data check
@@ -95,7 +95,7 @@ const createBook = async book => {
         book.title == undefined ||
         book.title.trim() == "" ||
         book.isbn == undefined ||
-        book.isbn.trim().length < 30 
+        book.isbn.trim().length < 30
       ) {
         return "Invalid data, please send valid data and try again";
       }

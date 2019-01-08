@@ -7,7 +7,10 @@ const {
   readCategoryByName
 } = require("../models/category");
 
-const { getCreatedAt, getCurrentTime } = require("../models/utilities/utilities");
+const {
+  getCreatedAt,
+  getCurrentTime
+} = require("../models/utilities/utilities");
 
 const logger = require("../logger");
 
