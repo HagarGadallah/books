@@ -66,31 +66,6 @@ module.exports.get = async function(req, res) {
   }
 };
 
-// module.exports.getByName = async function(req, res) {
-//   try {
-//     console.log("inside read by name api");
-//     let category = await readCategoryByName(req.params.name);
-//     if (category == "No match found") {
-//       res.status(404).json({
-//         data: category,
-//         message: "Category not found"
-//       });
-//       return;
-//     }
-//     res.status(200).json({
-//       data: category,
-//       message: "Category found successfully"
-//     });
-//   } catch (e) {
-//     console.log(e);
-//     res.status(500).json({
-//       data: null,
-//       message: "Internal server error",
-//       error: e
-//     });
-//   }
-// };
-
 module.exports.delete = async function(req, res) {
   try {
     let category = await deleteCategoryById(req.params.id);
@@ -192,3 +167,28 @@ module.exports.create = async function(req, res) {
     });
   }
 };
+
+// module.exports.getByName = async function(req, res) {
+//   try {
+//     console.log("inside read by name api");
+//     let category = await readCategoryByName(req.params.name);
+//     if (category == "No match found") {
+//       res.status(404).json({
+//         data: category,
+//         message: "Category not found"
+//       });
+//       return;
+//     }
+//     res.status(200).json({
+//       data: category,
+//       message: "Category found successfully"
+//     });
+//   } catch (e) {
+//     console.log(e);
+//     res.status(500).json({
+//       data: null,
+//       message: "Internal server error",
+//       error: e
+//     });
+//   }
+// };

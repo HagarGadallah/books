@@ -95,7 +95,7 @@ const createBook = async book => {
         book.title == undefined ||
         book.title.trim() == "" ||
         book.isbn == undefined ||
-        book.isbn.trim().length < 30
+        book.isbn.trim().length < 20
       ) {
         return "Invalid data, please send valid data and try again";
       }
