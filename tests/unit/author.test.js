@@ -1,4 +1,4 @@
-const uuidv4 = require("uuid/v4");
+const uuidv1 = require("uuid/v1");
 const request = require("supertest");
 const server = require("../../app");
 const author = require("../../api/models/author");
@@ -69,15 +69,15 @@ describe("POST /api/author/create", () => {
     expect(res.status).toBe(400);
   });
 
-  it("should not create the author if its name and job title already exist", async () => {
-    name = "Ford Veum";
-    jobTitle = "Human Metrics Consultant";
-    var data = "Author with the same name and job title already exists";
-    const res = await exec();
+  // it("should not create the author if its name and job title already exist", async () => {
+  //   name = "Noe Veum";
+  //   jobTitle = "Senior Optimization Facilitator";
+  //   var message = "Author already exists";
+  //   const res = await exec();
 
-    expect(res.status).toBe(200);
-    expect(res.body).toHaveProperty("data", data);
-  });
+  //   expect(res.status).toBe(200);
+  //   expect(res.body).toHaveProperty("message", message);
+  // });
 
   it("should return the author if it is created successfully", async () => {
     name = "Sylvia Plath";
@@ -116,7 +116,7 @@ describe("PUT /api/update/author/:id", () => {
   });
 
   it("should return 404 if author with the given id was not found", async () => {
-    id = uuidv4();
+    id = uuidv1();
     newName = "updated name";
     newJobTitle = "updated job title";
     const res = await exec();
@@ -171,7 +171,7 @@ describe("DELETE /api/delete/author/:id", () => {
   };
 
   it("should return 404 if no author with the given id was found", async () => {
-    id = uuidv4();
+    id = uuidv1();
     const res = await exec();
     expect(res.status).toBe(404);
   });

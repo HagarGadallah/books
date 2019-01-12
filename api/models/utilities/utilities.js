@@ -9,7 +9,7 @@ const writeFile = util.promisify(fs.writeFile);
 
 const readAll = async () => {
   try {
-    const data = await readFile(path.join(__dirname, "../books-client.json"));
+    const data = await readFile(path.join(__dirname, "../books.json"));
     const dataParsed = JSON.parse(data);
     return dataParsed;
   } catch (e) {
@@ -97,7 +97,7 @@ const finalizeSort = async (collection, page, size, sortBy, filterBy) => {
 const write = async data => {
   try {
     var newFile = JSON.stringify(data);
-    await writeFile(path.join(__dirname, "../books-client.json"), newFile);
+    await writeFile(path.join(__dirname, "../books.json"), newFile);
   } catch (e) {
     throw e;
   }

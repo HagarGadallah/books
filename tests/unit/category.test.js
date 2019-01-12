@@ -12,7 +12,7 @@ describe("GET /api/category/:id", () => {
 
   it("should return category if valid id is passed", async () => {
     // existing id in the file
-    const id = "dc1d741a-d4e9-4e64-b33a-4eeb0970903c";
+    const id = "3d7434a0-165a-11e9-ab14-d663bd873d93";
     await category.readCategoryById(id);
 
     const res = await request(server).get("/api/category/" + id);
@@ -80,6 +80,15 @@ describe("POST /api/category/create", () => {
     expect(category).not.toBeNull();
   });
 
+  it("should not create the category if there exists one with the same name already", async () => {
+    name =  "Julia Beer";
+    var message = "Category already exists";
+    const res = await exec();
+
+    expect(res.status).toBe(200);
+    expect(res.body).toHaveProperty("message", message);
+  });
+
   it("should return the category if it is created successfully", async () => {
     name = "test name";
     const res = await exec();
@@ -140,7 +149,7 @@ describe("PUT /api/update/category/:id", () => {
   // });
 
   it("should return the updated category if it is a valid update", async () => {
-    id = "dc1d741a-d4e9-4e64-b33a-4eeb0970903c"; //existing id in the file
+    id = "af7827ae-1656-11e9-ab14-d663bd873d93"; //existing id in the file
     newName = "updated name";
     const res = await exec();
 
@@ -177,7 +186,7 @@ describe("DELETE /api/delete/category/:id", () => {
   // });
 
   it("should abort deleting the category if it has books listed under it", async () => {
-    id = "dc1d741a-d4e9-4e64-b33a-4eeb0970903c";
+    id = "c94ad296-1659-11e9-ab14-d663bd873d93";
     const res = await exec();
 
     expect(res.status).toBe(400);
@@ -188,7 +197,7 @@ describe("DELETE /api/delete/category/:id", () => {
   });
 
   it("should return the removed category", async () => {
-    id = "e7c15bc8-078c-4b6f-b416-803688ffd9bf";
+    id = "916a9b7c-1659-11e9-ab14-d663bd873d93";
     const res = await exec();
 
     expect(res.body).toHaveProperty("data.id", id);
