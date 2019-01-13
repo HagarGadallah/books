@@ -10,7 +10,7 @@ describe("GET /api/book/:id", () => {
   });
 
   it("should return book if valid id is passed", async () => {
-    const id = "ceb1138c-a247-43b5-8470-edcff6783bab";
+    const id = "38c1ac2a-1719-11e9-ab14-d663bd873d93";
     await book.readBookById(id);
 
     const res = await request(server).get("/api/book/" + id);
@@ -90,15 +90,15 @@ describe("POST /api/book/create", () => {
     expect(res.status).toBe(400);
   });
 
-  // it("should not create the book if there exists one with its title and isbn already", async () => {
-  //   title = "Iure voluptates et facere reprehenderit nobis autem";
-  //   isbn = "1PZF17IST7CO81RIJV0YH4PSVGGOUSG2OO";
-  //   var message = "Book already exists";
-  //   const res = await exec();
+  it("should not create the book if there exists one with its title and isbn already", async () => {
+    title = "Iure voluptates et facere reprehenderit nobis autem";
+    isbn = "1PZF17IST7CO81RIJV0YH4PSVGGOUSG2OO";
+    var message = "Book already exists";
+    const res = await exec();
 
-  //   expect(res.status).toBe(200);
-  //   expect(res.body).toHaveProperty("message", message);
-  // });
+    expect(res.status).toBe(200);
+    expect(res.body).toHaveProperty("message", message);
+  });
 
   it("should return the book if it is created successfully", async () => {
     title = "test title";
@@ -147,7 +147,7 @@ describe("PUT /api/update/book/:id", () => {
   });
 
   it("should return the updated book if it is a valid update ", async () => {
-    id = "ceb1138c-a247-43b5-8470-edcff6783bab";
+    id = "38c1ac2a-1719-11e9-ab14-d663bd873d93";
     newTitle = "updated title";
     newIsbn = "hngvberuigvbrgrehogveogvwohgvweohgvhwefvioweogv";
     const res = await exec();
@@ -160,7 +160,7 @@ describe("PUT /api/update/book/:id", () => {
 
   it("should return 400 if book's category is not available in file", async () => {
     //Just for increasing branch coverage
-    id = "ceb1138c-a247-43b5-8470-edcff6783bab";
+    id = "38c1ac2a-1719-11e9-ab14-d663bd873d93";
     newTitle = "updated title";
     newCategory = "0313199d-f68f-45bb-a60d-80e407bae784";
 
@@ -173,7 +173,7 @@ describe("PUT /api/update/book/:id", () => {
 
   it("should return 400 if book's author is not available in file", async () => {
     //Just for increasing branch coverage
-    id = "ceb1138c-a247-43b5-8470-edcff6783bab";
+    id = "38c1ac2a-1719-11e9-ab14-d663bd873d93";
     newTitle = "updated title";
     newAuthor = "ddc81706-b0c9-4ec6-a3ce-78a2300d442d";
 
@@ -185,7 +185,7 @@ describe("PUT /api/update/book/:id", () => {
   });
 
   it("should return the updated book if it is a valid update, only title", async () => {
-    id = "ceb1138c-a247-43b5-8470-edcff6783bab";
+    id = "38c1ac2a-1719-11e9-ab14-d663bd873d93";
     newTitle = "updated title";
 
     const res = await request(server)
@@ -198,7 +198,7 @@ describe("PUT /api/update/book/:id", () => {
   });
 
   it("should return the updated book if it is a valid update, only isbn", async () => {
-    id = "ceb1138c-a247-43b5-8470-edcff6783bab";
+    id = "38c1ac2a-1719-11e9-ab14-d663bd873d93";
     newIsbn = "jigvjiweogvbregrhethbjiortbhjrbhjerjgbir";
 
     const res = await request(server)
@@ -260,7 +260,7 @@ describe("POST /api/book", () => {
   it("should return records in file wrt filter specified", async () => {
     page = 1;
     size = 15;
-    filterBy = { author: "8dec0840-5ab5-4e07-8452-a0c787fa8805" };
+    filterBy = { author: "6cfb6bc0-170a-11e9-ab14-d663bd873d93" };
     var res = await request(server)
       .post("/api/book/")
       .send({ page, size, filterBy });
@@ -269,11 +269,11 @@ describe("POST /api/book", () => {
     expect(res.body.data).toHaveLength(2);
     expect(res.body.data[0]).toHaveProperty(
       "author",
-      "8dec0840-5ab5-4e07-8452-a0c787fa8805"
+      "6cfb6bc0-170a-11e9-ab14-d663bd873d93"
     );
     expect(res.body.data[1]).toHaveProperty(
       "author",
-      "8dec0840-5ab5-4e07-8452-a0c787fa8805"
+      "6cfb6bc0-170a-11e9-ab14-d663bd873d93"
     );
   });
 
@@ -291,7 +291,7 @@ describe("POST /api/book", () => {
   it("should return records in file wrt filter if page number is -ve", async () => {
     page = -100;
     size = 15;
-    filterBy = { author: "8dec0840-5ab5-4e07-8452-a0c787fa8805" };
+    filterBy = { author: "6cfb6bc0-170a-11e9-ab14-d663bd873d93" };
     var res = await request(server)
       .post("/api/book/")
       .send({ page, size, filterBy });
@@ -300,11 +300,11 @@ describe("POST /api/book", () => {
     expect(res.body.data).toHaveLength(2);
     expect(res.body.data[0]).toHaveProperty(
       "author",
-      "8dec0840-5ab5-4e07-8452-a0c787fa8805"
+      "6cfb6bc0-170a-11e9-ab14-d663bd873d93"
     );
     expect(res.body.data[1]).toHaveProperty(
       "author",
-      "8dec0840-5ab5-4e07-8452-a0c787fa8805"
+      "6cfb6bc0-170a-11e9-ab14-d663bd873d93"
     );
   });
 

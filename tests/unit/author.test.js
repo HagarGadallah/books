@@ -11,7 +11,7 @@ describe("GET /api/author/:id", () => {
 
   it("should return author if valid id is passed", async () => {
     // existing id in the file
-    const id = "1fb64057-cffc-46e6-a347-4bb5631f0e83";
+    const id = "c9415976-170a-11e9-ab14-d663bd873d93";
     await author.readAuthorById(id);
 
     const res = await request(server).get("/api/author/" + id);
@@ -69,15 +69,15 @@ describe("POST /api/author/create", () => {
     expect(res.status).toBe(400);
   });
 
-  // it("should not create the author if its name and job title already exist", async () => {
-  //   name = "Noe Veum";
-  //   jobTitle = "Senior Optimization Facilitator";
-  //   var message = "Author already exists";
-  //   const res = await exec();
+  it("should not create the author if its name and job title already exist", async () => {
+    name = "Noe Veum";
+    jobTitle = "Senior Optimization Facilitator";
+    var message = "Author already exists";
+    const res = await exec();
 
-  //   expect(res.status).toBe(200);
-  //   expect(res.body).toHaveProperty("message", message);
-  // });
+    expect(res.status).toBe(200);
+    expect(res.body).toHaveProperty("message", message);
+  });
 
   it("should return the author if it is created successfully", async () => {
     name = "Sylvia Plath";
@@ -101,7 +101,7 @@ describe("PUT /api/update/author/:id", () => {
   };
 
   it("should return 500", async () => {
-    id = "1fb64057-cffc-46e6-a347-4bb5631f0e83";
+    id = "9a0be2f8-1709-11e9-ab14-d663bd873d93";
     newName = 123;
     var res = await exec();
 
@@ -109,7 +109,7 @@ describe("PUT /api/update/author/:id", () => {
   });
 
   it("should return 400 if author's name is empty", async () => {
-    id = "1fb64057-cffc-46e6-a347-4bb5631f0e83";
+    id = "9a0be2f8-1709-11e9-ab14-d663bd873d93";
     newName = "            ";
     const res = await exec();
     expect(res.status).toBe(400);
@@ -124,7 +124,7 @@ describe("PUT /api/update/author/:id", () => {
   });
 
   it("should return the updated author if it is a valid update ", async () => {
-    id = "1fb64057-cffc-46e6-a347-4bb5631f0e83"; //existing id in the file
+    id = "9a0be2f8-1709-11e9-ab14-d663bd873d93"; //existing id in the file
     newName = "updated name";
     newJobTitle = "updated job title";
     const res = await exec();
@@ -136,7 +136,7 @@ describe("PUT /api/update/author/:id", () => {
   });
 
   it("should return the updated author if it is a valid update, only job title", async () => {
-    id = "1fb64057-cffc-46e6-a347-4bb5631f0e83"; //existing id in the file
+    id = "9a0be2f8-1709-11e9-ab14-d663bd873d93"; //existing id in the file
     newJobTitle = "updated job title";
 
     const res = await request(server)
@@ -149,7 +149,7 @@ describe("PUT /api/update/author/:id", () => {
   });
 
   it("should return the updated author if it is a valid update, only name", async () => {
-    id = "1fb64057-cffc-46e6-a347-4bb5631f0e83"; //existing id in the file
+    id = "9a0be2f8-1709-11e9-ab14-d663bd873d93"; //existing id in the file
     newName = "updated name";
 
     const res = await request(server)
@@ -177,7 +177,7 @@ describe("DELETE /api/delete/author/:id", () => {
   });
 
   it("should abort deleting an author if he/she has books written by them", async () => {
-    id = "62297f74-09bb-43cc-a321-43c4f49c2894";
+    id = "f6aed6a0-1709-11e9-ab14-d663bd873d93";
     const res = await exec();
 
     expect(res.status).toBe(400);
@@ -202,6 +202,17 @@ describe("POST /api/author", () => {
 
   afterAll(async () => {
     await server.close();
+  });
+
+  it("should return 500", async () => {
+    sortBy = 123;
+    page = 2;
+    size = 15;
+    var res = await request(server)
+      .post("/api/author/")
+      .send({ page, size, sortBy });
+
+    expect(res.status).toBe(500);
   });
 
   it("should return 200 if all authors are retrieved", async () => {

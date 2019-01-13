@@ -81,7 +81,7 @@ describe("POST /api/category/create", () => {
   });
 
   it("should not create the category if there exists one with the same name already", async () => {
-    name =  "Julia Beer";
+    name = "Julia Beer";
     var message = "Category already exists";
     const res = await exec();
 
@@ -210,6 +210,17 @@ describe("POST /api/category", () => {
 
   afterAll(async () => {
     await server.close();
+  });
+
+  it("should return 500", async () => {
+    sortBy = 123;
+    page = 2;
+    size = 15;
+    var res = await request(server)
+      .post("/api/category/")
+      .send({ page, size, sortBy });
+
+    expect(res.status).toBe(500);
   });
 
   it("should return 200 if all categories are retrieved", async () => {
