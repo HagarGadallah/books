@@ -151,7 +151,7 @@ module.exports.create = async function(req, res) {
       });
       return;
     }
-    res.status(200).json({
+    res.status(201).json({
       data: newAuthor,
       message: "Author created successfully"
     });

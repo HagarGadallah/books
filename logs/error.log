@@ -1552,3 +1552,12 @@
 2019-01-13T11:47:11.505Z  error: author.name.trim is not a function
 2019-01-13T11:47:11.566Z  error: author.name.trim is not a function
 2019-01-13T11:47:11.630Z  error: sortBy.trim is not a function
+2019-01-15T15:02:06.897Z  error: book.isbn.trim is not a function
+2019-01-15T15:02:06.944Z  error: book.isbn.trim is not a function
+2019-01-15T15:02:07.049Z  error: sortBy.trim is not a function
+2019-01-15T15:02:07.462Z  error: author.name.trim is not a function
+2019-01-15T15:02:07.494Z  error: author.name.trim is not a function
+2019-01-15T15:02:07.560Z  error: sortBy.trim is not a function
+2019-01-15T15:02:07.854Z  error: category.name.trim is not a function
+2019-01-15T15:02:07.887Z  error: category.name.trim is not a function
+2019-01-15T15:02:07.928Z  error: sortBy.trim is not a function

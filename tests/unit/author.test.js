@@ -30,10 +30,6 @@ describe("GET /api/author/:id", () => {
 });
 
 describe("POST /api/author/create", () => {
-  // beforeAll(async () => {
-  //   await server.close();
-  // });
-
   //variables
   var name, jobTitle;
 

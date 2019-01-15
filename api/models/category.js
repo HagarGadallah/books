@@ -48,7 +48,8 @@ const readCategoryByName = async name => {
   try {
     console.log("inside read by name function");
     const data = await readAll();
-    var nameToLookUp = _.replace(name, "%20", " ");
+    //var nameToLookUp = _.replace(name, "%20", " ");
+    console.log("Dataaaa", data.categories);
     var item = _.find(data.categories, function(i) {
       return i.name == name;
     });

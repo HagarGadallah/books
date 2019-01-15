@@ -29,6 +29,7 @@ router.delete("/api/delete/author/:id", authorController.delete);
 //Categories Routes
 router.post("/api/category", categoryController.getAll);
 router.get("/api/category/:id", categoryController.get);
+router.get("/api/category/", categoryController.getByName);
 router.post("/api/category/create", categoryController.create);
 router.put("/api/update/category/:id", categoryController.update);
 router.delete("/api/delete/category/:id", categoryController.delete);
